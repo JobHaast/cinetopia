@@ -1,4 +1,4 @@
-package nl.avans.pmseeindopdracht;
+package nl.avans.cinetopia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,3 +14,4 @@ public class MainActivity extends AppCompatActivity {
 }
 
 //Dit is een test
+//Dit is ook een test

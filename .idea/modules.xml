@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PM&amp;SE Eindopdracht.iml" filepath="$PROJECT_DIR$/PM&amp;SE Eindopdracht.iml" group="PM&amp;SE Eindopdracht" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PM&amp;SE Eindopdracht/app" />
+      <module fileurl="file://$PROJECT_DIR$/Cinetopia.iml" filepath="$PROJECT_DIR$/Cinetopia.iml" group="Cinetopia" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Cinetopia/app" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package nl.avans.pmseeindopdracht;
+package nl.avans.cinetopia;
 
 import android.content.Context;
 
