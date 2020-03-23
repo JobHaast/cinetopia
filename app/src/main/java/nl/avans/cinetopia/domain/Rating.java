@@ -3,9 +3,9 @@ package nl.avans.cinetopia.domain;
 public class Rating {
     private static final String TAG = Rating.class.getSimpleName();
 
-    private int rating;
+    private double rating;
 
-    public Rating(int rating){
+    public Rating(double rating){
         if(checkRating(rating)){
             this.rating = rating;
         }else{
@@ -13,7 +13,7 @@ public class Rating {
         }
     }
 
-    private boolean checkRating(int rating){
-        return rating<=10 && rating>=0;
+    private boolean checkRating(double rating){
+        return rating<=10 && rating>=1.0;
     }
 }
