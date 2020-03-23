@@ -9,11 +9,11 @@ public class Rating {
         if(checkRating(rating)){
             this.rating = rating;
         }else{
-            this.rating = Integer.parseInt(null);
+            this.rating = -1;
         }
     }
 
     private boolean checkRating(int rating){
-        return rating<=5 && rating>=0;
+        return rating<=10 && rating>=0;
     }
 }
