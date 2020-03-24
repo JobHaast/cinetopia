@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cinetopia</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_extra">Extra\'s</string>
+    <string name="moviedetails_menu_share">Share</string>
+    <string name="moviedetails_menu_options">Options</string>
+    <string name="mainactivity_search">Search</string>
 </resources>
