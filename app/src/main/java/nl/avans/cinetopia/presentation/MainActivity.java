@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.main;
+package nl.avans.cinetopia.presentation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
