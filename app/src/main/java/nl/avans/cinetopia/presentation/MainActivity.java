@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
-        UrlBuilder.buildPopularMovieListUrl("3");
+        UrlBuilder.buildPopularMovieListUrl(3);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

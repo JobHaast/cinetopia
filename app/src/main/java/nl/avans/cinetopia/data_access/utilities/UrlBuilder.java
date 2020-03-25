@@ -32,11 +32,11 @@ public class UrlBuilder {
 
 
 //  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=1
-    public static URL buildPopularMovieListUrl(String page) {
+    public static URL buildPopularMovieListUrl(int pageNumber) {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
-
+        String page = pageNumber + "";
         //If page is null or "null" it is given a page 1
-        if (page == null || page.equals("null") || page.equals("")) {
+        if (page.equals("null") || page.equals("")) {
             page = "1";
         }
 
