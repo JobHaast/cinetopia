@@ -36,7 +36,7 @@ public class UrlBuilder {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
 
         //If page is null or "null" it is given a page 1
-        if (page == null || page == "null") {
+        if (page == null || page.equals("null") || page.equals("")) {
             page = "1";
         }
 
