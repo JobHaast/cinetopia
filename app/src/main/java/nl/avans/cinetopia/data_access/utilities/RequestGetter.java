@@ -31,10 +31,10 @@ public class RequestGetter extends AsyncTask {
     final static String JSON_RESULT = "results";
     final static String JSON_MOVIE_ID = "id";
     final static String JSON_MOVIE_TITLE = "title";
+    final static String JSON_MOVIE_POSTER_REQUEST_KEY = "https://image.tmdb.org/t/p/w500";
     final static String JSON_MOVIE_POSTER_PATH = "poster_path";
     final static String JSON_MOVIE_GENRE_IDS = "genre_ids";
     final static String JSON_MOVIE_VOTE_AVERAGE = "vote_average";
-
 
 
     @Override
@@ -107,6 +107,7 @@ public class RequestGetter extends AsyncTask {
                 int id = movie.getInt(JSON_MOVIE_ID);
                 String title = movie.getString(JSON_MOVIE_TITLE);
                 String moviePosterPath = movie.getString(JSON_MOVIE_POSTER_PATH);
+                String moviePosterUrl = JSON_MOVIE_POSTER_REQUEST_KEY + moviePosterPath;
                 Rating movieRating = new Rating(movie.getDouble(JSON_MOVIE_VOTE_AVERAGE));
 
                 //Putting the genreIds and titles into an ArrayList
@@ -128,7 +129,7 @@ public class RequestGetter extends AsyncTask {
                 }
 
                 //Movies get instantiated and added to the popularMovieResult ArrayList
-                Movie newMovie = new Movie(id, title, moviePosterPath, movieRating, genres);
+                Movie newMovie = new Movie(id, title, moviePosterUrl, movieRating, genres);
                 popularMovieResult.add(newMovie);
 
             }
