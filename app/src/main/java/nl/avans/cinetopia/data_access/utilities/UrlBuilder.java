@@ -8,21 +8,35 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
 
 public class UrlBuilder {
 
-    //Declaration of the static attributes
+    //Declaration of the attributes
     private static final String TAG = "UrlBuilder";
-    final static String BASE_URL_COCKTAILS = "https://www.thecocktaildb.com/api/json/v1/1/search.php";
-    final static String PARAM_FILTER = "f";
-    final static String FILTER = "a";
+    final static String BASE_URL_THE_MOVIE_DATABASE = "https://api.themoviedb.org/3/";
 
-    public static URL buildUrl() {
-        Log.d(TAG, "buildUrl is aangeroepen");
+    //The API Key is final and static so there can't be made any typos
+    final static String PARAM_API_KEY = "api_key";
+    final static String API_KEY = "4c422ac80f2c83f42b8f905d4303959d";
+
+    //The default Language is set to English
+    final static String PARAM_LANGUAGE = "language";
+    final static String LANGUAGE_ENGLISH = "en-US";
+
+    //Popular Movies List path
+    final static String MOVIE_PATH = "movie";
+    final static String POPULAR_LIST_PATH = "popular";
+
+
+//  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=500
+    public static URL buildPopularMovieListUrl() {
+        Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
         //The params are appended to the base string
-        Uri builtUri = Uri.parse(BASE_URL_COCKTAILS).buildUpon()
-                .appendQueryParameter(PARAM_FILTER, FILTER)
+        Uri builtUri = Uri.parse(BASE_URL_THE_MOVIE_DATABASE).buildUpon()
+                .appendPath(MOVIE_PATH)
+                .appendPath(POPULAR_LIST_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
                 .build();
 
         URL url = null;
@@ -34,7 +48,7 @@ public class UrlBuilder {
 
         Log.d(TAG, "Built url: " + url);
 
-        //The URL object url is returned to CocktailApiTask
+        //The URL object url is returned to popularMovieListGetter
         return url;
     }
 
