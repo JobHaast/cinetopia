@@ -20,13 +20,20 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="nl.avans.cinetopia.MainActivity" >
+        <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="nl.avans.cinetopia.presentation.ListActivity" >
+        </activity>
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="nl.avans.cinetopia.com.squareup.picasso"
+            android:exported="false" />
     </application>
 
 </manifest>

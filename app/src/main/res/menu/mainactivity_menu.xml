@@ -7,4 +7,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_search_icon"/>
 
+    <item
+        android:id="@+id/mainactivity_menu"
+        android:title="@string/mainactivity_menu"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_black" />
+
 </menu>
