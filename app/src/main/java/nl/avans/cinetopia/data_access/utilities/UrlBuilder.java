@@ -23,20 +23,30 @@ public class UrlBuilder {
     final static String PARAM_LANGUAGE = "language";
     final static String LANGUAGE_ENGLISH = "en-US";
 
+    //The pages
+    final static String PARAM_PAGE = "page";
+
     //Popular Movies List path
     final static String MOVIE_PATH = "movie";
     final static String POPULAR_LIST_PATH = "popular";
 
 
-//  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=500
-    public static URL buildPopularMovieListUrl() {
+//  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=1
+    public static URL buildPopularMovieListUrl(String page) {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
+
+        //If page is null or "null" it is given a page 1
+        if (page == null || page == "null") {
+            page = "1";
+        }
+
         //The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_THE_MOVIE_DATABASE).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(POPULAR_LIST_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_PAGE, page)
                 .build();
 
         URL url = null;

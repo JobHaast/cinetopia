@@ -33,5 +33,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.google.android.material:material:1.0.0'
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    //Not sure if correct
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+
+    //Not sure if needed:
+    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+
 }
