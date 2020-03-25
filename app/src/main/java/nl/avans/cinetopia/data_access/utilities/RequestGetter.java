@@ -29,6 +29,7 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
     private ArrayList<Movie> movies;
 
     //Moet hier trouwens geen listener komen? - Iza
+    //Ik heb geen idee -Noah
 
     //Final static strings needed to parse the JSONResults
     final static String JSON_RESULT = "results";
