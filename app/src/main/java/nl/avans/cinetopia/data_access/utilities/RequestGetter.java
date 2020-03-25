@@ -114,9 +114,14 @@ public class RequestGetter extends AsyncTask {
                 ArrayList<Genre> genres = new ArrayList<>();
                 for (int x = 0; x < genreIds.length(); x++) {
                     int genre = genreIds.getInt(x);
+
+
                     //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
                     String genreTitle = "test";
                     //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
+
+
+
                     if (genre > 0 && !genreTitle.equals("null") || genreTitle != null ) {
                         genres.add(new Genre(genre, title));
                     }
