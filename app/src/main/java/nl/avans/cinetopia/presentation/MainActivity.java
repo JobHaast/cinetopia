@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private androidx.appcompat.widget.Toolbar toolbar;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
-    private ActionBarDrawerToggle drawerToggle;
 
     private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         //set a toolbar to replace the actionbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // This will display an Up icon (<-), we will replace it with hamburger later
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Find our drawer view
@@ -98,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
         Class fragmentClass = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                intent.putExtra("help", "HELP ME");
-                startActivity(intent);
+                fragmentClass = ListActivity.class;
                 break;
             case R.id.nav_second_fragment:
 

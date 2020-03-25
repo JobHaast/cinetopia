@@ -6,4 +6,9 @@
     <string name="moviedetails_menu_options">Options</string>
     <string name="mainactivity_search">Search</string>
     <string name="mainactivity_menu">Menu</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="first">First</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
 </resources>
