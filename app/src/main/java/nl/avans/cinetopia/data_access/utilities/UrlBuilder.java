@@ -26,9 +26,12 @@ public class UrlBuilder {
     //The pages
     final static String PARAM_PAGE = "page";
 
-    //Popular Movies List path
+    //paths
     final static String MOVIE_PATH = "movie";
-    final static String POPULAR_LIST_PATH = "popular";
+    final static String POPULAR_PATH = "popular";
+    final static String GENRE_PATH = "genre";
+    final static String LIST_PATH = "list";
+
 
 
 //  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=1
@@ -43,7 +46,7 @@ public class UrlBuilder {
         //The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_THE_MOVIE_DATABASE).buildUpon()
                 .appendPath(MOVIE_PATH)
-                .appendPath(POPULAR_LIST_PATH)
+                .appendPath(POPULAR_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
                 .appendQueryParameter(PARAM_PAGE, page)
@@ -56,10 +59,37 @@ public class UrlBuilder {
             e.printStackTrace();
         }
 
-        Log.d(TAG, "Built url: " + url);
+        Log.d(TAG, "Built buildPopularMovieListUrl: " + url);
 
         //The URL object url is returned to popularMovieListGetter
         return url;
+    }
+
+//  ExampleUrl: https://api.themoviedb.org/3/genre/movie/list?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US
+    public static URL buildGenreUrl() {
+        Log.d(TAG, "buildGenreUrl aangeroepen");
+
+        //The params are appended to the base string
+        Uri builtUri = Uri.parse(BASE_URL_THE_MOVIE_DATABASE).buildUpon()
+                .appendPath(GENRE_PATH)
+                .appendPath(MOVIE_PATH)
+                .appendPath(LIST_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildGenreUrl: " + url);
+
+        //The URL object url is returned to popularMovieListGetter
+        return url;
+
     }
 
 

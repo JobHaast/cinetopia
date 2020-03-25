@@ -1,8 +1,6 @@
 package nl.avans.cinetopia.data_access.utilities;
 
-import android.content.res.Resources;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -15,7 +13,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -35,15 +32,22 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
     //Final static strings needed to parse the JSONResults
     final static String JSON_RESULT = "results";
     final static String JSON_MOVIE_ID = "id";
+    final static String JSON_GENRE_ID = "id";
     final static String JSON_MOVIE_TITLE = "title";
+    final static String JSON_GENRE_NAME = "name";
     final static String JSON_MOVIE_POSTER_REQUEST_KEY = "https://image.tmdb.org/t/p/w500";
     final static String JSON_MOVIE_POSTER_PATH = "poster_path";
+    final static String JSON_GENRES = "genres";
     final static String JSON_MOVIE_GENRE_IDS = "genre_ids";
     final static String JSON_MOVIE_VOTE_AVERAGE = "vote_average";
 
-    HashMap<Integer, String> genreHashMap = new HashMap<>();
-    boolean needToGetGenres = true;
+    private HashMap<Integer, String> genreHashMap;
+    private boolean needToGetGenres = true;
 
+    //a getter for the genreHashMap
+    public HashMap<Integer, String> getGenreHashMap() {
+        return genreHashMap;
+    }
 
     // TODO - Methode doInBackground werkend maken
     @Override
@@ -57,14 +61,53 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
         return null;
     }
 
-    //Method for retrieving the genreIds with the corresponding titles.
-    static public void getGenresFromUrl(){
+    //This method calls the GetGenresFromUrl which calls the UrlBuilder, when the JSONResult is retrieved it is given to doParseJSONResultToGenreHashMap to parse it and put it in the HashMap
+    private void putGenresInHashMap() {
+        String genreResult = null;
+        try {
+            genreResult = RequestGetter.getGenresFromUrl();
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        }
+        doParseJSONResultToGenreHashMap(genreResult);
+    }
 
+    //Method for retrieving the genreIds with the corresponding titles.
+    static public String getGenresFromUrl() throws IOException {
+        Log.d(TAG, "getGenresFromUrlPutInHashMap aangeroepen");
+
+        URL url = UrlBuilder.buildGenreUrl();
+
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+
+            InputStream in = urlConnection.getInputStream();
+            Scanner scanner = new Scanner(in);
+            scanner.useDelimiter("\\A");
+
+            boolean hasInput = scanner.hasNext();
+            if (hasInput) {
+                return scanner.next();
+            } else {
+                return null;
+            }
+        } finally {
+            Log.d(TAG, "getGenresFromUrl is done and is going to disconnect");
+            urlConnection.disconnect();
+        }
     }
 
     //Method for retrieving a list of popular movies
     private ArrayList<Movie> getPopularMoviesFromUrl() {
         Log.d(TAG, "getPopularMoviesFromUrl aangeroepen");
+
+        //The genres are retrieved from the API if that hasn't been done already, now they can be looked up to be added to the Movies instead of the genreID
+        if (needToGetGenres) {
+            putGenresInHashMap();
+            needToGetGenres = false;
+        }
 
         ArrayList<Movie> popularMovieList = new ArrayList<>();
 
@@ -84,7 +127,7 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
                         popularMovieList.addAll(doParseJsonResultToPopularMovieList(scanner.next()));
                     }
                 } finally {
-                    Log.d(TAG, "getResultFromUrl is done with page: " + i + " and is going to disconnect");
+                    Log.d(TAG, "getPopularMoviesFromUrl is done with page: " + i + " and is going to disconnect");
                     urlConnection.disconnect();
                 }
             }
@@ -108,7 +151,7 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
 
     }
 
-    //Method for parsing the results
+    //Method for parsing the popularMovieList
     private ArrayList<Movie> doParseJsonResultToPopularMovieList(String JSONResult) {
         Log.d(TAG, "doParseJsonResultToPopularMovieList aangeroepen");
 
@@ -127,23 +170,14 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
                 String moviePosterUrl = JSON_MOVIE_POSTER_REQUEST_KEY + moviePosterPath;
                 Rating movieRating = new Rating(movie.getDouble(JSON_MOVIE_VOTE_AVERAGE));
 
-
-                // TODO - Het werkend maken van de JSON parse voor genre > belangrijk!
                 //Putting the genreIds and titles into an ArrayList
                 JSONArray genreIds = movie.getJSONArray(JSON_MOVIE_GENRE_IDS);
                 ArrayList<Genre> genres = new ArrayList<>();
                 for (int x = 0; x < genreIds.length(); x++) {
-                    int genre = genreIds.getInt(x);
-
-
-                    //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
-                    String genreTitle = "test";
-                    //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
-
-
-
-                    if (genre > 0 && !genreTitle.equals("null") || genreTitle != null ) {
-                        genres.add(new Genre(genre, title));
+                    int genreId = genreIds.getInt(x);
+                    String genreName = genreHashMap.get(id);
+                    if (genreId > 0 && !genreName.equals("null") || genreName != null) {
+                        genres.add(new Genre(genreId, title));
                     }
                 }
 
@@ -160,6 +194,31 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
 
         Log.i(TAG, "Aantal movies: " + popularMovieResult.size());
         return popularMovieResult;
+    }
+
+    private void doParseJSONResultToGenreHashMap(String JSONGenreResult) {
+        Log.d(TAG, "doParseJsonResultToPopularMovieList aangeroepen");
+
+        HashMap<Integer, String> genreIdAndTitle = new HashMap<>();
+        //The JSONobject is parsed
+        try {
+            JSONObject results = new JSONObject(JSONGenreResult);
+            JSONArray genres = results.getJSONArray(JSON_GENRES);
+
+            for (int i = 0; i < genres.length(); i++) {
+                JSONObject genre = (JSONObject) genres.get(i);
+                int id = genre.getInt(JSON_GENRE_ID);
+                String name = genre.getString(JSON_GENRE_NAME);
+                genreHashMap.put(id, name);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e(TAG, "JSONException: " + e.getMessage());
+        }
+
+        Log.i(TAG, "Aantal genres: " + genreHashMap.size());
+
     }
 
 }
