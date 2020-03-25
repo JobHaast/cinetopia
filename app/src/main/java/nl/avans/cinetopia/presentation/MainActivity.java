@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
+import nl.avans.cinetopia.data_access.utilities.RequestGetter;
 import nl.avans.cinetopia.data_access.utilities.UrlBuilder;
 import nl.avans.cinetopia.domain.Movie;
 
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
-        UrlBuilder.buildPopularMovieListUrl(3);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

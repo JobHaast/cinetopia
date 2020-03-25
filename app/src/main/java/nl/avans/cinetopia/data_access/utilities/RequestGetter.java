@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -29,7 +30,7 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
     private ArrayList<Movie> movies;
 
     //Moet hier trouwens geen listener komen? - Iza
-    //Ik heb geen idee -Noah
+    //Ik heb geen idee - Noah
 
     //Final static strings needed to parse the JSONResults
     final static String JSON_RESULT = "results";
@@ -39,6 +40,9 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
     final static String JSON_MOVIE_POSTER_PATH = "poster_path";
     final static String JSON_MOVIE_GENRE_IDS = "genre_ids";
     final static String JSON_MOVIE_VOTE_AVERAGE = "vote_average";
+
+    HashMap<Integer, String> genreHashMap = new HashMap<>();
+    boolean needToGetGenres = true;
 
 
     // TODO - Methode doInBackground werkend maken
@@ -51,6 +55,11 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
     //Method for retrieving the details of a movie
     private Movie getMovieDetailsFromUrl(URL url) {
         return null;
+    }
+
+    //Method for retrieving the genreIds with the corresponding titles.
+    static public void getGenresFromUrl(){
+
     }
 
     //Method for retrieving a list of popular movies
@@ -125,6 +134,7 @@ public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
                 ArrayList<Genre> genres = new ArrayList<>();
                 for (int x = 0; x < genreIds.length(); x++) {
                     int genre = genreIds.getInt(x);
+
 
                     //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
                     String genreTitle = "test";
