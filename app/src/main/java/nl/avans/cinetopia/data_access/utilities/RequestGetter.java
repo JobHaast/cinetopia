@@ -22,10 +22,13 @@ import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 import nl.avans.cinetopia.domain.Rating;
 
-public class RequestGetter extends AsyncTask {
+public class RequestGetter extends AsyncTask<URL, Void, ArrayList<Movie>> {
+
     public static final String TAG = RequestGetter.class.getSimpleName();
 
     private ArrayList<Movie> movies;
+
+    //Moet hier trouwens geen listener komen? - Iza
 
     //Final static strings needed to parse the JSONResults
     final static String JSON_RESULT = "results";
@@ -37,11 +40,13 @@ public class RequestGetter extends AsyncTask {
     final static String JSON_MOVIE_VOTE_AVERAGE = "vote_average";
 
 
+    // TODO - Methode doInBackground werkend maken
     @Override
-    protected Object doInBackground(Object[] objects) {
+    protected ArrayList<Movie> doInBackground(URL... urls) {
         return null;
     }
 
+    // TODO - Methode getMovieDetailsFromUrl werkend maken
     //Method for retrieving the details of a movie
     private Movie getMovieDetailsFromUrl(URL url) {
         return null;
@@ -81,11 +86,13 @@ public class RequestGetter extends AsyncTask {
         return popularMovieList;
     }
 
+    // TODO - Methode requestTokenFromUrl werkend maken
     //Method for getting a request token
     private String requestTokenFromUrl(URL url) {
         return null;
     }
 
+    // TODO - Methode authorizeTokenFromUrl werkend maken
     //Method for authorizing a request token
     private void authorizeTokenFromUrl(URL url) {
 
@@ -110,12 +117,13 @@ public class RequestGetter extends AsyncTask {
                 String moviePosterUrl = JSON_MOVIE_POSTER_REQUEST_KEY + moviePosterPath;
                 Rating movieRating = new Rating(movie.getDouble(JSON_MOVIE_VOTE_AVERAGE));
 
+
+                // TODO - Het werkend maken van de JSON parse voor genre > belangrijk!
                 //Putting the genreIds and titles into an ArrayList
                 JSONArray genreIds = movie.getJSONArray(JSON_MOVIE_GENRE_IDS);
                 ArrayList<Genre> genres = new ArrayList<>();
                 for (int x = 0; x < genreIds.length(); x++) {
                     int genre = genreIds.getInt(x);
-
 
                     //DIT MOET NOG VERANDERD WORDEN NAAR EEN WAARDE UIT EEN HASHMAP
                     String genreTitle = "test";
@@ -141,6 +149,6 @@ public class RequestGetter extends AsyncTask {
 
         Log.i(TAG, "Aantal movies: " + popularMovieResult.size());
         return popularMovieResult;
-}
+    }
 
 }
