@@ -31,8 +31,6 @@ public class UrlBuilder {
     final static String POPULAR_LIST_PATH = "popular";
 
 
-
-
 //  ExampleUrl: https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en-US&page=1
     public static URL buildPopularMovieListUrl(String page) {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
@@ -41,6 +39,7 @@ public class UrlBuilder {
         if (page == null || page == "null") {
             page = "1";
         }
+
         //The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_THE_MOVIE_DATABASE).buildUpon()
                 .appendPath(MOVIE_PATH)
