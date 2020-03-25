@@ -16,4 +16,16 @@ public class Rating {
     private boolean checkRating(double rating){
         return rating<=10 && rating>=1.0;
     }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 }

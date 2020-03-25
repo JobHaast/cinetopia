@@ -12,13 +12,13 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.domain.Film;
+import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
 
-    private ArrayList<Film> films = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 //    private FilmAdapter adapter;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState called");
 
         super.onSaveInstanceState(outState);
-        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, films);
+        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, movies);
     }
 
     @Override
