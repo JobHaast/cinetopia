@@ -11,12 +11,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -126,10 +123,10 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
                 fragmentClass = TopRatedActivity.class;
                 break;
             case R.id.nav_to_be_watched:
-                fragmentClass = ListActivity.class;
+                fragmentClass = WatchedListActivity.class;
                 break;
             case R.id.nav_watched:
-                fragmentClass = ListActivity.class;
+                fragmentClass = WatchedListActivity.class;
                 break;
             case R.id.nav_settings:
                 fragmentClass = SettingsActivity.class;

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.MovieRecyclerViewAdapter;
 
-public class ListActivity extends Fragment {
+public class WatchedListActivity extends Fragment {
 
     @Nullable
     @Override
