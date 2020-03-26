@@ -1,13 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first_fragment"
-            android:title="@string/first" />
+            android:id="@+id/nav_popular"
+            android:title="@string/popular" />
         <item
-            android:id="@+id/nav_second_fragment"
-            android:title="@string/second" />
+            android:id="@+id/nav_top_rated"
+            android:title="@string/top_rated" />
         <item
-            android:id="@+id/nav_third_fragment"
-            android:title="@string/third" />
+            android:id="@+id/nav_to_be_watched"
+            android:title="@string/to_be_watched" />
+
+        <item
+            android:id="@+id/nav_watched"
+            android:title="@string/watched" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/settings" />
     </group>
 </menu>

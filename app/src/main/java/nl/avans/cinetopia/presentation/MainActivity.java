@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -116,14 +119,20 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         Fragment fragment = null;
         Class fragmentClass = null;
         switch (menuItem.getItemId()) {
-            case R.id.nav_first_fragment:
+            case R.id.nav_popular:
+                fragmentClass = MainActivity.class;
+                break;
+            case R.id.nav_top_rated:
+//                fragmentClass = TopRatedActivity.class;
+                break;
+            case R.id.nav_to_be_watched:
                 fragmentClass = ListActivity.class;
                 break;
-            case R.id.nav_second_fragment:
-
+            case R.id.nav_watched:
+//                fragmentClass = ListActivity.class;
                 break;
-            case R.id.nav_third_fragment:
-
+            case R.id.nav_settings:
+//                fragmentClass = SettingsActivity.class;
                 break;
             default:
 
@@ -138,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.activity_main_recyclerView, fragment).commit();
+
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);

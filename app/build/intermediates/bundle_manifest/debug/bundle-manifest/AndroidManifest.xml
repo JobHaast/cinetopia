@@ -28,8 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="nl.avans.cinetopia.presentation.ListActivity" >
-        </activity>
 
         <provider
             android:name="com.squareup.picasso.PicassoProvider"
