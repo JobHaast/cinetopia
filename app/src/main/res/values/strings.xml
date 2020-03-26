@@ -20,4 +20,5 @@
     <string name="watched">Watched</string>
     <string name="activity_settings_language">Language</string>
     <string name="settings_activity_language">Language</string>
+    <string name="search">Search</string>
 </resources>

@@ -1,8 +1,9 @@
 package nl.avans.cinetopia.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Serializable {
 
     private int id;
     private String title;

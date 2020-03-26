@@ -11,11 +11,11 @@
 9-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:5:5-66
+11-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:5:5-67
 11-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <application
-13-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:7:5-21:19
+13-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:7:5-22:19
 14        android:allowBackup="true"
 14-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:8:9-35
 15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -33,29 +33,32 @@
 22        android:testOnly="true"
 23        android:theme="@style/AppTheme" >
 23-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:13:9-40
-24        <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
-24-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:9-20:20
-24-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:19-78
-25            <intent-filter>
-25-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:15:13-19:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:16:17-69
-26-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:16:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:18:17-77
-28-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:18:27-74
-29            </intent-filter>
-30        </activity>
-31
-32        <provider
-32-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
-33            android:name="com.squareup.picasso.PicassoProvider"
-33-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
-34            android:authorities="nl.avans.cinetopia.com.squareup.picasso"
-34-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
-35            android:exported="false" />
-35-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
-36    </application>
-37
-38</manifest>
+24        <activity android:name="nl.avans.cinetopia.presentation.SearchActivity" />
+24-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:9-74
+24-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:19-62
+25        <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
+25-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:15:9-21:20
+25-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:15:19-60
+26            <intent-filter>
+26-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:16:13-20:29
+27                <action android:name="android.intent.action.MAIN" />
+27-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:17:17-69
+27-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:17:25-66
+28
+29                <category android:name="android.intent.category.LAUNCHER" />
+29-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:19:17-77
+29-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:19:27-74
+30            </intent-filter>
+31        </activity>
+32
+33        <provider
+33-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+34            android:name="com.squareup.picasso.PicassoProvider"
+34-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+35            android:authorities="nl.avans.cinetopia.com.squareup.picasso"
+35-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+36            android:exported="false" />
+36-->[com.squareup.picasso:picasso:2.71828] C:\Users\stefa\.gradle\caches\transforms-2\files-2.1\9dab29802961620d5ed086a181cdbb63\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+37    </application>
+38
+39</manifest>
