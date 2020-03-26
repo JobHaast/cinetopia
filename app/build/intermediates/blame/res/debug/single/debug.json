@@ -128,6 +128,10 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_header.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\header.xml"
+    },
+    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },

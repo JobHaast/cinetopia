@@ -1518,11 +1518,11 @@ string settings_activity_language
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
 string third
-string to_be_watched
 string top_rated
 string v7_preference_off
 string v7_preference_on
 string watched
+string watchlist
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
