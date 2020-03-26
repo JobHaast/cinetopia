@@ -7,7 +7,6 @@ INJECTED from D:\Avans\cinetopia\app\src\main\AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\01aba6feafaa9666a150e0ccab90f24c\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.preference:preference:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0ad6ab3e2811ef00897de175e34d17fb\preference-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\f7fa931c10060cb31b4ececcd856b65d\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\cff0d1b30776eaeafd152d3c76e2da6a\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0b66623b4d085ebbc158dbfa8216f2cb\jetified-picasso-2.71828\AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\e27002105a9bdd38fe216ef919b747b9\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -66,8 +65,6 @@ application
 ADDED from D:\Avans\cinetopia\app\src\main\AndroidManifest.xml:7:5-21:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\01aba6feafaa9666a150e0ccab90f24c\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\01aba6feafaa9666a150e0ccab90f24c\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0b66623b4d085ebbc158dbfa8216f2cb\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0b66623b4d085ebbc158dbfa8216f2cb\jetified-picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [androidx.core:core:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\1cd7eff88f5e86d0249af2958bf465f0\core-1.1.0\AndroidManifest.xml:24:5-89
@@ -112,8 +109,6 @@ MERGED from [androidx.preference:preference:1.1.0] C:\Users\izamo\.gradle\caches
 MERGED from [androidx.preference:preference:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0ad6ab3e2811ef00897de175e34d17fb\preference-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\f7fa931c10060cb31b4ececcd856b65d\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\f7fa931c10060cb31b4ececcd856b65d\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\cff0d1b30776eaeafd152d3c76e2da6a\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\cff0d1b30776eaeafd152d3c76e2da6a\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\izamo\.gradle\caches\transforms-2\files-2.1\0b66623b4d085ebbc158dbfa8216f2cb\jetified-picasso-2.71828\AndroidManifest.xml:5:5-44

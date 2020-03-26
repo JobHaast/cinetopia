@@ -37,6 +37,7 @@
     <!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <com.google.android.material.navigation.NavigationView
+        app:headerLayout="@layout/header"
         android:id="@+id/nvView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -4,12 +4,12 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\toolbar.xml"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_top_rated.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_top_rated.xml"
+    },
+    {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_top_rated_icon.xml.flat",
@@ -20,16 +20,16 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\menu-land_hamburger_menu.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\menu-land\\hamburger_menu.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\xml_settings_activity.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\xml\\settings_activity.xml"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\menu-land_hamburger_menu.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\menu-land\\hamburger_menu.xml"
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
@@ -76,12 +76,12 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_list.xml"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_movie_details.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_movie_details.xml"
-    },
-    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add_icon.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_add_icon.xml"
+    },
+    {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_movie_details.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_movie_details.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_share_icon.xml.flat",
@@ -112,12 +112,12 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_movie_details.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\activity_movie_details.xml"
-    },
-    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_settings_icon.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_settings_icon.xml"
+    },
+    {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_movie_details.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\activity_movie_details.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_main.xml.flat",
@@ -152,12 +152,16 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_popular_icon.xml"
     },
     {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_to_be_watched_icon.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_to_be_watched_icon.xml"
+    },
+    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_to_be_watched_icon.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_to_be_watched_icon.xml"
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_header.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\header.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_top_rated.xml.flat",
