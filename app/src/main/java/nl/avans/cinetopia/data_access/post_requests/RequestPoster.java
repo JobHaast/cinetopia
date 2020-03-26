@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.data_access.utilities;
+package nl.avans.cinetopia.data_access.post_requests;
 
 import android.os.AsyncTask;
 

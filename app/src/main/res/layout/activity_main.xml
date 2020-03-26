@@ -21,7 +21,7 @@
 
         <!-- The main content view where fragments are loaded -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/flContent"
+            android:id="@+id/activity_main_recyclerView"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
