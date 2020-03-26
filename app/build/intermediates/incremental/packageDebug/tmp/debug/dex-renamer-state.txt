@@ -1,4 +1,4 @@
-#Thu Mar 26 13:15:25 CET 2020
+#Thu Mar 26 13:44:43 CET 2020
 base.0=C\:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

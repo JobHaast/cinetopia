@@ -123,16 +123,16 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
                 fragmentClass = MainActivity.class;
                 break;
             case R.id.nav_top_rated:
-//                fragmentClass = TopRatedActivity.class;
+                fragmentClass = TopRatedActivity.class;
                 break;
             case R.id.nav_to_be_watched:
                 fragmentClass = ListActivity.class;
                 break;
             case R.id.nav_watched:
-//                fragmentClass = ListActivity.class;
+                fragmentClass = ListActivity.class;
                 break;
             case R.id.nav_settings:
-//                fragmentClass = SettingsActivity.class;
+                fragmentClass = SettingsActivity.class;
                 break;
             default:
 

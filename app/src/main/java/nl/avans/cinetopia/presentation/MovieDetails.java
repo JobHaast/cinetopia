@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import nl.avans.cinetopia.R;
 
 public class MovieDetails extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

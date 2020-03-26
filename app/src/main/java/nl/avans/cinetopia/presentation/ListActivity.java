@@ -17,8 +17,7 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.MovieRecyclerViewAdapter;
 
 public class ListActivity extends Fragment {
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
