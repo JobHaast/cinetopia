@@ -28,6 +28,10 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_list.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout\\activity_list.xml"
+    },
+    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\menu-land_hamburger_menu.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\menu-land\\hamburger_menu.xml"
     },
@@ -46,6 +50,10 @@
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_list.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_list.xml"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
