@@ -42,6 +42,7 @@ public class UrlBuilder {
     private final static String POPULAR_PATH = "popular";
     private final static String GENRE_PATH = "genre";
     private final static String LIST_PATH = "list";
+    private final static String TOP_RATED_PATH = "top_rated";
 
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
@@ -146,6 +147,31 @@ public class UrlBuilder {
         Log.d(TAG, "Method called: buildPosterImageUrl");
 
         return BASE_URL_IMAGE + path;
+    }
+
+
+    public static URL buildTopRatedMovieListUrl() {
+        Log.d(TAG, "buildTopRatedMovieListUrl is aangeroepen");
+
+        // The params are appended to the base string
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(MOVIE_PATH)
+                .appendPath(POPULAR_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_PAGE, "1")
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildTopRatedMovieListUrl: " + url);
+
+        return url;
     }
 
 
