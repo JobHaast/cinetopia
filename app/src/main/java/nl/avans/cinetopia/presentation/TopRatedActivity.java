@@ -16,6 +16,7 @@ public class TopRatedActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         inflater.inflate(R.layout.activity_top_rated, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }

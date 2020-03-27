@@ -22,6 +22,7 @@ import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
@@ -83,6 +84,11 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
         task.execute(UrlBuilder.buildGenreUrl());
     }
 
+    private void retrieveTopRatedMoviesFromApi() {
+        TopRatedMovieGetRequest task = new TopRatedMovieGetRequest(new TopRatedMovieApiListener());
+        task.execute(UrlBuilder.buildTopRatedMovieListUrl());
+    }
+
     /**
      * Listener class for the PopularMovieGetRequest.
      */
@@ -118,6 +124,17 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
 
             // Store the returned movie details into our global Movie attribute.
 //            selectedMovie = movie;
+        }
+    }
+
+    class TopRatedMovieApiListener implements TopRatedMovieGetRequest.TopRatedMovieApiListener {
+        @Override
+        public void handleMovieResult(ArrayList<Movie> movies) {
+            Log.d(TAG, "handleMovieResult called");
+
+            // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            mMovies.addAll(movies);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
