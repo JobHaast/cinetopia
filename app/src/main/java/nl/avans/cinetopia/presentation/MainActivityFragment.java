@@ -104,6 +104,24 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     }
 
     /**
+     * Listener class for the MovieDetailsGetRequest.
+     */
+    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+        /**
+         * Stores the returned movie details into our global Movie attribute.
+         *
+         * @param movie The movie object containing the movie's details.
+         */
+        @Override
+        public void handleMovieDetails(Movie movie) {
+            Log.d(TAG, "Method called: handleMovieDetails");
+
+            // Store the returned movie details into our global Movie attribute.
+//            selectedMovie = movie;
+        }
+    }
+
+    /**
      * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
      * and then starting that activity.
      *
