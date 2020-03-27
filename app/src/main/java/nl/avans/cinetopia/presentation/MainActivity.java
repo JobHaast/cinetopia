@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
                 mDrawer.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-//                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

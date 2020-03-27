@@ -21,7 +21,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="nl.avans.cinetopia.presentation.SearchActivity" />
+        <activity
+            android:name="nl.avans.cinetopia.presentation.SearchActivity"
+            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" >
+        </activity>
         <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
