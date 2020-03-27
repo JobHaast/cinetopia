@@ -1146,7 +1146,6 @@ drawable tooltip_frame_light
 id ALT
 id CTRL
 id FUNCTION
-id HELP
 id META
 id SHIFT
 id SYM
@@ -1203,6 +1202,7 @@ id action_search
 id action_text
 id actions
 id activity_chooser_view_content
+id activity_main_frameLayout
 id activity_main_recyclerView
 id activity_search_recyclerView
 id add
@@ -1474,6 +1474,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_list
 layout activity_main
+layout activity_main_fragment
 layout activity_movie_details
 layout activity_search
 layout activity_top_rated

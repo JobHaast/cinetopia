@@ -34,7 +34,7 @@ import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
-public class MainActivity extends AppCompatActivity implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
 
@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
     public static final String EXTRA_GENRES = "genres";
 
     // RecyclerView attributes
-    private RecyclerView mRecyclerView;
-    private PopularMoviesRecyclerViewAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+//    private RecyclerView mRecyclerView;
+//    private PopularMoviesRecyclerViewAdapter mAdapter;
+//    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
-    private Movie selectedMovie;
+//    private Movie selectedMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UrlBuilder.buildMovieDetailsUrl(550);
-        retrieveLatestGenresFromApi();
-        retrievePopularMoviesFromApi();
+//        UrlBuilder.buildMovieDetailsUrl(550);
+//        retrieveLatestGenresFromApi();
+//        retrievePopularMoviesFromApi();
 
         //set a toolbar to replace the actionbar
         toolbar = findViewById(R.id.toolbar);
@@ -87,24 +87,30 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
         nvDrawer = findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
-        // Obtain a handle to the object.
-        mRecyclerView = findViewById(R.id.activity_main_recyclerView);
-        // Use a linear layout manager.
-        mLayoutManager = new LinearLayoutManager(this);
-        // Connect the RecyclerView to the layout manager.
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        //Set first fragment first time
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
+            nvDrawer.setCheckedItem(R.id.activity_main_recyclerView);
+        }
 
-        // Specify an adapter.
-        mAdapter = new PopularMoviesRecyclerViewAdapter(this, mMovies);
-        // Connect the RecyclerView to the adapter.
-        mRecyclerView.setAdapter(mAdapter);
-        // Set OnItemClickListener.
-        mAdapter.setOnItemClickListener(MainActivity.this);
-
-        /* Add a divider to the RecyclerView. */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
+//        // Obtain a handle to the object.
+//        mRecyclerView = findViewById(R.id.activity_main_recyclerView);
+//        // Use a linear layout manager.
+//        mLayoutManager = new LinearLayoutManager(this);
+//        // Connect the RecyclerView to the layout manager.
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//
+//        // Specify an adapter.
+//        mAdapter = new PopularMoviesRecyclerViewAdapter(this, mMovies);
+//        // Connect the RecyclerView to the adapter.
+//        mRecyclerView.setAdapter(mAdapter);
+//        // Set OnItemClickListener.
+//        mAdapter.setOnItemClickListener(MainActivity.this);
+//
+//        /* Add a divider to the RecyclerView. */
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
+//        mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -139,39 +145,25 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
-        // Create a new fragment and specify the fragment to show based on nav item clicked
-        Fragment fragment = null;
-        Class fragmentClass = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                fragmentClass = MainActivity.class;
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
                 break;
             case R.id.nav_top_rated:
-                fragmentClass = TopRatedActivity.class;
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity()).commit();
                 break;
             case R.id.nav_to_be_watched:
-                fragmentClass = WatchedListActivity.class;
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity()).commit();
                 break;
             case R.id.nav_watched:
-                fragmentClass = WatchlistListActivity.class;
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity()).commit();
                 break;
             case R.id.nav_settings:
-                fragmentClass = SettingsActivity.class;
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity()).commit();
                 break;
             default:
 
         }
-
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.activity_main_recyclerView, fragment).commit();
-
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
@@ -196,78 +188,78 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    private void retrievePopularMoviesFromApi() {
-        PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
-        task.execute(UrlBuilder.buildPopularMovieListUrl());
-    }
-
-    private void retrieveLatestGenresFromApi() {
-        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener());
-        task.execute(UrlBuilder.buildGenreUrl());
-    }
-
-    /**
-     * Listener class for the PopularMovieGetRequest.
-     */
-    class PopularMovieApiListener implements PopularMovieGetRequest.PopularMovieApiListener {
-        /**
-         * Fills our global ArrayList with the retrieved movies and notifies the adapter that the
-         * dataset has changed.
-         *
-         * @param movies The list of movies retrieved by our PopularMovieGetRequest.
-         */
-        @Override
-        public void handleMovieResult(ArrayList<Movie> movies) {
-            Log.d(TAG, "Method called: handleMovieResult");
-
-            // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            mMovies.addAll(movies);
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    /**
-     * Listener class for the MovieDetailsGetRequest.
-     */
-    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
-        /**
-         * Stores the returned movie details into our global Movie attribute.
-         *
-         * @param movie The movie object containing the movie's details.
-         */
-        @Override
-        public void handleMovieDetails(Movie movie) {
-            Log.d(TAG, "Method called: handleMovieDetails");
-
-            // Store the returned movie details into our global Movie attribute.
-            selectedMovie = movie;
-        }
-    }
-
-    /**
-     * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
-     * and then starting that activity.
-     *
-     * @param position The position of the clicked Movie.
-     */
-    @Override
-    public void onItemClick(int position) {
-
-        Intent detailsIntent = new Intent(this, MovieDetailsActivity.class);
-        Movie clickedMovie = mMovies.get(position);
-
-        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
-        task.execute(UrlBuilder.buildMovieDetailsUrl(clickedMovie.getId()));
-
-        ArrayList<Genre> genres;
-        genres = selectedMovie.getGenres();
-
-        detailsIntent.putExtra(EXTRA_TITLE, selectedMovie.getTitle());
-        detailsIntent.putExtra(EXTRA_OVERVIEW, selectedMovie.getOverview());
-        detailsIntent.putExtra(EXTRA_IMAGE_URL, selectedMovie.getImageUrl());
-        detailsIntent.putExtra(EXTRA_RELEASE_DATE, selectedMovie.getReleaseDate());
-        detailsIntent.putExtra(EXTRA_RUNTIME, selectedMovie.getRuntime());
-        detailsIntent.putExtra(EXTRA_RATING, selectedMovie.getRating());
-        detailsIntent.putParcelableArrayListExtra(EXTRA_GENRES, genres);
-    }
+//    private void retrievePopularMoviesFromApi() {
+//        PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
+//        task.execute(UrlBuilder.buildPopularMovieListUrl());
+//    }
+//
+//    private void retrieveLatestGenresFromApi() {
+//        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener());
+//        task.execute(UrlBuilder.buildGenreUrl());
+//    }
+//
+//    /**
+//     * Listener class for the PopularMovieGetRequest.
+//     */
+//    class PopularMovieApiListener implements PopularMovieGetRequest.PopularMovieApiListener {
+//        /**
+//         * Fills our global ArrayList with the retrieved movies and notifies the adapter that the
+//         * dataset has changed.
+//         *
+//         * @param movies The list of movies retrieved by our PopularMovieGetRequest.
+//         */
+//        @Override
+//        public void handleMovieResult(ArrayList<Movie> movies) {
+//            Log.d(TAG, "Method called: handleMovieResult");
+//
+//            // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+//            mMovies.addAll(movies);
+//            mAdapter.notifyDataSetChanged();
+//        }
+//    }
+//
+//    /**
+//     * Listener class for the MovieDetailsGetRequest.
+//     */
+//    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+//        /**
+//         * Stores the returned movie details into our global Movie attribute.
+//         *
+//         * @param movie The movie object containing the movie's details.
+//         */
+//        @Override
+//        public void handleMovieDetails(Movie movie) {
+//            Log.d(TAG, "Method called: handleMovieDetails");
+//
+//            // Store the returned movie details into our global Movie attribute.
+//            selectedMovie = movie;
+//        }
+//    }
+//
+//    /**
+//     * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
+//     * and then starting that activity.
+//     *
+//     * @param position The position of the clicked Movie.
+//     */
+//    @Override
+//    public void onItemClick(int position) {
+//
+//        Intent detailsIntent = new Intent(this, MovieDetailsActivity.class);
+//        Movie clickedMovie = mMovies.get(position);
+//
+//        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
+//        task.execute(UrlBuilder.buildMovieDetailsUrl(clickedMovie.getId()));
+//
+//        ArrayList<Genre> genres;
+//        genres = selectedMovie.getGenres();
+//
+//        detailsIntent.putExtra(EXTRA_TITLE, selectedMovie.getTitle());
+//        detailsIntent.putExtra(EXTRA_OVERVIEW, selectedMovie.getOverview());
+//        detailsIntent.putExtra(EXTRA_IMAGE_URL, selectedMovie.getImageUrl());
+//        detailsIntent.putExtra(EXTRA_RELEASE_DATE, selectedMovie.getReleaseDate());
+//        detailsIntent.putExtra(EXTRA_RUNTIME, selectedMovie.getRuntime());
+//        detailsIntent.putExtra(EXTRA_RATING, selectedMovie.getRating());
+//        detailsIntent.putParcelableArrayListExtra(EXTRA_GENRES, genres);
+//    }
 }
