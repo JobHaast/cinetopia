@@ -3,6 +3,7 @@ package nl.avans.cinetopia.data_access;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -111,6 +112,32 @@ public class UrlBuilder {
         }
 
         Log.d(TAG, "Built SearchUrl: " + url);
+
+        return url;
+    }
+
+    public static URL buildMovieDetailsUrl(int id) {
+        Log.d(TAG, "Method called: buildMovieDetailsUrl");
+
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(BASE_URL_TMDB)
+                .append(MOVIE_PATH).append("/")
+                .append(id);
+
+        // The params are appended to the base string.
+        Uri builtUri = Uri.parse(urlBuilder.toString()).buildUpon()
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built MovieDetailsUrl: " + url);
 
         return url;
     }

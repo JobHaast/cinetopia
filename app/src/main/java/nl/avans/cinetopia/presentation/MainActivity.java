@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        UrlBuilder.buildMovieDetailsUrl(550);
         retrieveLatestGenresFromApi();
         retrievePopularMoviesFromApi();
 
