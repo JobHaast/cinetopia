@@ -13,8 +13,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import nl.avans.cinetopia.R;
+import nl.avans.cinetopia.data_access.UrlBuilder;
+import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.domain.Genre;
+import nl.avans.cinetopia.domain.Movie;
 
+import static android.nfc.NfcAdapter.EXTRA_ID;
 import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_GENRES;
 import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_IMAGE_URL;
 import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_OVERVIEW;
@@ -31,13 +35,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     // Global attributes.
     Intent mIntent;
-    String mTitle;
-    String mOverview;
-    String mImageUrl;
-    String mReleaseDate;
-    int mRuntime;
-    double mRating;
-    ArrayList<Genre> mGenres;
+    TextView textViewTitle;
+    TextView textViewOverview;
+    TextView textViewReleaseDateAndRuntime;
+    TextView textViewGenres;
+    TextView textViewRating;
+    ImageView imageView;
     StringBuilder mGenresString = new StringBuilder();
 
     @Override
@@ -49,39 +52,47 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Retrieve the movie details we've passed from our MainActivity to this activity.
         mIntent = getIntent();
-        mTitle = mIntent.getStringExtra(EXTRA_TITLE);
-        mOverview = mIntent.getStringExtra(EXTRA_OVERVIEW);
-        mImageUrl = mIntent.getStringExtra(EXTRA_IMAGE_URL);
-        mReleaseDate = mIntent.getStringExtra(EXTRA_RELEASE_DATE);
-        mRuntime = Integer.parseInt(Objects.requireNonNull(mIntent.getStringExtra(EXTRA_RUNTIME)));
-        mRating = Double.parseDouble(Objects.requireNonNull(mIntent.getStringExtra(EXTRA_RATING)));
-        mGenres = Objects.requireNonNull(mIntent.getExtras()).getParcelableArrayList(EXTRA_GENRES);
+        int id = Integer.parseInt(Objects.requireNonNull(mIntent.getStringExtra(EXTRA_ID)));
 
-        TextView textViewTitle = findViewById(R.id.tv_movie_detail_title);
-        TextView textViewOverview = findViewById(R.id.tv_movie_detail_overview);
-        TextView textViewReleaseDateAndRuntime = findViewById(R.id.tv_movie_detail_year_and_runtime);
-        TextView textViewGenres = findViewById(R.id.tv_movie_detail_genres);
-        TextView textViewRating = findViewById(R.id.tv_movie_details_rating);
-        ImageView imageView = findViewById(R.id.iv_movie_detail_picture);
+        retrieveMovieDetailsFromApi(id);
 
-        textViewTitle.setText(mTitle);
-        textViewOverview.setText(mOverview);
-        textViewReleaseDateAndRuntime.setText(mReleaseDate + " - " + mRuntime + " min");
+        textViewTitle = findViewById(R.id.tv_movie_detail_title);
+        textViewOverview = findViewById(R.id.tv_movie_detail_overview);
+        textViewReleaseDateAndRuntime = findViewById(R.id.tv_movie_detail_year_and_runtime);
+        textViewGenres = findViewById(R.id.tv_movie_detail_genres);
+        textViewRating = findViewById(R.id.tv_movie_details_rating);
+        imageView = findViewById(R.id.iv_movie_detail_picture);
+    }
 
-        for (int i = 0; i < mGenres.size(); i++) {
-            String name = mGenres.get(i).getName();
+    private void retrieveMovieDetailsFromApi(int id) {
+        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
+        task.execute(UrlBuilder.buildMovieDetailsUrl(id));
+    }
 
-            if (i < mGenres.size() - 1) {
-                mGenresString.append(name).append(", ");
-            } else {
-                mGenresString.append(name);
+    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+        @Override
+        public void handleMovieDetails(Movie movie) {
+            textViewTitle.setText(movie.getTitle());
+            textViewOverview.setText(movie.getOverview());
+            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate() + " - " + movie.getRuntime() + " min");
+
+            ArrayList<Genre> genres = new ArrayList<>(movie.getGenres());
+
+            for (int i = 0; i < genres.size(); i++) {
+                String name = genres.get(i).getName();
+
+                if (i < genres.size() - 1) {
+                    mGenresString.append(name).append(", ");
+                } else {
+                    mGenresString.append(name);
+                }
             }
-        }
 
-        textViewGenres.setText(mGenresString.toString());
-        textViewRating.setText(String.valueOf(mRating));
-        Picasso.get().load(mImageUrl).fit().centerInside().into(imageView);
+            textViewGenres.setText(mGenresString.toString());
+            textViewRating.setText(String.valueOf(movie.getRating()));
+            Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageView);
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 package nl.avans.cinetopia.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,10 +23,13 @@ import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
+import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivityFragment extends Fragment implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    public static final String EXTRA_ID = "id";
 
     // RecyclerView attributes
     private RecyclerView mRecyclerView;
@@ -38,7 +42,6 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
-        UrlBuilder.buildMovieDetailsUrl(550);
         retrieveLatestGenresFromApi();
         retrievePopularMoviesFromApi();
 
@@ -101,24 +104,6 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     }
 
     /**
-     * Listener class for the MovieDetailsGetRequest.
-     */
-    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
-        /**
-         * Stores the returned movie details into our global Movie attribute.
-         *
-         * @param movie The movie object containing the movie's details.
-         */
-        @Override
-        public void handleMovieDetails(Movie movie) {
-            Log.d(TAG, "Method called: handleMovieDetails");
-
-            // Store the returned movie details into our global Movie attribute.
-//            selectedMovie = movie;
-        }
-    }
-
-    /**
      * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
      * and then starting that activity.
      *
@@ -127,22 +112,12 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     @Override
     public void onItemClick(int position) {
 
-//        Intent detailsIntent = new Intent(this, MovieDetailsActivity.class);
-//        Movie clickedMovie = mMovies.get(position);
-//
-//        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
-//        task.execute(UrlBuilder.buildMovieDetailsUrl(clickedMovie.getId()));
-//
-//        ArrayList<Genre> genres;
-//        genres = selectedMovie.getGenres();
-//
-//        detailsIntent.putExtra(EXTRA_TITLE, selectedMovie.getTitle());
-//        detailsIntent.putExtra(EXTRA_OVERVIEW, selectedMovie.getOverview());
-//        detailsIntent.putExtra(EXTRA_IMAGE_URL, selectedMovie.getImageUrl());
-//        detailsIntent.putExtra(EXTRA_RELEASE_DATE, selectedMovie.getReleaseDate());
-//        detailsIntent.putExtra(EXTRA_RUNTIME, selectedMovie.getRuntime());
-//        detailsIntent.putExtra(EXTRA_RATING, selectedMovie.getRating());
-//        detailsIntent.putParcelableArrayListExtra(EXTRA_GENRES, genres);
+        Intent detailsIntent = new Intent(getActivity(), MovieDetailsActivity.class);
+        Movie clickedMovie = mMovies.get(position);
+
+        detailsIntent.putExtra(EXTRA_ID, clickedMovie.getId());
+
+        startActivity(detailsIntent);
     }
 }
 
