@@ -18,14 +18,7 @@ import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
-import static android.nfc.NfcAdapter.EXTRA_ID;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_GENRES;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_IMAGE_URL;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_OVERVIEW;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_RATING;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_RELEASE_DATE;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_RUNTIME;
-import static nl.avans.cinetopia.presentation.MainActivity.EXTRA_TITLE;
+import static nl.avans.cinetopia.presentation.MainActivityFragment.EXTRA_ID;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 

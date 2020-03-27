@@ -42,32 +42,12 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
-    // Constant variables for MovieDetailsActivity.
-    public static final String EXTRA_TITLE = "title";
-    public static final String EXTRA_OVERVIEW = "overview";
-    public static final String EXTRA_IMAGE_URL = "imageUrl";
-    public static final String EXTRA_RELEASE_DATE = "releaseDate";
-    public static final String EXTRA_RUNTIME = "runtime";
-    public static final String EXTRA_RATING = "rating";
-    public static final String EXTRA_GENRES = "genres";
-
-    // RecyclerView attributes
-//    private RecyclerView mRecyclerView;
-//    private PopularMoviesRecyclerViewAdapter mAdapter;
-//    private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<Movie> mMovies = new ArrayList<>();
-//    private Movie selectedMovie;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        UrlBuilder.buildMovieDetailsUrl(550);
-//        retrieveLatestGenresFromApi();
-//        retrievePopularMoviesFromApi();
 
         //set a toolbar to replace the actionbar
         toolbar = findViewById(R.id.toolbar);
@@ -92,25 +72,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
         }
-
-//        // Obtain a handle to the object.
-//        mRecyclerView = findViewById(R.id.activity_main_recyclerView);
-//        // Use a linear layout manager.
-//        mLayoutManager = new LinearLayoutManager(this);
-//        // Connect the RecyclerView to the layout manager.
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//
-//        // Specify an adapter.
-//        mAdapter = new PopularMoviesRecyclerViewAdapter(this, mMovies);
-//        // Connect the RecyclerView to the adapter.
-//        mRecyclerView.setAdapter(mAdapter);
-//        // Set OnItemClickListener.
-//        mAdapter.setOnItemClickListener(MainActivity.this);
-//
-//        /* Add a divider to the RecyclerView. */
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-//        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
-//        mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -178,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState called");
 
         super.onSaveInstanceState(outState);
-        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, mMovies);
+//        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, mMovies);
     }
 
     @Override
@@ -187,79 +148,4 @@ public class MainActivity extends AppCompatActivity {
 
         super.onRestoreInstanceState(savedInstanceState);
     }
-
-//    private void retrievePopularMoviesFromApi() {
-//        PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
-//        task.execute(UrlBuilder.buildPopularMovieListUrl());
-//    }
-//
-//    private void retrieveLatestGenresFromApi() {
-//        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener());
-//        task.execute(UrlBuilder.buildGenreUrl());
-//    }
-//
-//    /**
-//     * Listener class for the PopularMovieGetRequest.
-//     */
-//    class PopularMovieApiListener implements PopularMovieGetRequest.PopularMovieApiListener {
-//        /**
-//         * Fills our global ArrayList with the retrieved movies and notifies the adapter that the
-//         * dataset has changed.
-//         *
-//         * @param movies The list of movies retrieved by our PopularMovieGetRequest.
-//         */
-//        @Override
-//        public void handleMovieResult(ArrayList<Movie> movies) {
-//            Log.d(TAG, "Method called: handleMovieResult");
-//
-//            // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-//            mMovies.addAll(movies);
-//            mAdapter.notifyDataSetChanged();
-//        }
-//    }
-//
-//    /**
-//     * Listener class for the MovieDetailsGetRequest.
-//     */
-//    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
-//        /**
-//         * Stores the returned movie details into our global Movie attribute.
-//         *
-//         * @param movie The movie object containing the movie's details.
-//         */
-//        @Override
-//        public void handleMovieDetails(Movie movie) {
-//            Log.d(TAG, "Method called: handleMovieDetails");
-//
-//            // Store the returned movie details into our global Movie attribute.
-//            selectedMovie = movie;
-//        }
-//    }
-//
-//    /**
-//     * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
-//     * and then starting that activity.
-//     *
-//     * @param position The position of the clicked Movie.
-//     */
-//    @Override
-//    public void onItemClick(int position) {
-//
-//        Intent detailsIntent = new Intent(this, MovieDetailsActivity.class);
-//        Movie clickedMovie = mMovies.get(position);
-//
-//        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
-//        task.execute(UrlBuilder.buildMovieDetailsUrl(clickedMovie.getId()));
-//
-//        ArrayList<Genre> genres;
-//        genres = selectedMovie.getGenres();
-//
-//        detailsIntent.putExtra(EXTRA_TITLE, selectedMovie.getTitle());
-//        detailsIntent.putExtra(EXTRA_OVERVIEW, selectedMovie.getOverview());
-//        detailsIntent.putExtra(EXTRA_IMAGE_URL, selectedMovie.getImageUrl());
-//        detailsIntent.putExtra(EXTRA_RELEASE_DATE, selectedMovie.getReleaseDate());
-//        detailsIntent.putExtra(EXTRA_RUNTIME, selectedMovie.getRuntime());
-//        detailsIntent.putExtra(EXTRA_RATING, selectedMovie.getRating());
-//        detailsIntent.putParcelableArrayListExtra(EXTRA_GENRES, genres);
-//    }
 }
