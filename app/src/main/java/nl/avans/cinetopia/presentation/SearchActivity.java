@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.appcompat.widget.SearchView;
 
 import java.net.URL;
@@ -65,13 +66,16 @@ public class SearchActivity extends AppCompatActivity implements MovieSearchRecy
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                retrieveSearchResultsFromApi(query);
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                if (!newText.equals("")) {
+                    retrieveSearchResultsFromApi(newText);
+                }
+
+                return true;
             }
         });
     }

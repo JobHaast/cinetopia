@@ -33,7 +33,7 @@ public class PopularMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movie
         String jsonResult;
         try {
             jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
-            movies = JsonUtils.parsePopularMoviesJson(jsonResult);
+            movies = JsonUtils.parseMoviesJson(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();
         }

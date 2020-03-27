@@ -10,8 +10,7 @@ public class Movie implements Serializable {
     private String overview;
     private String imageUrl;
     private String releaseDate;
-    private String language;
-    private String runtime;
+    private int runtime;
     private double rating;
     private ArrayList<Genre> genres;
 
@@ -24,13 +23,12 @@ public class Movie implements Serializable {
     }
 
     public Movie(int id, String title, String overview, String imageUrl, String releaseDate,
-                 String language, String runtime, double rating, ArrayList<Genre> genres) {
+                 int runtime, double rating, ArrayList<Genre> genres) {
         this.id = id;
         this.title = title;
         this.overview = overview;
         this.imageUrl = imageUrl;
         this.releaseDate = releaseDate;
-        this.language = language;
         this.runtime = runtime;
         this.rating = rating;
         this.genres = genres;
@@ -56,11 +54,7 @@ public class Movie implements Serializable {
         return releaseDate;
     }
 
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getRuntime() {
+    public int getRuntime() {
         return runtime;
     }
 
