@@ -19,11 +19,11 @@ import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 /**
- * Adapter class for our RecyclerView.
+ * Adapter class for our popular movies RecyclerView.
  */
-public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder> {
+public class PopularMoviesRecyclerViewAdapter extends RecyclerView.Adapter<PopularMoviesRecyclerViewAdapter.PopularMoviesViewHolder> {
 
-    // Global attributes
+    // Global attributes.
     private Context mContext;
     private ArrayList<Movie> mMovies;
     private OnItemClickListener mListener;
@@ -36,7 +36,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         this.mListener = listener;
     }
 
-    public MovieRecyclerViewAdapter(Context context, ArrayList<Movie> movies) {
+    public PopularMoviesRecyclerViewAdapter(Context context, ArrayList<Movie> movies) {
         this.mContext = context;
         this.mMovies = movies;
     }
@@ -46,16 +46,16 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
      */
     @NonNull
     @Override
-    public MovieRecyclerViewAdapter.MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PopularMoviesRecyclerViewAdapter.PopularMoviesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.list_item_main_movies, parent, false);
-        return new MovieViewHolder(v);
+        return new PopularMoviesViewHolder(v);
     }
 
     /**
      * Binds movie data to the ViewHolder.
      */
     @Override
-    public void onBindViewHolder(@NonNull MovieRecyclerViewAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PopularMoviesRecyclerViewAdapter.PopularMoviesViewHolder holder, int position) {
         // Retrieve current movie.
         Movie currentMovie = mMovies.get(position);
 
@@ -85,7 +85,6 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         Picasso.get().load(imageUrl).fit().centerInside().into(holder.mImageViewPoster);
         Picasso.get().load("https://www.themoviedb.org/assets/2/v4/logos/208x226-stacked-green-9484383bd9853615c113f020def5cbe27f6d08a84ff834f41371f223ebad4a3c.png"
         ).fit().centerInside().into(holder.mImageViewTmdb);
-
     }
 
     @Override
@@ -93,7 +92,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         return mMovies.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class PopularMoviesViewHolder extends RecyclerView.ViewHolder {
 
         // The Views in our list item.
         ImageView mImageViewPoster;
@@ -103,7 +102,7 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         TextView mTextViewRating;
 
         // Constructor.
-        MovieViewHolder(View itemView) {
+        PopularMoviesViewHolder(View itemView) {
             super(itemView);
             mImageViewPoster = itemView.findViewById(R.id.iv_movie_list_picture);
             mImageViewTmdb = itemView.findViewById(R.id.iv_tmdb_logo);

@@ -23,14 +23,14 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.adapters.MovieRecyclerViewAdapter;
+import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;
 
-public class MainActivity extends AppCompatActivity implements MovieRecyclerViewAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
 
     // RecyclerView attributes
     private RecyclerView mRecyclerView;
-    private MovieRecyclerViewAdapter mAdapter;
+    private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerView
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Specify an adapter.
-        mAdapter = new MovieRecyclerViewAdapter(this, mMovies);
+        mAdapter = new PopularMoviesRecyclerViewAdapter(this, mMovies);
         // Connect the RecyclerView to the adapter.
         mRecyclerView.setAdapter(mAdapter);
         // Set OnItemClickListener.

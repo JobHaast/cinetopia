@@ -1204,6 +1204,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id activity_main_recyclerView
+id activity_search_recyclerView
 id add
 id alertTitle
 id all
@@ -1286,6 +1287,7 @@ id masked
 id message
 id middle
 id mini
+id movie_search_view
 id moviedetails_menu_options
 id moviedetails_menu_share
 id mtrl_child_content_container
@@ -1587,6 +1589,7 @@ string popular
 string preference_copied
 string search
 string search_menu_title
+string search_movies
 string second
 string settings
 string settings_activity_language

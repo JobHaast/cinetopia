@@ -16,6 +16,10 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\menu\\search_menu.xml"
     },
     {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_search.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout-land\\activity_search.xml"
+    },
+    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_settings_icon.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_settings_icon.xml"
     },

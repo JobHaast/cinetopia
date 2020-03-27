@@ -24,10 +24,19 @@ public class UrlBuilder {
     private final static String PARAM_LANGUAGE = "language";
     private final static String LANGUAGE_ENGLISH = "en-US";
 
+    // For whether to show adult movies in search results or not.
+    private final static String PARAM_ADULT = "include_adult";
+    private final static String TRUE = "true";
+    private final static String FALSE = "false";
+
+    // Query param for the search URL.
+    private final static String PARAM_QUERY = "query";
+
     // The pages
     private final static String PARAM_PAGE = "page";
 
-    //paths
+    // Paths
+    private final static String SEARCH_PATH = "search";
     private final static String MOVIE_PATH = "movie";
     private final static String POPULAR_PATH = "popular";
     private final static String GENRE_PATH = "genre";
@@ -36,7 +45,7 @@ public class UrlBuilder {
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
 
-        //The params are appended to the base string
+        // The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(POPULAR_PATH)
@@ -60,7 +69,7 @@ public class UrlBuilder {
     public static URL buildGenreUrl() {
         Log.d(TAG, "Method called: buildGenreUrl");
 
-        //The params are appended to the base string
+        // The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(GENRE_PATH)
                 .appendPath(MOVIE_PATH)
@@ -77,6 +86,31 @@ public class UrlBuilder {
         }
 
         Log.d(TAG, "Built GenreUrl: " + url);
+
+        return url;
+    }
+
+    public static URL buildSearchUrl(String query) {
+        Log.d(TAG, "Method called: buildSearchUrl");
+
+        // The params are appended to the base string.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(SEARCH_PATH)
+                .appendPath(MOVIE_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_QUERY, query)
+                .appendQueryParameter(PARAM_PAGE, "1")
+                .appendQueryParameter(PARAM_ADULT, FALSE)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built SearchUrl: " + url);
 
         return url;
     }

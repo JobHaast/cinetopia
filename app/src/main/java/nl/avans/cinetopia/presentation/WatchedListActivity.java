@@ -7,14 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.adapters.MovieRecyclerViewAdapter;
 
 public class WatchedListActivity extends Fragment {
 

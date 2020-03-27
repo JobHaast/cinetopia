@@ -126,6 +126,58 @@ public class JsonUtils {
         return genres;
     }
 
+    public static ArrayList<Movie> parseSearchResultsJson(String jsonResult) throws JSONException {
+        Log.d(TAG, "Method called: parseSearchResultsJson");
+
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        JSONObject moviesJson = new JSONObject(jsonResult);
+
+        JSONArray arrayResults = moviesJson.getJSONArray(ARRAY_RESULTS);
+
+        // Iterate through the entire array of results, retrieve the data, create new Movie
+        // objects and store them into the ArrayList.
+        for (int i = 0; i < arrayResults.length(); i++) {
+            // Retrieve the result object from the array.
+            JSONObject result = arrayResults.getJSONObject(i);
+
+            // Retrieve required data and store it into variables.
+            int id = result.getInt(KEY_ID);
+            String title = result.getString(KEY_TITLE);
+            double rating = result.getDouble(KEY_RATING);
+            String imageUrl = UrlBuilder.buildPosterImageUrl(result.getString(KEY_POSTER_PATH));
+
+            JSONArray arrayGenres = result.getJSONArray(ARRAY_GENRE_IDS);
+            ArrayList<Integer> genreIds = new ArrayList<>();
+
+            for (int j = 0; j < arrayGenres.length(); j++) {
+                genreIds.add(arrayGenres.getInt(j));
+            }
+
+            HashMap<Integer, String> genreMap = new HashMap<>();
+
+            for (Genre genre : mGenres) {
+                int genreId = genre.getId();
+                String genreName = genre.getName();
+
+                genreMap.put(genreId, genreName);
+            }
+
+            ArrayList<Genre> genres = new ArrayList<>();
+
+            for (int genreId : genreIds) {
+                if (genreMap.containsKey(genreId)) {
+                    genres.add(new Genre(genreId, genreMap.get(genreId)));
+                }
+            }
+
+            movies.add(new Movie(id, title, imageUrl, rating, genres));
+
+        }
+
+        return movies;
+    }
+
     public static class GenresApiListener implements GenresGetRequest.GenresApiListener {
         /**
          * Fills our global ArrayList with the retrieved genres.
