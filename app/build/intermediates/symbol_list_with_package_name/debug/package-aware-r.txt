@@ -1404,6 +1404,7 @@ id tv_movie_detail_genres
 id tv_movie_detail_overview
 id tv_movie_detail_title
 id tv_movie_detail_year_and_runtime
+id tv_movie_details_rating
 id tv_movie_list_genre
 id tv_movie_list_rating
 id tv_movie_list_title

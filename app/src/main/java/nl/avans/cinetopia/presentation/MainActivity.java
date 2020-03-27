@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,8 +28,10 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
+import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivity extends AppCompatActivity implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
@@ -38,11 +42,21 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
+    // Constant variables for MovieDetailsActivity.
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_OVERVIEW = "overview";
+    public static final String EXTRA_IMAGE_URL = "imageUrl";
+    public static final String EXTRA_RELEASE_DATE = "releaseDate";
+    public static final String EXTRA_RUNTIME = "runtime";
+    public static final String EXTRA_RATING = "rating";
+    public static final String EXTRA_GENRES = "genres";
+
     // RecyclerView attributes
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+    private Movie selectedMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,8 +226,48 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesRecy
         }
     }
 
+    /**
+     * Listener class for the MovieDetailsGetRequest.
+     */
+    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+        /**
+         * Stores the returned movie details into our global Movie attribute.
+         *
+         * @param movie The movie object containing the movie's details.
+         */
+        @Override
+        public void handleMovieDetails(Movie movie) {
+            Log.d(TAG, "Method called: handleMovieDetails");
+
+            // Store the returned movie details into our global Movie attribute.
+            selectedMovie = movie;
+        }
+    }
+
+    /**
+     * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
+     * and then starting that activity.
+     *
+     * @param position The position of the clicked Movie.
+     */
     @Override
     public void onItemClick(int position) {
 
+        Intent detailsIntent = new Intent(this, MovieDetailsActivity.class);
+        Movie clickedMovie = mMovies.get(position);
+
+        MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
+        task.execute(UrlBuilder.buildMovieDetailsUrl(clickedMovie.getId()));
+
+        ArrayList<Genre> genres;
+        genres = selectedMovie.getGenres();
+
+        detailsIntent.putExtra(EXTRA_TITLE, selectedMovie.getTitle());
+        detailsIntent.putExtra(EXTRA_OVERVIEW, selectedMovie.getOverview());
+        detailsIntent.putExtra(EXTRA_IMAGE_URL, selectedMovie.getImageUrl());
+        detailsIntent.putExtra(EXTRA_RELEASE_DATE, selectedMovie.getReleaseDate());
+        detailsIntent.putExtra(EXTRA_RUNTIME, selectedMovie.getRuntime());
+        detailsIntent.putExtra(EXTRA_RATING, selectedMovie.getRating());
+        detailsIntent.putParcelableArrayListExtra(EXTRA_GENRES, genres);
     }
 }

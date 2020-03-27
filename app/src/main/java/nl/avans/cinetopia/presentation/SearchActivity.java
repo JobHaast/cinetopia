@@ -71,10 +71,7 @@ public class SearchActivity extends AppCompatActivity implements MovieSearchRecy
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!newText.equals("")) {
-                    retrieveSearchResultsFromApi(newText);
-                }
-
+                retrieveSearchResultsFromApi(newText);
                 return true;
             }
         });
