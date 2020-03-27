@@ -110,6 +110,7 @@ public class PopularMoviesRecyclerViewAdapter extends RecyclerView.Adapter<Popul
             mTextViewGenre = itemView.findViewById(R.id.tv_movie_list_genre);
             mTextViewRating = itemView.findViewById(R.id.tv_movie_list_rating);
 
+
             // Set an OnClickListener on the MovieViewHolder so we can click on each list item.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -146,13 +146,9 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
      */
     @Override
     public void onItemClick(int position) {
-
-        Intent detailsIntent = new Intent(getActivity(), MovieDetailsActivity.class);
-        Movie clickedMovie = mMovies.get(position);
-
-        detailsIntent.putExtra(EXTRA_ID, clickedMovie.getId());
-
-        startActivity(detailsIntent);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .addToBackStack(null).commit();
     }
 }
 
