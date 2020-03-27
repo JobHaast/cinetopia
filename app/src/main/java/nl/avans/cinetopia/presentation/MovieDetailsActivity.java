@@ -1,9 +1,15 @@
 package nl.avans.cinetopia.presentation;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,14 +26,14 @@ import nl.avans.cinetopia.domain.Movie;
 
 import static nl.avans.cinetopia.presentation.MainActivityFragment.EXTRA_ID;
 
-public class MovieDetailsActivity extends AppCompatActivity {
+public class MovieDetailsActivity extends Fragment {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MovieDetailsActivity.class.getSimpleName();
 
     private androidx.appcompat.widget.Toolbar toolbar;
 
     // Global attributes.
-    Intent mIntent;
+    int id;
     TextView textViewTitle;
     TextView textViewOverview;
     TextView textViewReleaseDateAndRuntime;
@@ -36,26 +42,26 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ImageView imageView;
     StringBuilder mGenresString = new StringBuilder();
 
+    public MovieDetailsActivity(int id){
+        this.id = id;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_movie_details, container, false);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mIntent = getIntent();
-        int id = Integer.parseInt(Objects.requireNonNull(mIntent.getStringExtra(EXTRA_ID)));
 
         retrieveMovieDetailsFromApi(id);
 
-        textViewTitle = findViewById(R.id.tv_movie_detail_title);
-        textViewOverview = findViewById(R.id.tv_movie_detail_overview);
-        textViewReleaseDateAndRuntime = findViewById(R.id.tv_movie_detail_year_and_runtime);
-        textViewGenres = findViewById(R.id.tv_movie_detail_genres);
-        textViewRating = findViewById(R.id.tv_movie_details_rating);
-        imageView = findViewById(R.id.iv_movie_detail_picture);
+        textViewTitle = view.findViewById(R.id.tv_movie_detail_title);
+        textViewOverview = view.findViewById(R.id.tv_movie_detail_overview);
+        textViewReleaseDateAndRuntime = view.findViewById(R.id.tv_movie_detail_year_and_runtime);
+        textViewGenres = view.findViewById(R.id.tv_movie_detail_genres);
+        textViewRating = view.findViewById(R.id.tv_movie_details_rating);
+        imageView = view.findViewById(R.id.iv_movie_detail_picture);
+
+        return view;
     }
 
     private void retrieveMovieDetailsFromApi(int id) {
