@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.data_access.UrlBuilder;
@@ -24,13 +23,9 @@ import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
-import static nl.avans.cinetopia.presentation.MainActivityFragment.EXTRA_ID;
-
 public class MovieDetailsActivity extends Fragment {
 
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
-
-    private androidx.appcompat.widget.Toolbar toolbar;
 
     // Global attributes.
     int id;
@@ -50,7 +45,6 @@ public class MovieDetailsActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_movie_details, container, false);
-
 
         retrieveMovieDetailsFromApi(id);
 
@@ -91,7 +85,6 @@ public class MovieDetailsActivity extends Fragment {
             textViewGenres.setText(mGenresString.toString());
             textViewRating.setText(String.valueOf(movie.getRating()));
             Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageView);
-
         }
     }
 }
