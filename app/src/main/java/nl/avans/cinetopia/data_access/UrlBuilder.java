@@ -37,6 +37,9 @@ public class UrlBuilder {
     private final static String PARAM_PAGE = "page";
 
     // Paths
+    private final static String AUTHENTICATION_PATH = "authentication";
+    private final static String TOKEN_PATH = "token";
+    private final static String NEW_PATH = "new";
     private final static String SEARCH_PATH = "search";
     private final static String MOVIE_PATH = "movie";
     private final static String POPULAR_PATH = "popular";
@@ -195,6 +198,29 @@ public class UrlBuilder {
         }
 
         Log.d(TAG, "Built buildWatchedListUrl: " + url);
+
+        return url;
+    }
+
+    public static URL buildRequestTokenUrl() {
+        Log.d(TAG, "Method called: buildRequestTokenUrl");
+
+        // Paths and parameters are appended to the base string.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(AUTHENTICATION_PATH)
+                .appendPath(TOKEN_PATH)
+                .appendPath(NEW_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built RequestTokenUrl: " + url);
 
         return url;
     }

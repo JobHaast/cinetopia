@@ -19,8 +19,6 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.WatchedListGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;
