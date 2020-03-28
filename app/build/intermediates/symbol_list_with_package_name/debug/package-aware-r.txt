@@ -1205,6 +1205,7 @@ id activity_chooser_view_content
 id activity_main_frameLayout
 id activity_main_recyclerView
 id activity_search_recyclerView
+id activity_top_rated_recyclerView
 id add
 id alertTitle
 id all

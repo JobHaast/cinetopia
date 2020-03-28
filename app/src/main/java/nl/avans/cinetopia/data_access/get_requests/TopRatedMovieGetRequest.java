@@ -22,6 +22,7 @@ public class TopRatedMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movi
         this.mListener = listener;
     }
 
+
     @Override
     protected ArrayList<Movie> doInBackground(URL... urls) {
         Log.d(TAG, "Method called: doInBackground in TopRatedMovieGetRequest");
@@ -52,6 +53,5 @@ public class TopRatedMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movi
     public interface TopRatedMovieApiListener {
         void handleMovieResult(ArrayList<Movie> movies);
     }
-
 
 }

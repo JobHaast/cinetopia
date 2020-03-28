@@ -28,9 +28,7 @@ import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivityFragment extends Fragment implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
-
-    public static final String EXTRA_ID = "id";
+    private static final String TAG = MainActivityFragment.class.getSimpleName();
 
     // RecyclerView attributes
     private RecyclerView mRecyclerView;
@@ -85,7 +83,7 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     }
 
     private void retrieveTopRatedMoviesFromApi() {
-        TopRatedMovieGetRequest task = new TopRatedMovieGetRequest(new TopRatedMovieApiListener());
+        TopRatedMovieGetRequest task = new TopRatedMovieGetRequest(new MainActivityFragment.TopRatedMovieApiListener());
         task.execute(UrlBuilder.buildTopRatedMovieListUrl());
     }
 

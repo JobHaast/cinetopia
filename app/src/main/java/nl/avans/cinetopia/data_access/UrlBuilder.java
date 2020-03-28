@@ -156,7 +156,7 @@ public class UrlBuilder {
         // The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(MOVIE_PATH)
-                .appendPath(POPULAR_PATH)
+                .appendPath(TOP_RATED_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
                 .appendQueryParameter(PARAM_PAGE, "1")
