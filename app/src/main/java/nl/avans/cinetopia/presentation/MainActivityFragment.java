@@ -102,24 +102,6 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
             mAdapter.notifyDataSetChanged();
         }
     }
-//      TODO Is deze nog nodig????
-//    /**
-//     * Listener class for the MovieDetailsGetRequest.
-//     */
-//    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
-//        /**
-//         * Stores the returned movie details into our global Movie attribute.
-//         *
-//         * @param movie The movie object containing the movie's details.
-//         */
-//        @Override
-//        public void handleMovieDetails(Movie movie) {
-//            Log.d(TAG, "Method called: handleMovieDetails");
-//
-//            // Store the returned movie details into our global Movie attribute.
-////            selectedMovie = movie;
-//        }
-//    }
 
     @Override
     public void onItemClick(int position) {
