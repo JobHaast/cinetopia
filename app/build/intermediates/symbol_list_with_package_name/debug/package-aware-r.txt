@@ -37,6 +37,8 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array languageAlias
+array languages
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -1109,6 +1111,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_add_icon
 drawable ic_arrow_down_24dp
+drawable ic_language_icon
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_list_add_icon
@@ -1559,7 +1562,6 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
-string activity_settings_language
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -1568,10 +1570,13 @@ string character_counter_pattern
 string copy
 string drawer_close
 string drawer_open
+string dutch
+string english
 string expand_button_title
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string first
+string german
 string hide_bottom_view_on_scroll_behavior
 string mainactivity_menu
 string mainactivity_search

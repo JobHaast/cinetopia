@@ -8,12 +8,16 @@
         "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
+        "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
         "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_language_icon.xml.flat",
+        "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\drawable\\ic_language_icon.xml"
     },
     {
         "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
@@ -104,12 +108,12 @@
         "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\drawable\\ic_popular_icon.xml"
     },
     {
-        "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_search.xml.flat",
-        "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\layout\\activity_search.xml"
-    },
-    {
         "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_list_item_main_movies.xml.flat",
         "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\layout-land\\list_item_main_movies.xml"
+    },
+    {
+        "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_search.xml.flat",
+        "source": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\src\\main\\res\\layout\\activity_search.xml"
     },
     {
         "merged": "C:\\Users\\Job\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item_main_movies.xml.flat",

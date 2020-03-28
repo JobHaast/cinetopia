@@ -12,5 +12,4 @@ public class SettingsActivity extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.settings_activity);
     }
-
 }

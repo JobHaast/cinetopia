@@ -151,7 +151,7 @@ public class UrlBuilder {
 
 
     public static URL buildTopRatedMovieListUrl() {
-        Log.d(TAG, "buildTopRatedMovieListUrl is aangeroepen");
+        Log.d(TAG, "buildTopRatedMovieListUrl called");
 
         // The params are appended to the base string
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
@@ -170,6 +170,31 @@ public class UrlBuilder {
         }
 
         Log.d(TAG, "Built buildTopRatedMovieListUrl: " + url);
+
+        return url;
+    }
+
+    public static URL buildWatchedListUrl() {
+        Log.d(TAG, "buildWatchedListUrl called");
+
+        // The params are appended to the base string
+        //TODO adapting method for buildWatchedListUrl
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(MOVIE_PATH)
+                .appendPath(TOP_RATED_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_PAGE, "1")
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildWatchedListUrl: " + url);
 
         return url;
     }

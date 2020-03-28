@@ -82,10 +82,6 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
         task.execute(UrlBuilder.buildGenreUrl());
     }
 
-    private void retrieveTopRatedMoviesFromApi() {
-        TopRatedMovieGetRequest task = new TopRatedMovieGetRequest(new MainActivityFragment.TopRatedMovieApiListener());
-        task.execute(UrlBuilder.buildTopRatedMovieListUrl());
-    }
 
     /**
      * Listener class for the PopularMovieGetRequest.
@@ -106,42 +102,25 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
             mAdapter.notifyDataSetChanged();
         }
     }
+//      TODO Is deze nog nodig????
+//    /**
+//     * Listener class for the MovieDetailsGetRequest.
+//     */
+//    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+//        /**
+//         * Stores the returned movie details into our global Movie attribute.
+//         *
+//         * @param movie The movie object containing the movie's details.
+//         */
+//        @Override
+//        public void handleMovieDetails(Movie movie) {
+//            Log.d(TAG, "Method called: handleMovieDetails");
+//
+//            // Store the returned movie details into our global Movie attribute.
+////            selectedMovie = movie;
+//        }
+//    }
 
-    /**
-     * Listener class for the MovieDetailsGetRequest.
-     */
-    class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
-        /**
-         * Stores the returned movie details into our global Movie attribute.
-         *
-         * @param movie The movie object containing the movie's details.
-         */
-        @Override
-        public void handleMovieDetails(Movie movie) {
-            Log.d(TAG, "Method called: handleMovieDetails");
-
-            // Store the returned movie details into our global Movie attribute.
-//            selectedMovie = movie;
-        }
-    }
-
-    class TopRatedMovieApiListener implements TopRatedMovieGetRequest.TopRatedMovieApiListener {
-        @Override
-        public void handleMovieResult(ArrayList<Movie> movies) {
-            Log.d(TAG, "handleMovieResult called");
-
-            // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            mMovies.addAll(movies);
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    /**
-     * Responsible for passing the details of the clicked Movie to the MovieDetailsActivity
-     * and then starting that activity.
-     *
-     * @param position The position of the clicked Movie.
-     */
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
