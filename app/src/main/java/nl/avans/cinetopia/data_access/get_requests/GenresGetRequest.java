@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.data_access.utilities.NetworkUtils;
 import nl.avans.cinetopia.domain.Genre;
-import nl.avans.cinetopia.domain.Movie;
 
 public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
 
@@ -33,7 +32,7 @@ public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
 
         String jsonResult;
         try {
-            jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
+            jsonResult = NetworkUtils.performGetRequest(url);
             genres = JsonUtils.parseGenresJson(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();

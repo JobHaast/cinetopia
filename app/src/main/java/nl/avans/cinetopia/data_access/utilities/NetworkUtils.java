@@ -20,8 +20,8 @@ public class NetworkUtils {
      * @return A string containing the full JSON response.
      * @throws IOException If the method is unable to perform the GET request.
      */
-    public static String getResponseFromHttpUrl(URL url) throws IOException {
-        Log.d(TAG, "Method called: getResponseFromHttpUrl");
+    public static String performGetRequest(URL url) throws IOException {
+        Log.d(TAG, "Method called: performGetRequest");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         try {
@@ -39,5 +39,9 @@ public class NetworkUtils {
         } finally {
             urlConnection.disconnect();
         }
+    }
+
+    public static String performPostRequest(URL url) throws IOException {
+        return null;
     }
 }

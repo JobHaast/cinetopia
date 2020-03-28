@@ -32,7 +32,7 @@ public class MovieSearchGetRequest extends AsyncTask<URL, Void, ArrayList<Movie>
 
         String jsonResult;
         try {
-            jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
+            jsonResult = NetworkUtils.performGetRequest(url);
             movies = JsonUtils.parseMoviesJson(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();
