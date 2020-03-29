@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ public class MovieDetailsActivity extends Fragment {
     ImageView imageView;
     StringBuilder mGenresString = new StringBuilder();
 
-    public MovieDetailsActivity(int id){
+    public MovieDetailsActivity(int id) {
         this.id = id;
     }
 
@@ -83,6 +85,29 @@ public class MovieDetailsActivity extends Fragment {
             textViewGenres.setText(mGenresString.toString());
             textViewRating.setText(String.valueOf(movie.getRating()));
             Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageView);
+        }
+    }
+
+    public void composeImplicitIntent() {
+        Log.d(TAG, "composeImplicitInten aangeroepen");
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(textViewTitle.getText().toString());
+        builder.append("\n");
+        builder.append(textViewOverview.getText().toString());
+        builder.append("\n");
+        builder.append(textViewReleaseDateAndRuntime.getText().toString());
+        builder.append("\n");
+        builder.append(textViewGenres.getText().toString());
+        builder.append("\n");
+        builder.append(textViewRating.getText().toString());
+
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TITLE, "Film");
+        intent.putExtra(Intent.EXTRA_TEXT, builder.toString());
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "Send Movie"));
         }
     }
 }
