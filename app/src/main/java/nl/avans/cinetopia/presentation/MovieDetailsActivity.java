@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ public class MovieDetailsActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_movie_details, container, false);
+        setHasOptionsMenu(true);
 
         retrieveMovieDetailsFromApi(id);
 
@@ -56,6 +59,13 @@ public class MovieDetailsActivity extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        if(item!=null)
+            item.setVisible(false);
+    }
+
     private void retrieveMovieDetailsFromApi(int id) {
         MovieDetailsGetRequest task = new MovieDetailsGetRequest(new MovieDetailsApiListener());
         task.execute(UrlBuilder.buildMovieDetailsUrl(id));
@@ -66,7 +76,7 @@ public class MovieDetailsActivity extends Fragment {
         public void handleMovieDetails(Movie movie) {
             textViewTitle.setText(movie.getTitle());
             textViewOverview.setText(movie.getOverview());
-            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate() + " - " + movie.getRuntime() + " min");
+            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate().substring(0, 4) + " - " + movie.getRuntime() + " min");
 
             ArrayList<Genre> genres = new ArrayList<>(movie.getGenres());
 

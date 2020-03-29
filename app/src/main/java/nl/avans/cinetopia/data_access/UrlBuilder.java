@@ -16,6 +16,7 @@ public class UrlBuilder {
     private final static String TAG = "UrlBuilder";
     private final static String BASE_URL_TMDB = "https://api.themoviedb.org/3/";
     private final static String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500";
+    private final static String BASE_URL_AUTH = "https://www.themoviedb.org/authenticate/";
 
     // The API Key is final and static so there can't be any typos made
     private final static String PARAM_API_KEY = "api_key";
@@ -225,7 +226,18 @@ public class UrlBuilder {
         return url;
     }
 
+    public static URL buildPermissionUrl(String requestToken) {
+        Log.d(TAG, "Method called: buildPermissionUrl");
 
+        URL url = null;
+        try {
+            url = new URL(BASE_URL_AUTH + requestToken);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
 }
 
 
