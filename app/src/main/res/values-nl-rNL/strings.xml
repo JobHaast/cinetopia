@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cinetopia</string>
+    <string name="menu_search">Zoek</string>
+    <string name="menu_extra">Extra\'s</string>
+    <string name="moviedetails_menu_share">Deel</string>
+    <string name="moviedetails_menu_options">Opties</string>
+    <string name="mainactivity_search">Zoek</string>
+    <string name="mainactivity_menu">Menu</string>
+    <string name="drawer_open">Open navigatie lade</string>
+    <string name="drawer_close">Sluit navigatie lade</string>
+    <string name="first">Eerste</string>
+    <string name="second">Tweede</string>
+    <string name="third">Derde</string>
+    <string name="navigation_drawer_open">Open navigatie lade</string>
+    <string name="navigation_drawer_close">Sluit navigate lade</string>
+    <string name="popular">Populair</string>
+    <string name="top_rated">Best beoordeeld</string>
+    <string name="watchlist">Kijklijst</string>
+    <string name="settings">Instellingen</string>
+    <string name="watched">Bekeken</string>
+    <string name="settings_activity_language">Taal</string>
+    <string name="search">Zoek</string>
+    <string name="search_movies">Zoek films</string>
+    <string name="english">Engels</string>
+    <string name="dutch">Nederlands</string>
+    <string name="german">Duits</string>
+</resources>
