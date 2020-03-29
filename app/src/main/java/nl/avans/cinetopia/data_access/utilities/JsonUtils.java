@@ -37,6 +37,7 @@ public class JsonUtils {
     private static final String KEY_OVERVIEW = "overview";
     private static final String KEY_RELEASE_DATE = "release_date";
     private static final String KEY_RUNTIME = "runtime";
+    private static final String KEY_REQUEST_TOKEN = "request_token";
 
     /**
      * Parses the JSON result of the movies GET-request and stores the data into new Movie objects.
@@ -153,6 +154,14 @@ public class JsonUtils {
         }
 
         return genres;
+    }
+
+    public static String parseRequestTokenJson(String jsonResult) throws JSONException {
+        Log.d(TAG, "Method called: parseTokenJson");
+
+        JSONObject response = new JSONObject(jsonResult);
+
+        return response.getString(KEY_REQUEST_TOKEN);
     }
 
     public static class GenresApiListener implements GenresGetRequest.GenresApiListener {

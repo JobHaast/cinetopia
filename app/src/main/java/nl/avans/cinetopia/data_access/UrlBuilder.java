@@ -43,6 +43,10 @@ public class UrlBuilder {
     private final static String GENRE_PATH = "genre";
     private final static String LIST_PATH = "list";
     private final static String TOP_RATED_PATH = "top_rated";
+    private final static String TOKEN_PATH = "token";
+    private final static String AUTHENTICATION_PATH = "authentication";
+    private final static String AUTHENTICATE_PATH = "authenticate";
+    private final static String NEW_PATH = "new";
 
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
@@ -195,6 +199,45 @@ public class UrlBuilder {
         }
 
         Log.d(TAG, "Built buildWatchedListUrl: " + url);
+
+        return url;
+    }
+
+    public static URL buildRequestTokenUrl() {
+        Log.d(TAG, "buildRequestTokenUrl called");
+
+        // The params are appended to the base string
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(AUTHENTICATION_PATH)
+                .appendPath(TOKEN_PATH)
+                .appendPath(NEW_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildRequestTokenUrl: " + url);
+
+        return url;
+    }
+
+    public static String buildRequestTokenAuthorizationUrl(String token) {
+        Log.d(TAG, "buildRequestTokenAuthorizationUrl called");
+
+        // The params are appended to the base string
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(AUTHENTICATE_PATH)
+                .appendPath(token)
+                .build();
+
+        String url = builtUri.toString();
+
+        Log.d(TAG, "Built buildRequestTokenAuthorizationUrl: " + url);
 
         return url;
     }
