@@ -32,7 +32,7 @@ public class TopRatedMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movi
 
         String jsonResult;
         try {
-            jsonResult = NetworkUtils.performGetRequest(url);
+            jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
             movies = JsonUtils.parseMoviesJson(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();

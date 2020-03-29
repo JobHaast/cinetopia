@@ -694,7 +694,6 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color colorAccent
-color colorBackgroundLightGray
 color colorPrimary
 color colorPrimaryDark
 color colorTextToolbar
@@ -1112,7 +1111,6 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_add_icon
 drawable ic_arrow_down_24dp
-drawable ic_back_button
 drawable ic_language_icon
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -1129,7 +1127,6 @@ drawable ic_share_icon
 drawable ic_to_be_watched_icon
 drawable ic_top_rated_icon
 drawable ic_watched_icon
-drawable iv_border
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon

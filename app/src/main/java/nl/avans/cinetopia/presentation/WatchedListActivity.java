@@ -1,7 +1,5 @@
 package nl.avans.cinetopia.presentation;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +18,9 @@ import java.util.ArrayList;
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
-import nl.avans.cinetopia.data_access.get_requests.CreateRequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.WatchedListGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;
@@ -57,8 +56,6 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         // Set OnItemClickListener.
         mAdapter.setOnItemClickListener(this);
 
-        createRequestToken();
-
         /* Add a divider to the RecyclerView. */
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
@@ -83,34 +80,14 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         task.execute(UrlBuilder.buildGenreUrl());
     }
 
-    private void createRequestToken() {
-        CreateRequestTokenGetRequest task = new CreateRequestTokenGetRequest(new RequestTokenApiListener());
-        task.execute(UrlBuilder.buildRequestTokenUrl());
-    }
-
     class WatchedMovieApiListener implements WatchedListGetRequest.WatchedListApiListener {
         @Override
         public void handleMovieResult(ArrayList<Movie> movies) {
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    class RequestTokenApiListener implements CreateRequestTokenGetRequest.RequestTokenApiListener {
-        @Override
-        public void handleRequestToken(String token) {
-            Log.d(TAG, "Method called: handleRequestToken");
-
-            String url = UrlBuilder.buildPermissionUrl(token).toString();
-
-            if (mAdapter.getItemCount() == 0) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-            }
         }
     }
 

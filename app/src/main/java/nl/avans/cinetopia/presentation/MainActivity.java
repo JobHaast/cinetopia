@@ -5,7 +5,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +17,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 import nl.avans.cinetopia.R;
+import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
+import nl.avans.cinetopia.data_access.UrlBuilder;
+import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
+import nl.avans.cinetopia.data_access.utilities.JsonUtils;
+import nl.avans.cinetopia.domain.Genre;
+import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Tag for logging.
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
 
-    // Toolbar & navigation drawer attributes.
     private androidx.appcompat.widget.Toolbar toolbar;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
@@ -125,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState called");
 
         super.onSaveInstanceState(outState);
+//        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, mMovies);
     }
 
     @Override
