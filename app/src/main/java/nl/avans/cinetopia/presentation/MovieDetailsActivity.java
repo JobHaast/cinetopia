@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,22 @@ public class MovieDetailsActivity extends Fragment {
         this.id = id;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Confirm this fragment has menu items.
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem itemSearch = menu.findItem(R.id.action_search);
+        if (itemSearch != null){
+            itemSearch.setVisible(false);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,6 +75,23 @@ public class MovieDetailsActivity extends Fragment {
         imageView = view.findViewById(R.id.iv_movie_detail_picture);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        // Inflate the fragment menu items.
+        inflater.inflate(R.menu.moviedetails_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.moviedetails_menu_share:
+                return true;
+            case R.id.moviedetails_menu_options:
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void retrieveMovieDetailsFromApi(int id) {
