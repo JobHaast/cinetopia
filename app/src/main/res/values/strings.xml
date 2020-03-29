@@ -24,4 +24,5 @@
     <string name="english">English</string>
     <string name="dutch">Dutch</string>
     <string name="german">German</string>
+    <string name="language">en-US</string>
 </resources>

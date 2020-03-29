@@ -3,12 +3,9 @@ package nl.avans.cinetopia.data_access;
 import android.net.Uri;
 import android.util.Log;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class UrlBuilder {
 
@@ -23,7 +20,7 @@ public class UrlBuilder {
 
     // The default Language is set to English
     private final static String PARAM_LANGUAGE = "language";
-    private final static String LANGUAGE_ENGLISH = "en-US";
+    private final static String LANGUAGE = Locale.getDefault().getLanguage();;
 
     // For whether to show adult movies in search results or not.
     private final static String PARAM_ADULT = "include_adult";
@@ -56,7 +53,7 @@ public class UrlBuilder {
                 .appendPath(MOVIE_PATH)
                 .appendPath(POPULAR_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .appendQueryParameter(PARAM_PAGE, "1")
                 .build();
 
@@ -81,7 +78,7 @@ public class UrlBuilder {
                 .appendPath(MOVIE_PATH)
                 .appendPath(LIST_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .build();
 
         URL url = null;
@@ -132,7 +129,7 @@ public class UrlBuilder {
         // The params are appended to the base string.
         Uri builtUri = Uri.parse(urlBuilder.toString()).buildUpon()
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .build();
 
         URL url = null;
@@ -162,7 +159,7 @@ public class UrlBuilder {
                 .appendPath(MOVIE_PATH)
                 .appendPath(TOP_RATED_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .appendQueryParameter(PARAM_PAGE, "1")
                 .build();
 
@@ -187,7 +184,7 @@ public class UrlBuilder {
                 .appendPath(MOVIE_PATH)
                 .appendPath(TOP_RATED_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE_ENGLISH)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .appendQueryParameter(PARAM_PAGE, "1")
                 .build();
 

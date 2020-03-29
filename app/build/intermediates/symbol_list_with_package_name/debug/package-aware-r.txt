@@ -1578,6 +1578,7 @@ string fab_transformation_sheet_behavior
 string first
 string german
 string hide_bottom_view_on_scroll_behavior
+string language
 string mainactivity_menu
 string mainactivity_search
 string menu_extra
