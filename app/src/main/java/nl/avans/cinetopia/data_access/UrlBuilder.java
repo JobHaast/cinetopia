@@ -51,7 +51,7 @@ public class UrlBuilder {
     private final static String SESSION_PATH = "session";
     private final static String NEW_PATH = "new";
 
-    public static URL buildPopularMovieListUrl() {
+    public static URL buildPopularMovieListUrl(int page) {
         Log.d(TAG, "Method called: buildPopularMovieListUrl");
 
         // Paths and parameters are appended to the base URL.
@@ -60,7 +60,7 @@ public class UrlBuilder {
                 .appendPath(POPULAR_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-                .appendQueryParameter(PARAM_PAGE, "1")
+                .appendQueryParameter(PARAM_PAGE, String.valueOf(page))
                 .build();
 
         URL url = null;

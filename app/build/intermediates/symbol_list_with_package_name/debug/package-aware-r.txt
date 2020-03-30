@@ -807,6 +807,7 @@ color abc_tint_spinner
 color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
+color background
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -951,6 +952,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color placeholder_grey
 color preference_fallback_accent_color
 color primary_dark_material_dark
 color primary_dark_material_light
@@ -1056,6 +1058,10 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen action_bar_size
+dimen activity_margin
+dimen activity_margin_content
+dimen activity_margin_half
+dimen activity_margin_quarter
 dimen appcompat_dialog_background_inset
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
@@ -1294,6 +1300,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen paddingItemDecorationDefault
+dimen paddingItemDecorationEdge
+dimen poster_thumb_height
+dimen poster_thumb_width
 dimen preference_dropdown_padding_start
 dimen preference_icon_minWidth
 dimen preference_seekbar_padding_horizontal
@@ -1433,6 +1443,7 @@ drawable ic_popular_icon
 drawable ic_search
 drawable ic_settings_icon
 drawable ic_share_icon
+drawable ic_tmdb
 drawable ic_to_be_watched_icon
 drawable ic_top_rated_icon
 drawable ic_watched_icon
@@ -1621,6 +1632,8 @@ id line3
 id listMode
 id list_item
 id list_main_movie
+id loadmore_progress
+id main_progress
 id masked
 id message
 id middle
@@ -1631,6 +1644,7 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
+id movie_progress
 id movie_search_view
 id moviedetails_menu_options
 id moviedetails_menu_share
@@ -1875,6 +1889,7 @@ layout design_text_input_start_icon
 layout expand_button
 layout header
 layout image_frame
+layout item_progress
 layout list_item_main_movies
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2283,6 +2298,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style CircularProgress
 style EmptyTheme
 style MaterialAlertDialog_MaterialComponents
 style MaterialAlertDialog_MaterialComponents_Body_Text
