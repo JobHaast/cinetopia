@@ -37,7 +37,8 @@ public class MovieDetailsActivity extends Fragment {
     TextView textViewReleaseDateAndRuntime;
     TextView textViewGenres;
     TextView textViewRating;
-    ImageView imageView;
+    ImageView imageViewPoster;
+    ImageView imageViewTmdbLogo;
     StringBuilder mGenresString = new StringBuilder();
 
     public MovieDetailsActivity(int id) {
@@ -72,7 +73,8 @@ public class MovieDetailsActivity extends Fragment {
         textViewReleaseDateAndRuntime = view.findViewById(R.id.tv_movie_detail_year_and_runtime);
         textViewGenres = view.findViewById(R.id.tv_movie_detail_genres);
         textViewRating = view.findViewById(R.id.tv_movie_details_rating);
-        imageView = view.findViewById(R.id.iv_movie_list_picture);
+        imageViewPoster = view.findViewById(R.id.iv_movie_list_picture);
+        imageViewTmdbLogo = view.findViewById(R.id.iv_tmdb_logo_details);
 
         return view;
     }
@@ -120,7 +122,9 @@ public class MovieDetailsActivity extends Fragment {
 
             textViewGenres.setText(mGenresString.toString());
             textViewRating.setText(String.valueOf(movie.getRating()));
-            Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageView);
+            Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageViewPoster);
+            Picasso.get().load("https://www.themoviedb.org/assets/2/v4/logos/208x226-stacked-green-9484383bd9853615c113f020def5cbe27f6d08a84ff834f41371f223ebad4a3c.png")
+                    .fit().centerInside().into(imageViewTmdbLogo);
         }
     }
 
