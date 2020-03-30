@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_top_rated_icon.xml.flat",
-        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_top_rated_icon.xml"
-    },
-    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\xml_settings_activity.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\xml\\settings_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_top_rated_icon.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_top_rated_icon.xml"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_share_icon.xml.flat",
@@ -44,6 +44,10 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_tmdb.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_tmdb.xml"
+    },
+    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_list_add_icon.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_list_add_icon.xml"
     },
@@ -54,6 +58,10 @@
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_progress.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout\\item_progress.xml"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",

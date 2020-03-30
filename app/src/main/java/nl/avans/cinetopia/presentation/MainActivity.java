@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Set first fragment first time
         if(savedInstanceState == null){
-            setUpSession();
+//            setUpSession();
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
         }

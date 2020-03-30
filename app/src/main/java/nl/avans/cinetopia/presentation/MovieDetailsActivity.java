@@ -104,7 +104,7 @@ public class MovieDetailsActivity extends Fragment {
         public void handleMovieDetails(Movie movie) {
             textViewTitle.setText(movie.getTitle());
             textViewOverview.setText(movie.getOverview());
-            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate() + " - " + movie.getRuntime() + " min");
+            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate().substring(0, 4) + " - " + movie.getRuntime() + " min");
 
             ArrayList<Genre> genres = new ArrayList<>(movie.getGenres());
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +40,7 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+    private ProgressBar mProgressBar;
 
     @Nullable
     @Override
@@ -46,8 +48,9 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
 
-        // Obtain a handle to the object.
+        // Obtain a handle to the objects.
         mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
+        mProgressBar = view.findViewById(R.id.main_progress);
         // Use a linear layout manager.
         mLayoutManager = new LinearLayoutManager(getActivity());
         // Connect the RecyclerView to the layout manager.
