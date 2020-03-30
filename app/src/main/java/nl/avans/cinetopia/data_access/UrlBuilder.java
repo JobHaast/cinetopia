@@ -52,9 +52,9 @@ public class UrlBuilder {
     private final static String NEW_PATH = "new";
 
     public static URL buildPopularMovieListUrl() {
-        Log.d(TAG, "buildPopularMovieListUrl is aangeroepen");
+        Log.d(TAG, "Method called: buildPopularMovieListUrl");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(POPULAR_PATH)
@@ -70,7 +70,7 @@ public class UrlBuilder {
             e.printStackTrace();
         }
 
-        Log.d(TAG, "Built buildPopularMovieListUrl: " + url);
+        Log.d(TAG, "Built URL: " + url);
 
         return url;
     }
@@ -78,7 +78,7 @@ public class UrlBuilder {
     public static URL buildGenreUrl() {
         Log.d(TAG, "Method called: buildGenreUrl");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(GENRE_PATH)
                 .appendPath(MOVIE_PATH)
@@ -102,7 +102,7 @@ public class UrlBuilder {
     public static URL buildSearchUrl(String query) {
         Log.d(TAG, "Method called: buildSearchUrl");
 
-        // The params are appended to the base string.
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(SEARCH_PATH)
                 .appendPath(MOVIE_PATH)
@@ -132,7 +132,7 @@ public class UrlBuilder {
                 .append(MOVIE_PATH).append("/")
                 .append(id);
 
-        // The params are appended to the base string.
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(urlBuilder.toString()).buildUpon()
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
@@ -160,7 +160,7 @@ public class UrlBuilder {
     public static URL buildTopRatedMovieListUrl() {
         Log.d(TAG, "buildTopRatedMovieListUrl called");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(MOVIE_PATH)
                 .appendPath(TOP_RATED_PATH)
@@ -184,7 +184,7 @@ public class UrlBuilder {
     public static URL buildRequestTokenUrl() {
         Log.d(TAG, "buildRequestTokenUrl called");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(AUTHENTICATION_PATH)
                 .appendPath(TOKEN_PATH)
@@ -207,7 +207,7 @@ public class UrlBuilder {
     public static String buildRequestTokenAuthorizationUrl(String token) {
         Log.d(TAG, "buildRequestTokenAuthorizationUrl called");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB_ATHENTICATION).buildUpon()
                 .appendPath(AUTHENTICATE_PATH)
                 .appendPath(token)
@@ -223,7 +223,7 @@ public class UrlBuilder {
     public static Request buildSessionPostRequestUrl(String token) {
         Log.d(TAG, "buildSessionPostRequestUrl called");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(AUTHENTICATION_PATH)
                 .appendPath(SESSION_PATH)
@@ -252,7 +252,7 @@ public class UrlBuilder {
     public static URL buildWatchedListUrl() {
         Log.d(TAG, "buildWatchedListUrl called");
 
-        // The params are appended to the base string
+        // Paths and parameters are appended to the base URL.
         //TODO adapting method for buildWatchedListUrl
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(MOVIE_PATH)
