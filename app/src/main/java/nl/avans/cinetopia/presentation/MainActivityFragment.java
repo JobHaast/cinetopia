@@ -1,7 +1,6 @@
 package nl.avans.cinetopia.presentation;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,22 +22,15 @@ import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
-import nl.avans.cinetopia.data_access.utilities.PaginationScrollListener;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivityFragment extends Fragment implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = MainActivityFragment.class.getSimpleName();
 
-    private static final int PAGE_START = 1;
-    private boolean isLoading = false;
-    private boolean isLastPage = false;
-    private int TOTAL_PAGES = 5;
-    private int currentpage = PAGE_START;
-
     // RecyclerView attributes
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private ProgressBar mProgressBar;
 
@@ -47,6 +39,8 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
+        retrieveLatestGenresFromApi();
+        retrievePopularMoviesFromApi();
 
         // Obtain a handle to the objects.
         mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
@@ -68,40 +62,6 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        mRecyclerView.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {
-            @Override
-            protected void loadMoreItems() {
-                isLoading = true;
-                currentpage += 1;
-
-                // Mocking network delay for API call.
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        retrievePopularMoviesFromApi(currentpage);
-                    }
-                }, 1000);
-            }
-
-            @Override
-            public int getTotalPageCount() {
-                return TOTAL_PAGES;
-            }
-
-            @Override
-            public boolean isLastPage() {
-                return isLastPage;
-            }
-
-            @Override
-            public boolean isLoading() {
-                return isLoading;
-            }
-        });
-
-        retrieveLatestGenresFromApi();
-        retrievePopularMoviesFromApi(1);
-
         return view;
     }
 
@@ -111,9 +71,9 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     }
 
 
-    private void retrievePopularMoviesFromApi(int page) {
+    private void retrievePopularMoviesFromApi() {
         PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
-        task.execute(UrlBuilder.buildPopularMovieListUrl(page));
+        task.execute(UrlBuilder.buildPopularMovieListUrl());
     }
 
     private void retrieveLatestGenresFromApi() {
@@ -136,9 +96,8 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
         public void handleMovieResult(ArrayList<Movie> movies) {
             Log.d(TAG, "Method called: handleMovieResult");
 
-            ArrayList<Movie> moviesResult = movies;
-
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
         }
@@ -151,3 +110,7 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
                 .addToBackStack(null).commit();
     }
 }
+
+
+
+
