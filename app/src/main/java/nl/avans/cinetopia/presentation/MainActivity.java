@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,6 +31,8 @@ import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
+import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private androidx.appcompat.widget.Toolbar toolbar;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
+
+    private String token;
+    private String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Set first fragment first time
         if(savedInstanceState == null){
+            setUpSession();
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(sessionId == null && token != null){
+            retrieveSessionId();
         }
     }
 
@@ -80,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.search_menu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -118,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_watched:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity()).addToBackStack(null).commit();
+                Log.d(TAG, "SessionId: " +sessionId);
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity()).addToBackStack(null).commit();
@@ -159,5 +176,40 @@ public class MainActivity extends AppCompatActivity {
             Log.i("MainActivity", "nothing on backstack, calling super");
             super.onBackPressed();
         }
+    }
+    public void openWebPage(String url) {
+        Log.d(TAG, "openWebPage called "+ url +"");
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    class AsyncResponse implements RequestTokenGetRequest.AsyncResponse {
+
+        @Override
+        public void processFinish(String output) {
+            token = output;
+            openWebPage(UrlBuilder.buildRequestTokenAuthorizationUrl(output));
+        }
+    }
+
+    private void setUpSession() {
+        RequestTokenGetRequest task = new RequestTokenGetRequest(new AsyncResponse());
+        task.execute(UrlBuilder.buildRequestTokenUrl());
+    }
+
+    class AsyncResponseSessionId implements CreateSessionPostRequest.AsyncResponse {
+
+        @Override
+        public void processFinish(String output) {
+            sessionId = output;
+        }
+    }
+
+    private void retrieveSessionId(){
+        CreateSessionPostRequest task = new CreateSessionPostRequest(new AsyncResponseSessionId());
+        task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
     }
 }

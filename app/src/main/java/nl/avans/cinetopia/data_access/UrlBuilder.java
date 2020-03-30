@@ -7,11 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+
 public class UrlBuilder {
 
     // Declaration of the attributes
     private final static String TAG = "UrlBuilder";
     private final static String BASE_URL_TMDB = "https://api.themoviedb.org/3/";
+    private final static String BASE_URL_TMDB_ATHENTICATION = "https://www.themoviedb.org/";
     private final static String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500";
 
     // The API Key is final and static so there can't be any typos made
@@ -20,7 +25,7 @@ public class UrlBuilder {
 
     // The default Language is set to English
     private final static String PARAM_LANGUAGE = "language";
-    private final static String LANGUAGE = Locale.getDefault().getLanguage();;
+    private static String LANGUAGE = Locale.getDefault().getLanguage();;
 
     // For whether to show adult movies in search results or not.
     private final static String PARAM_ADULT = "include_adult";
@@ -43,6 +48,7 @@ public class UrlBuilder {
     private final static String TOKEN_PATH = "token";
     private final static String AUTHENTICATION_PATH = "authentication";
     private final static String AUTHENTICATE_PATH = "authenticate";
+    private final static String SESSION_PATH = "session";
     private final static String NEW_PATH = "new";
 
     public static URL buildPopularMovieListUrl() {
@@ -175,31 +181,6 @@ public class UrlBuilder {
         return url;
     }
 
-    public static URL buildWatchedListUrl() {
-        Log.d(TAG, "buildWatchedListUrl called");
-
-        // The params are appended to the base string
-        //TODO adapting method for buildWatchedListUrl
-        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
-                .appendPath(MOVIE_PATH)
-                .appendPath(TOP_RATED_PATH)
-                .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-                .appendQueryParameter(PARAM_PAGE, "1")
-                .build();
-
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        Log.d(TAG, "Built buildWatchedListUrl: " + url);
-
-        return url;
-    }
-
     public static URL buildRequestTokenUrl() {
         Log.d(TAG, "buildRequestTokenUrl called");
 
@@ -227,7 +208,7 @@ public class UrlBuilder {
         Log.d(TAG, "buildRequestTokenAuthorizationUrl called");
 
         // The params are appended to the base string
-        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+        Uri builtUri = Uri.parse(BASE_URL_TMDB_ATHENTICATION).buildUpon()
                 .appendPath(AUTHENTICATE_PATH)
                 .appendPath(token)
                 .build();
@@ -239,7 +220,59 @@ public class UrlBuilder {
         return url;
     }
 
+    public static Request buildSessionPostRequestUrl(String token) {
+        Log.d(TAG, "buildSessionPostRequestUrl called");
 
+        // The params are appended to the base string
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(AUTHENTICATION_PATH)
+                .appendPath(SESSION_PATH)
+                .appendPath(NEW_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .build();
+
+        String json = new StringBuilder()
+                .append("{")
+                .append("\"request_token\":\"")
+                .append(token)
+                .append("\"}").toString();
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+
+        Request request = new Request.Builder()
+                .url(builtUri.toString())
+                .post(body)
+                .build();
+
+        Log.d(TAG, "Built buildSessionPostRequestUrl: " + request.toString());
+
+        return request;
+    }
+
+    public static URL buildWatchedListUrl() {
+        Log.d(TAG, "buildWatchedListUrl called");
+
+        // The params are appended to the base string
+        //TODO adapting method for buildWatchedListUrl
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(MOVIE_PATH)
+                .appendPath(TOP_RATED_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
+                .appendQueryParameter(PARAM_PAGE, "1")
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildWatchedListUrl: " + url);
+
+        return url;
+    }
 }
 
 

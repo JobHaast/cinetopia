@@ -38,14 +38,10 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
-    private String url;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
-
-        setUpSession();
 
         retrieveLatestGenresFromApi();
         retrieveWatchedMoviesFromApi();
@@ -72,12 +68,6 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         return view;
     }
 
-    private void setUpSession() {
-        RequestTokenGetRequest task = new RequestTokenGetRequest(new AsyncResponse());
-        task.execute(UrlBuilder.buildRequestTokenUrl());
-        // TODO authenticatie fixen!
-//        openWebPage(UrlBuilder.buildRequestTokenAuthorizationUrl(url));
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -106,21 +96,6 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         }
     }
 
-    public void openWebPage(String url) {
-        Uri webpage = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
-
-    class AsyncResponse implements RequestTokenGetRequest.AsyncResponse {
-
-        @Override
-        public void processFinish(String output) {
-            url = output;
-        }
-    }
 
     @Override
     public void onItemClick(int position) {
