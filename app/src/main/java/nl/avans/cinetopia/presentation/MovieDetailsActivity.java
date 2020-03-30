@@ -31,7 +31,8 @@ public class MovieDetailsActivity extends Fragment {
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
 
     // Global attributes.
-    int id;
+    int mId;
+    Intent mIntent;
     TextView textViewTitle;
     TextView textViewOverview;
     TextView textViewReleaseDateAndRuntime;
@@ -42,7 +43,7 @@ public class MovieDetailsActivity extends Fragment {
     StringBuilder mGenresString = new StringBuilder();
 
     public MovieDetailsActivity(int id) {
-        this.id = id;
+        this.mId = id;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class MovieDetailsActivity extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem itemSearch = menu.findItem(R.id.action_search);
-        if (itemSearch != null){
+        if (itemSearch != null) {
             itemSearch.setVisible(false);
         }
     }
@@ -66,7 +67,7 @@ public class MovieDetailsActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_movie_details, container, false);
 
-        retrieveMovieDetailsFromApi(id);
+        retrieveMovieDetailsFromApi(mId);
 
         textViewTitle = view.findViewById(R.id.tv_movie_detail_title);
         textViewOverview = view.findViewById(R.id.tv_movie_detail_overview);
@@ -87,7 +88,7 @@ public class MovieDetailsActivity extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.moviedetails_menu_share:
                 composeImplicitIntent();
             case R.id.moviedetails_menu_options:

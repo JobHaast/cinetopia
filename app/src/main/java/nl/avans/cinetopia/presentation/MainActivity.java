@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 mDrawer.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+//                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity()).addToBackStack(null).commit();
         }
         return super.onOptionsItemSelected(item);
     }

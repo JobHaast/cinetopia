@@ -1,12 +1,21 @@
 package nl.avans.cinetopia.presentation;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.widget.SearchView;
 
@@ -19,7 +28,7 @@ import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieSearchGetRequest;
 import nl.avans.cinetopia.domain.Movie;
 
-public class SearchActivity extends AppCompatActivity implements MovieSearchRecyclerViewAdapter.OnItemClickListener {
+public class SearchActivity extends Fragment implements MovieSearchRecyclerViewAdapter.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -33,33 +42,33 @@ public class SearchActivity extends AppCompatActivity implements MovieSearchRecy
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_search, container, false);
+        setHasOptionsMenu(true);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar = view.findViewById(R.id.toolbar);
 
-        mSearchView = findViewById(R.id.movie_search_view);
+        mSearchView = view.findViewById(R.id.movie_search_view);
+        mSearchView.setIconified(false);
 
         // Obtain a handle to the object.
-        mRecyclerView = findViewById(R.id.activity_search_recyclerView);
+        mRecyclerView = view.findViewById(R.id.activity_search_recyclerView);
         // Use a linear layout manager.
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         // Connect the RecyclerView to the layout manager.
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Specify an adapter.
-        mAdapter = new MovieSearchRecyclerViewAdapter(this, mMovies);
+        mAdapter = new MovieSearchRecyclerViewAdapter(getActivity(), mMovies);
         // Connect the RecyclerView to the adapter.
         mRecyclerView.setAdapter(mAdapter);
         // Set OnItemClickListener.
         mAdapter.setOnItemClickListener(SearchActivity.this);
 
         /* Add a divider to the RecyclerView. */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -75,6 +84,20 @@ public class SearchActivity extends AppCompatActivity implements MovieSearchRecy
                 return true;
             }
         });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_search);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     private void retrieveSearchResultsFromApi(String query) {
@@ -97,6 +120,8 @@ public class SearchActivity extends AppCompatActivity implements MovieSearchRecy
 
     @Override
     public void onItemClick(int position) {
-
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .addToBackStack(null).commit();
     }
 }
