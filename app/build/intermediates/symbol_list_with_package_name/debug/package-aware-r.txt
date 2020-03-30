@@ -1302,6 +1302,8 @@ dimen notification_top_pad
 dimen notification_top_pad_large_text
 dimen paddingItemDecorationDefault
 dimen paddingItemDecorationEdge
+dimen poster_thumb_details_height
+dimen poster_thumb_details_width
 dimen poster_thumb_height
 dimen poster_thumb_width
 dimen preference_dropdown_padding_start

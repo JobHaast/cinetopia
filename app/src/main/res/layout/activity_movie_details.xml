@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -15,11 +16,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/iv_movie_detail_picture"
-                android:layout_width="70dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_margin_half"
+                app:cardBackgroundColor="@color/placeholder_grey"
+                app:cardCornerRadius="3dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ProgressBar
+                    android:id="@+id/movie_progress"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="@dimen/activity_margin"
+                    android:layout_height="@dimen/activity_margin"
+                    android:layout_gravity="center"
+                    android:theme="@style/CircularProgress"/>
+
+                <ImageView
+                    android:id="@+id/iv_movie_list_picture"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/poster_thumb_details_width"
+                    android:layout_height="@dimen/poster_thumb_details_height"/>
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="wrap_content"

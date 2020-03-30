@@ -72,7 +72,7 @@ public class MovieDetailsActivity extends Fragment {
         textViewReleaseDateAndRuntime = view.findViewById(R.id.tv_movie_detail_year_and_runtime);
         textViewGenres = view.findViewById(R.id.tv_movie_detail_genres);
         textViewRating = view.findViewById(R.id.tv_movie_details_rating);
-        imageView = view.findViewById(R.id.iv_movie_detail_picture);
+        imageView = view.findViewById(R.id.iv_movie_list_picture);
 
         return view;
     }
@@ -104,7 +104,7 @@ public class MovieDetailsActivity extends Fragment {
         public void handleMovieDetails(Movie movie) {
             textViewTitle.setText(movie.getTitle());
             textViewOverview.setText(movie.getOverview());
-            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate().substring(0, 4) + " - " + movie.getRuntime() + " min");
+            textViewReleaseDateAndRuntime.setText(movie.getReleaseDate().substring(0, 4) + " | " + movie.getRuntime() + " min");
 
             ArrayList<Genre> genres = new ArrayList<>(movie.getGenres());
 

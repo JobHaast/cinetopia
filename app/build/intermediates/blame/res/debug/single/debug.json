@@ -56,12 +56,12 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_progress.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\layout\\item_progress.xml"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
