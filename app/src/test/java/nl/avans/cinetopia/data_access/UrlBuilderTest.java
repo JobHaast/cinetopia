@@ -12,44 +12,44 @@ import static org.junit.Assert.*;
 public class UrlBuilderTest {
 
     @Test
-    public void buildPopularMovieListUrl() {
+    public void buildPopularMovieListUrlTest() {
         String result = UrlBuilder.buildPopularMovieListUrl().toString();
         assertEquals(result, "https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en&page=1");
     }
 
     @Test
-    public void buildGenreUrl() {
+    public void buildGenreUrlTest() {
     }
 
     @Test
-    public void buildSearchUrl() {
+    public void buildSearchUrlTest() {
     }
 
     @Test
-    public void buildMovieDetailsUrl() {
+    public void buildMovieDetailsUrlTest() {
     }
 
     @Test
-    public void buildPosterImageUrl() {
+    public void buildPosterImageUrlTest() {
     }
 
     @Test
-    public void buildTopRatedMovieListUrl() {
+    public void buildTopRatedMovieListUrlTest() {
     }
 
     @Test
-    public void buildRequestTokenUrl() {
+    public void buildRequestTokenUrlTest() {
     }
 
     @Test
-    public void buildRequestTokenAuthorizationUrl() {
+    public void buildRequestTokenAuthorizationUrlTest() {
     }
 
     @Test
-    public void buildSessionPostRequestUrl() {
+    public void buildSessionPostRequestUrlTest() {
     }
 
     @Test
-    public void buildWatchedListUrl() {
+    public void buildWatchedListUrlTest() {
     }
 }
