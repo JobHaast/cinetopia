@@ -87,7 +87,7 @@ public class MovieDetailsActivity extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.moviedetails_menu_share:
-                return true;
+                composeImplicitIntent();
             case R.id.moviedetails_menu_options:
 
         }
