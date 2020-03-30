@@ -1,6 +1,5 @@
 package nl.avans.cinetopia.presentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,11 +19,8 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
-import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivityFragment extends Fragment implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
@@ -98,6 +94,7 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
             Log.d(TAG, "Method called: handleMovieResult");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
         }

@@ -1,7 +1,5 @@
 package nl.avans.cinetopia.presentation;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +13,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.WatchedListGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;

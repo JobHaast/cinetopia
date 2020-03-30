@@ -1,17 +1,11 @@
 package nl.avans.cinetopia.data_access.post_requests;
 
-import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import java.net.URL;
-import java.util.ArrayList;
-
 import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.WatchedListGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.data_access.utilities.NetworkUtils;
-import nl.avans.cinetopia.domain.Movie;
 import okhttp3.Request;
 
 public class CreateSessionPostRequest extends AsyncTask<Request, Void, String> {

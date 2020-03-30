@@ -1,7 +1,5 @@
 package nl.avans.cinetopia.domain;
 
-import java.util.ArrayList;
-
 public class List {
     private int id;
     private String name;
