@@ -23,6 +23,7 @@ public class Filter {
 
                 break;
 
+                //If none is selected, the complete list will be returned
             default:
 
                 break;

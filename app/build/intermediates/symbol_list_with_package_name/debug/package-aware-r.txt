@@ -1718,6 +1718,7 @@ id radio_button_3
 id radio_button_4
 id rating_alertdialog_cancel
 id rating_alertdialog_search
+id rating_radioGroup
 id recycler_view
 id right
 id right_icon
