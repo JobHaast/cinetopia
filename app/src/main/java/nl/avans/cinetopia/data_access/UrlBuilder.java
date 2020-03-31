@@ -17,7 +17,8 @@ public class UrlBuilder {
     private final static String TAG = "UrlBuilder";
     private final static String BASE_URL_TMDB = "https://api.themoviedb.org/3/";
     private final static String BASE_URL_TMDB_ATHENTICATION = "https://www.themoviedb.org/";
-    private final static String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500";
+    private final static String BASE_URL_POSTER = "https://image.tmdb.org/t/p/w500";
+    private final static String BASE_URL_BACKDROP = "https://image.tmdb.org/t/p/w1280";
 
     // The API Key is final and static so there can't be any typos made
     private final static String PARAM_API_KEY = "api_key";
@@ -27,11 +28,9 @@ public class UrlBuilder {
     private final static String PARAM_LANGUAGE = "language";
 
     private static String LANGUAGE = Locale.getDefault().getLanguage();
-    ;
 
     // For whether to show adult movies in search results or not.
     private final static String PARAM_ADULT = "include_adult";
-    private final static String TRUE = "true";
     private final static String FALSE = "false";
 
     // Query param for the search URL.
@@ -132,13 +131,11 @@ public class UrlBuilder {
     public static URL buildMovieDetailsUrl(int id) {
         Log.d(TAG, "Method called: buildMovieDetailsUrl");
 
-        StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(BASE_URL_TMDB)
-                .append(MOVIE_PATH).append("/")
-                .append(id);
-
         // Paths and parameters are appended to the base URL.
-        Uri builtUri = Uri.parse(urlBuilder.toString()).buildUpon()
+        String urlBuilder = BASE_URL_TMDB +
+                MOVIE_PATH + "/" +
+                id;
+        Uri builtUri = Uri.parse(urlBuilder).buildUpon()
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
                 .build();
@@ -158,7 +155,14 @@ public class UrlBuilder {
     public static String buildPosterImageUrl(String path) {
         Log.d(TAG, "Method called: buildPosterImageUrl");
 
-        return BASE_URL_IMAGE + path;
+        return BASE_URL_POSTER + path;
+    }
+
+    public static String buildBackdropImageUrl(String path) {
+        Log.d(TAG, "Method called: buildBackdropImageUrl");
+        Log.d(TAG, BASE_URL_BACKDROP + path);
+
+        return BASE_URL_BACKDROP + path;
     }
 
 
@@ -236,11 +240,10 @@ public class UrlBuilder {
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .build();
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"request_token\":\"")
-                .append(token)
-                .append("\"}").toString();
+        String json = "{" +
+                "\"request_token\":\"" +
+                token +
+                "\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 
@@ -264,13 +267,12 @@ public class UrlBuilder {
                 .appendQueryParameter(PARAM_SESSION_ID, sessionId)
                 .build();
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"name\":\"Watched\",")
-                .append("\"description\":\"Watched\",")
-                .append("\"language\":\"")
-                .append(LANGUAGE)
-                .append("\"}").toString();
+        String json = "{" +
+                "\"name\":\"Watched\"," +
+                "\"description\":\"Watched\"," +
+                "\"language\":\"" +
+                LANGUAGE +
+                "\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 
@@ -294,13 +296,12 @@ public class UrlBuilder {
                 .appendQueryParameter(PARAM_SESSION_ID, sessionId)
                 .build();
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"name\":\"Watch\",")
-                .append("\"description\":\"Watch\",")
-                .append("\"language\":\"")
-                .append(LANGUAGE)
-                .append("\"}").toString();
+        String json = "{" +
+                "\"name\":\"Watch\"," +
+                "\"description\":\"Watch\"," +
+                "\"language\":\"" +
+                LANGUAGE +
+                "\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 
@@ -349,11 +350,10 @@ public class UrlBuilder {
                 .appendQueryParameter(PARAM_SESSION_ID, sessionId)
                 .build();
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"media_id\":\"")
-                .append(movieId)
-                .append("\"}").toString();
+        String json = "{" +
+                "\"media_id\":\"" +
+                movieId +
+                "\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 
@@ -379,11 +379,10 @@ public class UrlBuilder {
                 .appendQueryParameter(PARAM_SESSION_ID, sessionId)
                 .build();
 
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"media_id\":\"")
-                .append(movieId)
-                .append("\"}").toString();
+        String json = "{" +
+                "\"media_id\":\"" +
+                movieId +
+                "\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 

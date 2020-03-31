@@ -30,13 +30,17 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // General libraries.
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.robolectric:robolectric:4.2.1"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.android.material:material:1.1.0'
     implementation "androidx.preference:preference:1.1.0"
 
+    // Library for loading and caching images.
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Testing libraries.
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.robolectric:robolectric:4.2.1"
 }

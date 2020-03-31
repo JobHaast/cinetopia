@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.data_access.UrlBuilder;
@@ -31,25 +32,26 @@ import nl.avans.cinetopia.domain.Movie;
 
 public class MovieDetailsActivity extends Fragment {
 
+    // Tag for logging.
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
 
     // Global attributes.
-    int mId;
+    private int mId;
     private String watchedListId;
     private String watchListId;
-    Intent mIntent;
-    TextView textViewTitle;
-    TextView textViewOverview;
-    TextView textViewReleaseDateAndRuntime;
-    TextView textViewGenres;
-    TextView textViewRating;
-    ImageView imageViewPoster;
-    ImageView imageViewTmdbLogo;
-    StringBuilder mGenresString = new StringBuilder();
+    private TextView textViewTitle;
+    private TextView textViewOverview;
+    private TextView textViewReleaseDateAndRuntime;
+    private TextView textViewGenres;
+    private TextView textViewRating;
+    private ImageView imageViewPoster;
+    private ImageView imageViewBackdrop;
+    private ImageView imageViewTmdbLogo;
+    private StringBuilder mGenresString = new StringBuilder();
 
     private String sessionId;
 
-    public MovieDetailsActivity(int id, String sessionId, String watchedListId, String watchListId) {
+    MovieDetailsActivity(int id, String sessionId, String watchedListId, String watchListId) {
         this.mId = id;
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
@@ -89,6 +91,7 @@ public class MovieDetailsActivity extends Fragment {
         textViewGenres = view.findViewById(R.id.tv_movie_detail_genres);
         textViewRating = view.findViewById(R.id.tv_movie_details_rating);
         imageViewPoster = view.findViewById(R.id.iv_movie_list_picture);
+        imageViewBackdrop = view.findViewById(R.id.iv_movie_list_backdrop_picture);
         imageViewTmdbLogo = view.findViewById(R.id.iv_tmdb_logo_details);
 
         return view;
@@ -143,31 +146,32 @@ public class MovieDetailsActivity extends Fragment {
             textViewGenres.setText(mGenresString.toString());
             textViewRating.setText(String.valueOf(movie.getRating()));
             Picasso.get().load(movie.getImageUrl()).fit().centerInside().into(imageViewPoster);
+            Picasso.get().load(movie.getBackdropUrl()).fit().centerInside().into(imageViewBackdrop);
             Picasso.get().load("https://www.themoviedb.org/assets/2/v4/logos/208x226-stacked-green-9484383bd9853615c113f020def5cbe27f6d08a84ff834f41371f223ebad4a3c.png")
                     .fit().centerInside().into(imageViewTmdbLogo);
         }
     }
 
-    public void composeImplicitIntent() {
-        Log.d(TAG, "composeImplicitInten aangeroepen");
-
-        StringBuilder builder = new StringBuilder();
-        builder.append(textViewTitle.getText().toString());
-        builder.append("\n");
-        builder.append(textViewOverview.getText().toString());
-        builder.append("\n");
-        builder.append(textViewReleaseDateAndRuntime.getText().toString());
-        builder.append("\n");
-        builder.append(textViewGenres.getText().toString());
-        builder.append("\n");
-        builder.append(textViewRating.getText().toString());
+    private void composeImplicitIntent() {
+        Log.d(TAG, "Method called: composeImplicitIntent");
 
         Intent intent = new Intent(android.content.Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TITLE, "Film");
-        intent.putExtra(Intent.EXTRA_TEXT, builder.toString());
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivity(Intent.createChooser(intent, "Send Movie"));
+        String builder = textViewTitle.getText().toString() +
+                "\n" +
+                textViewOverview.getText().toString() +
+                "\n" +
+                textViewReleaseDateAndRuntime.getText().toString() +
+                "\n" +
+                textViewGenres.getText().toString() +
+                "\n" +
+                textViewRating.getText().toString();
+
+        intent.putExtra(Intent.EXTRA_TEXT, builder);
+
+        if (intent.resolveActivity(Objects.requireNonNull(getActivity()).getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "Share this movie with friends:"));
         }
     }
 

@@ -33,6 +33,7 @@ public class JsonUtils {
     private static final String KEY_TITLE = "title";
     private static final String KEY_RATING = "vote_average";
     private static final String KEY_POSTER_PATH = "poster_path";
+    private static final String KEY_BACKDROP_PATH = "backdrop_path";
     private static final String KEY_OVERVIEW = "overview";
     private static final String KEY_RELEASE_DATE = "release_date";
     private static final String KEY_RUNTIME = "runtime";
@@ -105,7 +106,6 @@ public class JsonUtils {
     public static Movie parseMovieDetailsJson(String jsonResult) throws JSONException {
         Log.d(TAG, "Method called: parseMovieDetailsJson");
 
-        ArrayList<Movie> movies = new ArrayList<>();
         ArrayList<Genre> genres = new ArrayList<>();
 
         JSONObject movieDetailsJson = new JSONObject(jsonResult);
@@ -114,6 +114,7 @@ public class JsonUtils {
         String title = movieDetailsJson.getString(KEY_TITLE);
         double rating = movieDetailsJson.getDouble(KEY_RATING);
         String imageUrl = UrlBuilder.buildPosterImageUrl(movieDetailsJson.getString(KEY_POSTER_PATH));
+        String backdropUrl = UrlBuilder.buildBackdropImageUrl(movieDetailsJson.getString(KEY_BACKDROP_PATH));
         String overview = movieDetailsJson.getString(KEY_OVERVIEW);
         String releaseDate = movieDetailsJson.getString(KEY_RELEASE_DATE);
         int runtime = movieDetailsJson.getInt(KEY_RUNTIME);
@@ -126,7 +127,7 @@ public class JsonUtils {
             genres.add(new Genre(genre.getString(KEY_GENRE_NAME)));
         }
 
-        return new Movie(id, title, overview, imageUrl, releaseDate, runtime, rating, genres, websiteUrl);
+        return new Movie(id, title, overview, imageUrl, backdropUrl, releaseDate, runtime, rating, genres, websiteUrl);
     }
 
     /**

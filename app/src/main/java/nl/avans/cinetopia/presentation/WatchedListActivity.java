@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
@@ -40,7 +41,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     private String watchedListId;
     private String watchListId;
 
-    public WatchedListActivity(String sessionId, String watchedListId, String watchListId){
+    WatchedListActivity(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
         this.watchListId = watchListId;
@@ -89,7 +90,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         mAdapter.setOnItemClickListener(this);
 
         /* Add a divider to the RecyclerView. */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -104,9 +105,8 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_share:
-                composeImplicitIntent();
+        if (item.getItemId() == R.id.action_share) {
+            composeImplicitIntent();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -152,14 +152,14 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TITLE, "Film");
         intent.putExtra(Intent.EXTRA_TEXT, builder.toString());
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (intent.resolveActivity(Objects.requireNonNull(getActivity()).getPackageManager()) != null) {
             startActivity(Intent.createChooser(intent, "Send Watched List"));
         }
     }
 
     @Override
     public void onItemClick(int position) {
-        getActivity().getSupportFragmentManager().beginTransaction()
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
                 .addToBackStack(null).commit();
     }

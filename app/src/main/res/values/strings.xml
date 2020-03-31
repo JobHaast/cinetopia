@@ -38,4 +38,6 @@
     <string name="filter_by_genre">Filter by genre</string>
     <string name="add_movie_result">Movie succesfully added</string>
     <string name="remove_movie_result">Movie succesfully removed</string>
+    <string name="backdrop_content_desc">A backdrop image of the movie.</string>
+    <string name="poster_content_desc">Movie poster image.</string>
 </resources>

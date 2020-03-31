@@ -9,6 +9,7 @@ public class Movie implements Serializable {
     private String title;
     private String overview;
     private String imageUrl;
+    private String backdropUrl;
     private String releaseDate;
     private int runtime;
     private double rating;
@@ -27,12 +28,13 @@ public class Movie implements Serializable {
         this.genres = genres;
     }
 
-    public Movie(int id, String title, String overview, String imageUrl, String releaseDate,
+    public Movie(int id, String title, String overview, String imageUrl, String backdropUrl, String releaseDate,
                  int runtime, double rating, ArrayList<Genre> genres, String website) {
         this.id = id;
         this.title = title;
         this.overview = overview;
         this.imageUrl = imageUrl;
+        this.backdropUrl = backdropUrl;
         this.releaseDate = releaseDate;
         this.runtime = runtime;
         this.rating = rating;
@@ -56,6 +58,10 @@ public class Movie implements Serializable {
         return imageUrl;
     }
 
+    public String getBackdropUrl() {
+        return backdropUrl;
+    }
+
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -70,5 +76,9 @@ public class Movie implements Serializable {
 
     public ArrayList<Genre> getGenres() {
         return genres;
+    }
+
+    public String getWebsite() {
+        return website;
     }
 }

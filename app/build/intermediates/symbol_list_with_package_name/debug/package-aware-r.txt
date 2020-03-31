@@ -1634,6 +1634,7 @@ id invisible
 id italic
 id item_touch_helper_previous_elevation
 id iv_movie_detail_picture
+id iv_movie_list_backdrop_picture
 id iv_movie_list_picture
 id iv_tmdb_logo
 id iv_tmdb_logo_details
@@ -1657,7 +1658,6 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
-id movie_progress
 id movie_search_view
 id moviedetails_menu_options
 id moviedetails_menu_share
@@ -1706,6 +1706,8 @@ id parent
 id parentPanel
 id parent_matrix
 id password_toggle
+id pb_movie_backdrop_progress
+id pb_movie_progress
 id peekHeight
 id percent
 id pin
@@ -2024,6 +2026,7 @@ string alertdialog_rating_radio_button_3
 string alertdialog_rating_radio_button_4
 string app_name
 string appbar_scrolling_view_behavior
+string backdrop_content_desc
 string bottom_sheet_behavior
 string character_counter_content_description
 string character_counter_overflowed_content_description
@@ -2098,6 +2101,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string popular
+string poster_content_desc
 string preference_copied
 string remove_movie_result
 string search
