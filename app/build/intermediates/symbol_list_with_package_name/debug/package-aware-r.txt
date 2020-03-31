@@ -1721,6 +1721,7 @@ id radio_button_4
 id rating_alertdialog_cancel
 id rating_alertdialog_search
 id rating_radioGroup
+id rating_rating_bar
 id recycler_view
 id right
 id right_icon
@@ -1773,6 +1774,7 @@ id start
 id stretch
 id submenuarrow
 id submit_area
+id submit_button
 id switchWidget
 id tabMode
 id tag_accessibility_actions
@@ -2111,6 +2113,7 @@ string second
 string settings
 string settings_activity_language
 string status_bar_notification_info_overflow
+string submit_button
 string summary_collapsed_preference_list
 string third
 string top_rated

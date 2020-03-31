@@ -13,7 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,8 @@ public class MovieDetailsActivity extends Fragment {
     private ImageView imageViewBackdrop;
     private ImageView imageViewTmdbLogo;
     private StringBuilder mGenresString = new StringBuilder();
+    private RatingBar ratingBar;
+    private Button submitButton;
 
     private String sessionId;
 
@@ -93,6 +97,16 @@ public class MovieDetailsActivity extends Fragment {
         imageViewPoster = view.findViewById(R.id.iv_movie_list_picture);
         imageViewBackdrop = view.findViewById(R.id.iv_movie_list_backdrop_picture);
         imageViewTmdbLogo = view.findViewById(R.id.iv_tmdb_logo_details);
+
+        ratingBar = view.findViewById(R.id.rating_rating_bar);
+        submitButton = view.findViewById(R.id.submit_button);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"Your rating is: " + ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
