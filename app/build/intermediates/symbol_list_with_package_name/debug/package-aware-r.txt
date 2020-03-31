@@ -1427,6 +1427,8 @@ drawable ic_arrow_down_24dp
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
+drawable ic_filter_icon
+drawable ic_gerne_filter_icon
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_language_icon
@@ -1443,6 +1445,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_open_in_browser
 drawable ic_popular_icon
+drawable ic_rating_icon
 drawable ic_search
 drawable ic_settings_icon
 drawable ic_share_icon
@@ -1530,6 +1533,9 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_filter
+id action_filter_genre
+id action_filter_rating
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -1537,6 +1543,7 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_search
+id action_share
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1705,6 +1712,12 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id radio_button_1
+id radio_button_2
+id radio_button_3
+id radio_button_4
+id rating_alertdialog_cancel
+id rating_alertdialog_search
 id recycler_view
 id right
 id right_icon
@@ -1894,6 +1907,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout expand_button
+layout filter_layout
 layout header
 layout image_frame
 layout item_progress
@@ -1967,7 +1981,8 @@ layout text_view_without_line_height
 layout toolbar
 menu hamburger_menu
 menu moviedetails_menu
-menu search_menu
+menu search_filter_menu
+menu share_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -2000,6 +2015,11 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string add_to_watched
 string add_to_watchlist
+string alertdialog_rating_cancel
+string alertdialog_rating_radio_button_1
+string alertdialog_rating_radio_button_2
+string alertdialog_rating_radio_button_3
+string alertdialog_rating_radio_button_4
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2018,6 +2038,9 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string filter
+string filter_by_genre
+string filter_by_rating
 string first
 string german
 string hide_bottom_view_on_scroll_behavior

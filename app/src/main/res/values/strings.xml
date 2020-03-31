@@ -22,10 +22,18 @@
     <string name="add_to_watched">Add to Watched</string>
     <string name="settings_activity_language">Language</string>
     <string name="search">Search</string>
+    <string name="filter" translatable="false">Filter</string>
     <string name="search_movies">Search movies…</string>
     <string name="english">English</string>
     <string name="dutch">Dutch</string>
     <string name="german">German</string>
     <string name="language">en-US</string>
     <string name="open_in_browser" translatable="false">Open in browser</string>
+    <string name="filter_by_rating">Filter by rating</string>
+    <string name="alertdialog_rating_cancel">Cancel</string>
+    <string name="alertdialog_rating_radio_button_1">rating between 0.0 and 4.0</string>
+    <string name="alertdialog_rating_radio_button_2">rating between 4.0 and 6.0</string>
+    <string name="alertdialog_rating_radio_button_3">rating between 6.0 and 8.0</string>
+    <string name="alertdialog_rating_radio_button_4">rating between 8.0 and 10.0</string>
+    <string name="filter_by_genre">Filter by genre</string>
 </resources>

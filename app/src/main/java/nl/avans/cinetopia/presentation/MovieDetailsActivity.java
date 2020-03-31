@@ -60,8 +60,12 @@ public class MovieDetailsActivity extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem itemSearch = menu.findItem(R.id.action_search);
+        MenuItem itemFilter = menu.findItem(R.id.action_filter);
         if (itemSearch != null) {
             itemSearch.setVisible(false);
+        }
+        if (itemFilter != null){
+            itemFilter.setVisible(false);
         }
     }
 
