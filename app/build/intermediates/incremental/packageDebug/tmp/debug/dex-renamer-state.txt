@@ -1,7 +1,13 @@
-#Tue Mar 31 21:57:34 CEST 2020
-base.0=C\:\\Users\\jobha\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
+#Tue Mar 31 22:49:00 CEST 2020
+path.3=classes.dex
+path.2=classes.dex
 path.1=classes.dex
-renamed.1=classes2.dex
 path.0=classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.3=D\:\\Avans\\Periode 3\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
+base.2=D\:\\Avans\\Periode 3\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 base.1=C\:\\Users\\jobha\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
+base.0=C\:\\Users\\jobha\\Documents\\GitHub\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex

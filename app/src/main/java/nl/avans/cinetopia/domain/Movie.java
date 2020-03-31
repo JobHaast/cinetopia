@@ -13,6 +13,7 @@ public class Movie implements Serializable {
     private int runtime;
     private double rating;
     private ArrayList<Genre> genres;
+    private String website;
 
     public Movie() {
 
@@ -27,7 +28,7 @@ public class Movie implements Serializable {
     }
 
     public Movie(int id, String title, String overview, String imageUrl, String releaseDate,
-                 int runtime, double rating, ArrayList<Genre> genres) {
+                 int runtime, double rating, ArrayList<Genre> genres, String website) {
         this.id = id;
         this.title = title;
         this.overview = overview;
@@ -36,6 +37,7 @@ public class Movie implements Serializable {
         this.runtime = runtime;
         this.rating = rating;
         this.genres = genres;
+        this.website = website;
     }
 
     public int getId() {

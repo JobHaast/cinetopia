@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import nl.avans.cinetopia.R;
+import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
@@ -134,6 +136,30 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                final RadioGroup ratingGroup = dialog_layout.findViewById(R.id.rating_radioGroup);
+                ratingGroup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d(TAG, "onClick voor radioGroup aangeroepen, ");
+                        int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
+                        Log.d(TAG, "onClick selected:" + checkedRadioButtonId);
+                        if (checkedRadioButtonId > -1) {
+                            checkedRadioButtonId++;
+                            Filter.filterRating(checkedRadioButtonId);
+                        }
+                    }
+                });
+
+                Button filterButton = dialog_layout.findViewById(R.id.rating_alertdialog_search);
+
+                filterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.cancel();
+                        int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
+                        Log.d(TAG, "onClick :" + checkedRadioButtonId);
+                    }
+                });
                 break;
         }
         return super.onOptionsItemSelected(item);

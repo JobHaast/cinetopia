@@ -41,6 +41,7 @@ public class JsonUtils {
     private static final String KEY_LIST_ID = "list_id";
     private static final String KEY_ITEMS = "items";
     private static final String KEY_STATUS_CODE = "status_code";
+    private static final String KEY_HOMEPAGE = "homepage";
 
     /**
      * Parses the JSON result of the movies GET-request and stores the data into new Movie objects.
@@ -116,6 +117,7 @@ public class JsonUtils {
         String overview = movieDetailsJson.getString(KEY_OVERVIEW);
         String releaseDate = movieDetailsJson.getString(KEY_RELEASE_DATE);
         int runtime = movieDetailsJson.getInt(KEY_RUNTIME);
+        String websiteUrl = movieDetailsJson.getString(KEY_HOMEPAGE);
 
         JSONArray arrayGenres = movieDetailsJson.getJSONArray(ARRAY_GENRES);
 
@@ -124,7 +126,7 @@ public class JsonUtils {
             genres.add(new Genre(genre.getString(KEY_GENRE_NAME)));
         }
 
-        return new Movie(id, title, overview, imageUrl, releaseDate, runtime, rating, genres);
+        return new Movie(id, title, overview, imageUrl, releaseDate, runtime, rating, genres, websiteUrl);
     }
 
     /**
