@@ -1,5 +1,6 @@
 package nl.avans.cinetopia.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -102,6 +103,15 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_share:
+                composeImplicitIntent();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
@@ -124,6 +134,26 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void composeImplicitIntent() {
+        Log.d(TAG, "composeImplicitInten aangeroepen");
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < mMovies.size(); i++) {
+            builder.append(mMovies.get(i).getTitle());
+            if (i != mMovies.size()){
+                builder.append("\n");
+            }
+        }
+
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TITLE, "Film");
+        intent.putExtra(Intent.EXTRA_TEXT, builder.toString());
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "Send Watched List"));
         }
     }
 
