@@ -21,7 +21,6 @@ import android.widget.Button;
 import com.google.android.material.navigation.NavigationView;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setView(dialog_layout);
                 alertDialog.show();
 
-                Button cancelButton = dialog_layout.findViewById(R.id.date_alertdialog_cancel);
+                Button cancelButton = dialog_layout.findViewById(R.id.rating_alertdialog_cancel);
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -120,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                         alertDialog.cancel();
                     }
                 });
+
+
 
                 break;
 

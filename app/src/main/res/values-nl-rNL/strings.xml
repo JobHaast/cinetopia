@@ -28,7 +28,11 @@
     <string name="language">nl-NL</string>
     <string name="add_to_watchlist">Toevoegen aan kijklijst</string>
     <string name="add_to_watched">Toevoegen aan bekeken</string>
-    <string name="filter_on_genre">Filter op genre</string>
-    <string name="filter_on_rating">Filter op rating</string>
-    <string name="cancel_button">Annuleer</string>
+    <string name="filter_by_rating">Filter op rating</string>
+    <string name="alertdialog_rating_cancel">Annuleer</string>
+    <string name="alertdialog_rating_radio_button_1">rating 0.0 tot 4.0</string>
+    <string name="alertdialog_rating_radio_button_2">rating 4.0 tot 6.0</string>
+    <string name="alertdialog_rating_radio_button_4">rating 8.0 tot 10.0</string>
+    <string name="alertdialog_rating_radio_button_3">rating 6.0 tot 8.0</string>
+    <string name="filter_by_genre">Filter op Genre</string>
 </resources>

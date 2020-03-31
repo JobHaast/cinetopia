@@ -29,7 +29,11 @@
     <string name="german">German</string>
     <string name="language">en-US</string>
     <string name="open_in_browser" translatable="false">Open in browser</string>
-    <string name="filter_on_genre">Filter on genre</string>
-    <string name="filter_on_rating">Filter on rating</string>
-    <string name="cancel_button">Cancel</string>
+    <string name="filter_by_rating">Filter by rating</string>
+    <string name="alertdialog_rating_cancel">Cancel</string>
+    <string name="alertdialog_rating_radio_button_1">rating between 0.0 and 4.0</string>
+    <string name="alertdialog_rating_radio_button_2">rating between 4.0 and 6.0</string>
+    <string name="alertdialog_rating_radio_button_3">rating between 6.0 and 8.0</string>
+    <string name="alertdialog_rating_radio_button_4">rating between 8.0 and 10.0</string>
+    <string name="filter_by_genre">Filter by genre</string>
 </resources>
