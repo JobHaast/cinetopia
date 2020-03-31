@@ -28,4 +28,6 @@
     <string name="language">nl-NL</string>
     <string name="add_to_watchlist">Toevoegen aan kijklijst</string>
     <string name="add_to_watched">Toevoegen aan bekeken</string>
+    <string name="filter_on_genre">Filter op genre</string>
+    <string name="filter_on_rating">Filter op rating</string>
 </resources>

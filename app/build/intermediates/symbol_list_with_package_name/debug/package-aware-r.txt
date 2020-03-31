@@ -1427,6 +1427,7 @@ drawable ic_arrow_down_24dp
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
+drawable ic_filter_icon
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_language_icon
@@ -1530,6 +1531,9 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_filter
+id action_filter_genre
+id action_filter_rating
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -2018,6 +2022,9 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string filter
+string filter_on_genre
+string filter_on_rating
 string first
 string german
 string hide_bottom_view_on_scroll_behavior

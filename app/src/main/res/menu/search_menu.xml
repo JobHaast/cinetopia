@@ -7,4 +7,19 @@
         android:title="@string/search"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter_icon"
+        android:title="@string/filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_filter_genre"
+                android:title="@string/filter_on_genre"/>
+            <item
+                android:id="@+id/action_filter_rating"
+                android:title="@string/filter_on_rating"/>
+        </menu>
+    </item>
+
 </menu>

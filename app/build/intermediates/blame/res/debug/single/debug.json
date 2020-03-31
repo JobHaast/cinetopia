@@ -208,6 +208,10 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\header.xml"
     },
     {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_filter_icon.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_filter_icon.xml"
+    },
+    {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_top_rated.xml.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\activity_top_rated.xml"
     },
