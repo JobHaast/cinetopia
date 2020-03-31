@@ -15,6 +15,7 @@
             android:inputType="date"
             android:width="100dp"/>
     </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +28,7 @@
             android:inputType="date"
             android:width="100dp"/>
     </TableRow>
+
     <TableRow android:gravity="center_horizontal">
         <Button
             android:id="@+id/date_alertdialog_cancel"
