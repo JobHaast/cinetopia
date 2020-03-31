@@ -2099,6 +2099,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string popular
 string preference_copied
+string remove_movie_result
 string search
 string search_menu_title
 string search_movies

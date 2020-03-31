@@ -3,7 +3,6 @@ package nl.avans.cinetopia.data_access.post_requests;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.data_access.utilities.NetworkUtils;
 import okhttp3.Request;
@@ -31,7 +30,7 @@ public class AddMovieToList extends AsyncTask<Request, Void, Integer> {
         String jsonResult;
         try {
             jsonResult = NetworkUtils.getResponseFromHttpUrlPost(request);
-            response = JsonUtils.parseAddMovieToListResponse(jsonResult);
+            response = JsonUtils.parseAddRemoveMovieToListResponse(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();
         }

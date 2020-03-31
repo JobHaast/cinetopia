@@ -235,7 +235,7 @@ public class JsonUtils {
         return movies;
     }
 
-    public static int parseAddMovieToListResponse(String jsonResult) throws JSONException {
+    public static int parseAddRemoveMovieToListResponse(String jsonResult) throws JSONException {
         Log.d(TAG, "Method called: parseSessionId");
 
         JSONObject response = new JSONObject(jsonResult);

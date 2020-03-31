@@ -5,8 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,9 +25,7 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.AddMovieToList;
-import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
-import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
-import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
+import nl.avans.cinetopia.data_access.post_requests.RemoveMovieFromList;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
@@ -175,22 +171,44 @@ public class MovieDetailsActivity extends Fragment {
         }
     }
 
-    public void addMovieToWatchedList() {
-        AddMovieToList task = new AddMovieToList(new AsyncResponse());
+    private void addMovieToWatchedList() {
+        AddMovieToList task = new AddMovieToList(new AsyncResponseAdd());
         task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchedListId));
     }
 
-    public void addMovieToWatchList() {
-        AddMovieToList task = new AddMovieToList(new AsyncResponse());
+    private void addMovieToWatchList() {
+        AddMovieToList task = new AddMovieToList(new AsyncResponseAdd());
         task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchListId));
     }
 
-    class AsyncResponse implements AddMovieToList.AsyncResponse {
+    //Todo Create button of some sorts to call this method
+    private void removeMovieFromWatchedList(){
+        RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
+        task.execute(UrlBuilder.buildRemoveMovieUrl(mId, sessionId, watchListId));
+    }
+
+    private void removeMovieFromWatchList(){
+        RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
+        task.execute(UrlBuilder.buildRemoveMovieUrl(mId, sessionId, watchListId));
+    }
+
+    class AsyncResponseAdd implements AddMovieToList.AsyncResponse {
 
         @Override
         public void processFinish(int output) {
             if (output == 12) {
                 Toast.makeText(getActivity(), getString(R.string.add_movie_result),
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    class AsyncResponseRemove implements RemoveMovieFromList.AsyncResponse {
+
+        @Override
+        public void processFinish(int output) {
+            if (output == 13) {
+                Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
                         Toast.LENGTH_LONG).show();
             }
         }

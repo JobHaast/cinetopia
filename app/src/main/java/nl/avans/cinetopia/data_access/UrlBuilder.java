@@ -54,6 +54,7 @@ public class UrlBuilder {
     private final static String NEW_PATH = "new";
     private static final String PARAM_SESSION_ID = "session_id";
     private static final String ADD_ITEM = "add_item";
+    private static final String REMOVE_ITEM = "remove_item";
 
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "Method called: buildPopularMovieListUrl");
@@ -342,7 +343,6 @@ public class UrlBuilder {
         // Paths and parameters are appended to the base URL.
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(LIST_PATH)
-                .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendPath(listId)
                 .appendPath(ADD_ITEM)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
@@ -363,6 +363,36 @@ public class UrlBuilder {
                 .build();
 
         Log.d(TAG, "Built buildAddMovieUrl: " + request.toString());
+
+        return request;
+    }
+
+    public static Request buildRemoveMovieUrl(int movieId, String sessionId, String listId) {
+        Log.d(TAG, "buildRemoveMovieUrl called");
+
+        // Paths and parameters are appended to the base URL.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(LIST_PATH)
+                .appendPath(listId)
+                .appendPath(REMOVE_ITEM)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_SESSION_ID, sessionId)
+                .build();
+
+        String json = new StringBuilder()
+                .append("{")
+                .append("\"media_id\":\"")
+                .append(movieId)
+                .append("\"}").toString();
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+
+        Request request = new Request.Builder()
+                .url(builtUri.toString())
+                .post(body)
+                .build();
+
+        Log.d(TAG, "Built buildRemoveMovieUrl: " + request.toString());
 
         return request;
     }
