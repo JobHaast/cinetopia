@@ -34,6 +34,12 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private ProgressBar mProgressBar;
 
+    private String sessionId;
+
+    public MainActivityFragment(String sessionId){
+        this.sessionId = sessionId;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -106,7 +112,7 @@ public class MainActivityFragment extends Fragment implements PopularMoviesRecyc
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
                 .addToBackStack(null).commit();
     }
 }

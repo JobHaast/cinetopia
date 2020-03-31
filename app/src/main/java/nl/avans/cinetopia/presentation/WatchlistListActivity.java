@@ -11,6 +11,12 @@ import nl.avans.cinetopia.R;
 
 public class WatchlistListActivity extends Fragment {
 
+    private String sessionId;
+
+    public WatchlistListActivity(String sessionId){
+        this.sessionId = sessionId;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

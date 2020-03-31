@@ -27,10 +27,15 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     private static final String TAG = WatchedListActivity.class.getSimpleName();
 
     // RecyclerView attributes
+    private String sessionId;
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+
+    public WatchedListActivity(String sessionId){
+        this.sessionId = sessionId;
+    }
 
     @Nullable
     @Override
@@ -94,7 +99,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
                 .addToBackStack(null).commit();
     }
 }

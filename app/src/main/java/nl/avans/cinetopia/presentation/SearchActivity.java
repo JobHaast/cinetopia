@@ -42,6 +42,12 @@ public class SearchActivity extends Fragment implements MovieSearchRecyclerViewA
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
+    private String sessionId;
+
+    public SearchActivity(String sessionId){
+        this.sessionId = sessionId;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -121,7 +127,7 @@ public class SearchActivity extends Fragment implements MovieSearchRecyclerViewA
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
                 .addToBackStack(null).commit();
     }
 }

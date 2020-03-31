@@ -42,8 +42,11 @@ public class MovieDetailsActivity extends Fragment {
     ImageView imageViewTmdbLogo;
     StringBuilder mGenresString = new StringBuilder();
 
-    public MovieDetailsActivity(int id) {
+    private String sessionId;
+
+    public MovieDetailsActivity(int id, String sessionId) {
         this.mId = id;
+        this.sessionId = sessionId;
     }
 
     @Override

@@ -28,10 +28,15 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
     private static final String TAG = TopRatedActivity.class.getSimpleName();
 
     // RecyclerView attributes
+    private String sessionId;
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+
+    public TopRatedActivity(String sessionId){
+        this.sessionId = sessionId;
+    }
 
     @Nullable
     @Override
@@ -98,7 +103,7 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId()))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
                 .addToBackStack(null).commit();
     }
 }

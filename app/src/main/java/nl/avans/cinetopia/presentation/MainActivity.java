@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     private String token;
     private String sessionId;
 
+    public MainActivity(String sessionId){
+        this.sessionId = sessionId;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //Set first fragment first time
         if(savedInstanceState == null){
 //            setUpSession();
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
         }
     }
@@ -106,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_search:
 //                startActivity(new Intent(MainActivity.this, SearchActivity.class));
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity(sessionId)).addToBackStack(null).commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -125,20 +129,20 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_top_rated:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity(sessionId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_to_be_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity(sessionId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity(sessionId)).addToBackStack(null).commit();
                 Log.d(TAG, "SessionId: " +sessionId);
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity(sessionId)).addToBackStack(null).commit();
                 break;
             default:
 
