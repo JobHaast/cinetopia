@@ -29,13 +29,17 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
 
     // RecyclerView attributes
     private String sessionId;
+    private String watchedListId;
+    private String watchListId;
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
-    public TopRatedActivity(String sessionId){
+    public TopRatedActivity(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
+        this.watchedListId = watchedListId;
+        this.watchListId = watchListId;
     }
 
     @Nullable
@@ -103,7 +107,7 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
                 .addToBackStack(null).commit();
     }
 }

@@ -26,7 +26,8 @@ public class UrlBuilder {
     // The default Language is set to English
     private final static String PARAM_LANGUAGE = "language";
 
-    private static String LANGUAGE = Locale.getDefault().getLanguage();;
+    private static String LANGUAGE = Locale.getDefault().getLanguage();
+    ;
 
     // For whether to show adult movies in search results or not.
     private final static String PARAM_ADULT = "include_adult";
@@ -311,30 +312,28 @@ public class UrlBuilder {
         return request;
     }
 
-//    public static URL buildWatchedListUrl() {
-//        Log.d(TAG, "buildWatchedListUrl called");
-//
-//        // Paths and parameters are appended to the base URL.
-//        //TODO adapting method for buildWatchedListUrl
-//        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
-//                .appendPath(MOVIE_PATH)
-//                .appendPath(TOP_RATED_PATH)
-//                .appendQueryParameter(PARAM_API_KEY, API_KEY)
-//                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-//                .appendQueryParameter(PARAM_PAGE, "1")
-//                .build();
-//
-//        URL url = null;
-//        try {
-//            url = new URL(builtUri.toString());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Log.d(TAG, "Built buildWatchedListUrl: " + url);
-//
-//        return url;
-//    }
+    public static URL buildGetListUrl(String listId) {
+        Log.d(TAG, "buildGetListUrl called");
+
+        // Paths and parameters are appended to the base URL.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB_ATHENTICATION).buildUpon()
+                .appendPath(LIST_PATH)
+                .appendPath(listId)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built buildGetListUrl: " + url);
+
+        return url;
+    }
 }
 
 

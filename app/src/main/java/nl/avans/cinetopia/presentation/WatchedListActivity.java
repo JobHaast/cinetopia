@@ -3,9 +3,6 @@ package nl.avans.cinetopia.presentation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,7 +19,7 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.WatchedListGetRequest;
+import nl.avans.cinetopia.data_access.get_requests.ListGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;
 
@@ -30,14 +27,19 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
     private static final String TAG = WatchedListActivity.class.getSimpleName();
 
     // RecyclerView attributes
-    private String sessionId;
     private RecyclerView mRecyclerView;
     private PopularMoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
-    public WatchedListActivity(String sessionId){
+    private String sessionId;
+    private String watchedListId;
+    private String watchListId;
+
+    public WatchedListActivity(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
+        this.watchedListId = watchedListId;
+        this.watchListId = watchListId;
     }
 
     @Nullable
@@ -46,7 +48,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
         retrieveLatestGenresFromApi();
-//        retrieveWatchedMoviesFromApi();
+        retrieveWatchedMoviesFromApi();
 
         // Obtain a handle to the object.
         mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
@@ -75,9 +77,9 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         super.onViewCreated(view, savedInstanceState);
     }
 
-
     private void retrieveWatchedMoviesFromApi() {
-
+        ListGetRequest task = new ListGetRequest(new MovieApiListener());
+        task.execute(UrlBuilder.buildGetListUrl(watchedListId));
     }
 
     private void retrieveLatestGenresFromApi() {
@@ -85,7 +87,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         task.execute(UrlBuilder.buildGenreUrl());
     }
 
-    class WatchedMovieApiListener implements WatchedListGetRequest.WatchedListApiListener {
+    class MovieApiListener implements ListGetRequest.WatchedListApiListener {
         @Override
         public void handleMovieResult(ArrayList<Movie> movies) {
             Log.d(TAG, "handleMovieResult called");
@@ -96,11 +98,10 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         }
     }
 
-
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
                 .addToBackStack(null).commit();
     }
 }

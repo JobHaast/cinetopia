@@ -8,9 +8,13 @@ import nl.avans.cinetopia.R;
 
 public class SettingsActivity extends PreferenceFragmentCompat {
     private String sessionId;
+    private String watchedListId;
+    private String watchListId;
 
-    public SettingsActivity(String sessionId){
+    public SettingsActivity(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
+        this.watchedListId = watchedListId;
+        this.watchListId = watchListId;
     }
 
     @Override

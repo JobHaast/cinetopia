@@ -32,6 +32,8 @@ public class MovieDetailsActivity extends Fragment {
 
     // Global attributes.
     int mId;
+    private String watchedListId;
+    private String watchListId;
     Intent mIntent;
     TextView textViewTitle;
     TextView textViewOverview;
@@ -44,9 +46,11 @@ public class MovieDetailsActivity extends Fragment {
 
     private String sessionId;
 
-    public MovieDetailsActivity(int id, String sessionId) {
+    public MovieDetailsActivity(int id, String sessionId, String watchedListId, String watchListId) {
         this.mId = id;
         this.sessionId = sessionId;
+        this.watchedListId = watchedListId;
+        this.watchListId = watchListId;
     }
 
     @Override

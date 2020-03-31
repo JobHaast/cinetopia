@@ -1,51 +1,33 @@
 package nl.avans.cinetopia.presentation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioGroup;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.business_logic.Filter;
-import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
-import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
-import nl.avans.cinetopia.data_access.utilities.JsonUtils;
-import nl.avans.cinetopia.domain.Genre;
-import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -58,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
-    //Todo shared preferences
     private SharedPreferences preferences;
 
     private String token;
@@ -66,14 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private String watchedListId;
     private String watchListId;
 
-
-    public MainActivity() {
-
-    }
-
-    public MainActivity(String sessionId) {
-        this.sessionId = sessionId;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +76,6 @@ public class MainActivity extends AppCompatActivity {
         //Shared preferences setup
         preferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        Log.d(TAG, "Hier moet je zijn: "+watchedListId);
-        Log.d(TAG, "Hier moet je zijn: "+watchListId);
-        Log.d(TAG, "Hier moet je zijn: "+sessionId);
-
         //Set first fragment first time
         if (savedInstanceState == null) {
             sessionId = preferences.getString(SESSIONID, null);
@@ -116,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             if (sessionId == null) {
                 setUpSession();
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
@@ -146,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 mDrawer.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-//                startActivity(new Intent(MainActivity.this, SearchActivity.class));
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity(sessionId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.action_filter_rating:
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -166,11 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
                 break;
-
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -189,20 +153,19 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_top_rated:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity(sessionId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_to_be_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity(sessionId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity(sessionId)).addToBackStack(null).commit();
-                Log.d(TAG, "SessionId: " +sessionId);
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity(sessionId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             default:
 
@@ -285,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
     }
 
-    class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList{
+    class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList {
 
         @Override
         public void processFinish(String output) {
@@ -295,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class AsyncResponseCreateWatchList implements CreateWatchList.AsyncResponseCreateWatchList{
+    class AsyncResponseCreateWatchList implements CreateWatchList.AsyncResponseCreateWatchList {
 
         @Override
         public void processFinish(String output) {

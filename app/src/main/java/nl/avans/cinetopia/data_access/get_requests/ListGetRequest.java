@@ -10,15 +10,15 @@ import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.data_access.utilities.NetworkUtils;
 import nl.avans.cinetopia.domain.Movie;
 
-public class WatchedListGetRequest extends AsyncTask<URL, Void, ArrayList<Movie>> {
+public class ListGetRequest extends AsyncTask<URL, Void, ArrayList<Movie>> {
     // Tag for logging.
     private static final String TAG = TopRatedMovieGetRequest.class.getSimpleName();
 
     // Listener attribute.
-    private WatchedListGetRequest.WatchedListApiListener mListener;
+    private ListGetRequest.WatchedListApiListener mListener;
 
     // Constructor.
-    public WatchedListGetRequest(WatchedListGetRequest.WatchedListApiListener listener) {
+    public ListGetRequest(ListGetRequest.WatchedListApiListener listener) {
         this.mListener = listener;
     }
 

@@ -43,9 +43,13 @@ public class SearchActivity extends Fragment implements MovieSearchRecyclerViewA
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
     private String sessionId;
+    private String watchedListId;
+    private String watchListId;
 
-    public SearchActivity(String sessionId){
+    public SearchActivity(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
+        this.watchedListId = watchedListId;
+        this.watchListId = watchListId;
     }
 
     @Nullable
@@ -127,7 +131,7 @@ public class SearchActivity extends Fragment implements MovieSearchRecyclerViewA
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsActivity(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
                 .addToBackStack(null).commit();
     }
 }
