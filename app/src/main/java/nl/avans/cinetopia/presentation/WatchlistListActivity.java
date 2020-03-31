@@ -3,6 +3,9 @@ package nl.avans.cinetopia.presentation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -41,6 +44,26 @@ public class WatchlistListActivity extends Fragment implements PopularMoviesRecy
         this.watchListId = watchListId;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Confirm this fragment has menu items.
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem itemSearch = menu.findItem(R.id.action_search);
+        MenuItem itemFilter = menu.findItem(R.id.action_filter);
+        if (itemSearch != null) {
+            itemSearch.setVisible(false);
+        }
+        if (itemFilter != null){
+            itemFilter.setVisible(false);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +92,12 @@ public class WatchlistListActivity extends Fragment implements PopularMoviesRecy
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        // Inflate the fragment menu items.
+        inflater.inflate(R.menu.share_menu, menu);
     }
 
     @Override
