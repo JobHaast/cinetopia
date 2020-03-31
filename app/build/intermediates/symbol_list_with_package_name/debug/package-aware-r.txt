@@ -1428,6 +1428,7 @@ drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
 drawable ic_filter_icon
+drawable ic_gerne_filter_icon
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_language_icon
@@ -1444,6 +1445,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_open_in_browser
 drawable ic_popular_icon
+drawable ic_rating_icon
 drawable ic_search
 drawable ic_settings_icon
 drawable ic_share_icon

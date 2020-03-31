@@ -15,10 +15,12 @@
         <menu>
             <item
                 android:id="@+id/action_filter_genre"
-                android:title="@string/filter_by_genre"/>
+                android:icon="@drawable/ic_gerne_filter_icon"
+                android:title="@string/filter_on_genre"/>
             <item
                 android:id="@+id/action_filter_rating"
-                android:title="@string/filter_by_rating"/>
+                android:icon="@drawable/ic_rating_icon"
+                android:title="@string/filter_on_rating"/>
         </menu>
     </item>
 

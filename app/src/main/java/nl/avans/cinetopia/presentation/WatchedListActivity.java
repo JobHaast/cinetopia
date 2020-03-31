@@ -3,6 +3,9 @@ package nl.avans.cinetopia.presentation;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -66,7 +69,6 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
 
         return view;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
