@@ -30,7 +30,7 @@ public class CreateSessionPostRequest extends AsyncTask<Request, Void, String> {
 
         String jsonResult;
         try {
-            jsonResult = NetworkUtils.getSessionId(request);
+            jsonResult = NetworkUtils.getResponseFromHttpUrlPost(request);
             sessionId = JsonUtils.parseSessionId(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();

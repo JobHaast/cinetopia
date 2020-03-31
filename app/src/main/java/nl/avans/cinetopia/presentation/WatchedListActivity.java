@@ -43,7 +43,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
         retrieveLatestGenresFromApi();
-        retrieveWatchedMoviesFromApi();
+//        retrieveWatchedMoviesFromApi();
 
         // Obtain a handle to the object.
         mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
@@ -75,8 +75,7 @@ public class WatchedListActivity extends Fragment implements PopularMoviesRecycl
 
 
     private void retrieveWatchedMoviesFromApi() {
-        WatchedListGetRequest task = new WatchedListGetRequest(new WatchedListActivity.WatchedMovieApiListener());
-        task.execute(UrlBuilder.buildWatchedListUrl());
+
     }
 
     private void retrieveLatestGenresFromApi() {

@@ -45,7 +45,7 @@ public class NetworkUtils {
         }
     }
 
-    public static String getSessionId(Request request){
+    public static String getResponseFromHttpUrlPost(Request request){
         try (Response response = new OkHttpClient().newCall(request).execute()) {
 
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);

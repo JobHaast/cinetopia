@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -39,6 +38,7 @@ public class JsonUtils {
     private static final String KEY_RUNTIME = "runtime";
     private static final String KEY_REQUEST_TOKEN = "request_token";
     private static final String KEY_SESSION_ID = "session_id";
+    private static final String KEY_LIST_ID = "list_id";
 
     /**
      * Parses the JSON result of the movies GET-request and stores the data into new Movie objects.
@@ -171,6 +171,14 @@ public class JsonUtils {
         JSONObject response = new JSONObject(jsonResult);
         
         return response.getString(KEY_SESSION_ID);
+    }
+
+    public static String parseCreateList(String jsonResult) throws JSONException {
+        Log.d(TAG, "Method called: parseCreateWatchedList");
+
+        JSONObject response = new JSONObject(jsonResult);
+
+        return response.getString(KEY_LIST_ID);
     }
 
     public static class GenresApiListener implements GenresGetRequest.GenresApiListener {

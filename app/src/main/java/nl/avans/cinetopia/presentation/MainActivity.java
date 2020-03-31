@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,25 +36,37 @@ import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
+import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
+import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
+    private static final String MyPREFERENCES = "myPreferences";
+    private static final String SESSIONID = "sessionId";
+    private static final String WATCHEDLISTID = "watchedListId";
+    private static final String WATCHLISTID = "watchListId";
 
     private androidx.appcompat.widget.Toolbar toolbar;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
+    //Todo shared preferences
+    private SharedPreferences preferences;
+
     private String token;
     private String sessionId;
+    private String watchedListId;
+    private String watchListId;
+
 
     public MainActivity() {
+
     }
 
-    public MainActivity(String sessionId){
+    public MainActivity(String sessionId) {
         this.sessionId = sessionId;
     }
 
@@ -80,18 +95,32 @@ public class MainActivity extends AppCompatActivity {
         nvDrawer = findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
 
+        //Shared preferences setup
+        preferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        Log.d(TAG, "Hier moet je zijn: "+watchedListId);
+        Log.d(TAG, "Hier moet je zijn: "+watchListId);
+        Log.d(TAG, "Hier moet je zijn: "+sessionId);
+
         //Set first fragment first time
-        if(savedInstanceState == null){
-//            setUpSession();
+        if (savedInstanceState == null) {
+            sessionId = preferences.getString(SESSIONID, null);
+            watchedListId = preferences.getString(WATCHEDLISTID, null);
+            watchListId = preferences.getString(WATCHLISTID, null);
+
+            if (sessionId == null) {
+                setUpSession();
+            }
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
+            setTitle(getString(R.string.popular));
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(sessionId == null && token != null){
+        if (sessionId == null) {
             retrieveSessionId();
         }
     }
@@ -142,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_watched:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity(sessionId)).addToBackStack(null).commit();
-                Log.d(TAG, "SessionId: " +sessionId);
                 break;
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity(sessionId)).addToBackStack(null).commit();
@@ -164,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState called");
 
         super.onSaveInstanceState(outState);
-//        outState.putSerializable(LIFECYCLE_CALLBACKS_TEXT_KEY, mMovies);
     }
 
     @Override
@@ -185,8 +212,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     public void openWebPage(String url) {
-        Log.d(TAG, "openWebPage called "+ url +"");
+        Log.d(TAG, "openWebPage called " + url + "");
         Uri webpage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -212,12 +240,39 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void processFinish(String output) {
-            sessionId = output;
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(SESSIONID, output);
+            editor.apply();
+
+            CreateWatchedList createWatchedList = new CreateWatchedList(new AsyncResponseWatchedList());
+            createWatchedList.execute(UrlBuilder.createWatchedList(output));
+            CreateWatchList createWatchList = new CreateWatchList(new AsyncResponseCreateWatchList());
+            createWatchList.execute(UrlBuilder.createWatchList(output));
         }
     }
 
-    private void retrieveSessionId(){
+    private void retrieveSessionId() {
         CreateSessionPostRequest task = new CreateSessionPostRequest(new AsyncResponseSessionId());
         task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
+    }
+
+    class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList{
+
+        @Override
+        public void processFinish(String output) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(WATCHEDLISTID, output);
+            editor.apply();
+        }
+    }
+
+    class AsyncResponseCreateWatchList implements CreateWatchList.AsyncResponseCreateWatchList{
+
+        @Override
+        public void processFinish(String output) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(WATCHLISTID, output);
+            editor.apply();
+        }
     }
 }

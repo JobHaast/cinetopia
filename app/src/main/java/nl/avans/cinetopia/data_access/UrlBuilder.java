@@ -25,6 +25,7 @@ public class UrlBuilder {
 
     // The default Language is set to English
     private final static String PARAM_LANGUAGE = "language";
+
     private static String LANGUAGE = Locale.getDefault().getLanguage();;
 
     // For whether to show adult movies in search results or not.
@@ -50,6 +51,7 @@ public class UrlBuilder {
     private final static String AUTHENTICATE_PATH = "authenticate";
     private final static String SESSION_PATH = "session";
     private final static String NEW_PATH = "new";
+    private static final String PARAM_SESSION_ID = "session_id";
 
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "Method called: buildPopularMovieListUrl");
@@ -249,30 +251,90 @@ public class UrlBuilder {
         return request;
     }
 
-    public static URL buildWatchedListUrl() {
-        Log.d(TAG, "buildWatchedListUrl called");
+    public static Request createWatchedList(String sessionId) {
+        Log.d(TAG, "createWatchedList called");
 
         // Paths and parameters are appended to the base URL.
-        //TODO adapting method for buildWatchedListUrl
         Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
-                .appendPath(MOVIE_PATH)
-                .appendPath(TOP_RATED_PATH)
+                .appendPath(LIST_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
-                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-                .appendQueryParameter(PARAM_PAGE, "1")
+                .appendQueryParameter(PARAM_SESSION_ID, sessionId)
                 .build();
 
-        URL url = null;
-        try {
-            url = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        String json = new StringBuilder()
+                .append("{")
+                .append("\"name\":\"Watched\",")
+                .append("\"description\":\"Watched\",")
+                .append("\"language\":\"")
+                .append(LANGUAGE)
+                .append("\"}").toString();
 
-        Log.d(TAG, "Built buildWatchedListUrl: " + url);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
 
-        return url;
+        Request request = new Request.Builder()
+                .url(builtUri.toString())
+                .post(body)
+                .build();
+
+        Log.d(TAG, "Built createWatchedList: " + request.toString());
+
+        return request;
     }
+
+    public static Request createWatchList(String sessionId) {
+        Log.d(TAG, "createWatchedList called");
+
+        // Paths and parameters are appended to the base URL.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(LIST_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_SESSION_ID, sessionId)
+                .build();
+
+        String json = new StringBuilder()
+                .append("{")
+                .append("\"name\":\"Watch\",")
+                .append("\"description\":\"Watch\",")
+                .append("\"language\":\"")
+                .append(LANGUAGE)
+                .append("\"}").toString();
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+
+        Request request = new Request.Builder()
+                .url(builtUri.toString())
+                .post(body)
+                .build();
+
+        Log.d(TAG, "Built createWatchedList: " + request.toString());
+
+        return request;
+    }
+
+//    public static URL buildWatchedListUrl() {
+//        Log.d(TAG, "buildWatchedListUrl called");
+//
+//        // Paths and parameters are appended to the base URL.
+//        //TODO adapting method for buildWatchedListUrl
+//        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+//                .appendPath(MOVIE_PATH)
+//                .appendPath(TOP_RATED_PATH)
+//                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+//                .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
+//                .appendQueryParameter(PARAM_PAGE, "1")
+//                .build();
+//
+//        URL url = null;
+//        try {
+//            url = new URL(builtUri.toString());
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Log.d(TAG, "Built buildWatchedListUrl: " + url);
+//
+//        return url;
+//    }
 }
 
 
