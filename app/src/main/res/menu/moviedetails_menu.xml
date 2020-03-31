@@ -10,6 +10,21 @@
     <item android:id="@+id/moviedetails_menu_options"
         android:title="@string/moviedetails_menu_options"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_more_vert_icon"/>
+        android:icon="@drawable/ic_more_vert_icon">
+        <menu>
+            <item
+                android:id="@+id/add_to_watchlist"
+                android:icon="@drawable/ic_list_add_icon"
+                android:title="@string/add_to_watchlist"/>
+            <item
+                android:id="@+id/add_to_watched"
+                android:icon="@drawable/ic_list_add_icon"
+                android:title="@string/add_to_watched"/>
+            <item
+                android:id="@+id/open_browser"
+                android:icon="@drawable/ic_open_in_browser"
+                android:title="@string/open_in_browser"/>
+        </menu>
+    </item>
 
 </menu>

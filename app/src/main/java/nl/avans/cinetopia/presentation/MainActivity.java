@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private String token;
     private String sessionId;
 
+    public MainActivity() {
+    }
+
     public MainActivity(String sessionId){
         this.sessionId = sessionId;
     }

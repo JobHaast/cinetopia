@@ -26,4 +26,6 @@
     <string name="dutch">Nederlands</string>
     <string name="german">Duits</string>
     <string name="language">nl-NL</string>
+    <string name="add_to_watchlist">Toevoegen aan kijklijst</string>
+    <string name="add_to_watched">Toevoegen aan bekeken</string>
 </resources>
