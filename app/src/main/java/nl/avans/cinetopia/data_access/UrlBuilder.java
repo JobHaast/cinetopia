@@ -316,7 +316,7 @@ public class UrlBuilder {
         Log.d(TAG, "buildGetListUrl called");
 
         // Paths and parameters are appended to the base URL.
-        Uri builtUri = Uri.parse(BASE_URL_TMDB_ATHENTICATION).buildUpon()
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
                 .appendPath(LIST_PATH)
                 .appendPath(listId)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)

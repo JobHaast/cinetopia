@@ -39,6 +39,7 @@ public class JsonUtils {
     private static final String KEY_REQUEST_TOKEN = "request_token";
     private static final String KEY_SESSION_ID = "session_id";
     private static final String KEY_LIST_ID = "list_id";
+    private static final String KEY_ITEMS = "items";
 
     /**
      * Parses the JSON result of the movies GET-request and stores the data into new Movie objects.
@@ -48,7 +49,7 @@ public class JsonUtils {
      * @throws JSONException If the JSON data cannot be properly parsed.
      */
     public static ArrayList<Movie> parseMoviesJson(String jsonResult) throws JSONException {
-        Log.d(TAG, "Method called: parsePopularMoviesJson");
+        Log.d(TAG, "Method called: parseMoviesJson");
 
         ArrayList<Movie> movies = new ArrayList<>();
 
@@ -143,7 +144,7 @@ public class JsonUtils {
 
         // Iterate through the entire array of genres, retrieve the data, create new Genre
         // objects and store them into the ArrayList.
-        for(int i = 0; i < arrayGenres.length(); i++) {
+        for (int i = 0; i < arrayGenres.length(); i++) {
             // Retrieve the genre object from the array.
             JSONObject genre = arrayGenres.getJSONObject(i);
 
@@ -164,12 +165,12 @@ public class JsonUtils {
 
         return response.getString(KEY_REQUEST_TOKEN);
     }
-    
+
     public static String parseSessionId(String jsonResult) throws JSONException {
         Log.d(TAG, "Method called: parseSessionId");
-        
+
         JSONObject response = new JSONObject(jsonResult);
-        
+
         return response.getString(KEY_SESSION_ID);
     }
 
@@ -179,6 +180,58 @@ public class JsonUtils {
         JSONObject response = new JSONObject(jsonResult);
 
         return response.getString(KEY_LIST_ID);
+    }
+
+    public static ArrayList<Movie> parseListMoviesJson(String jsonResult) throws JSONException {
+        Log.d(TAG, "Method called: parseMoviesJson");
+
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        JSONObject moviesJson = new JSONObject(jsonResult);
+
+        JSONArray arrayResults = moviesJson.getJSONArray(KEY_ITEMS);
+
+        // Iterate through the entire array of results, retrieve the data, create new Movie
+        // objects and store them into the ArrayList.
+        for (int i = 0; i < arrayResults.length(); i++) {
+            // Retrieve the result object from the array.
+            JSONObject result = arrayResults.getJSONObject(i);
+
+            // Retrieve required data and store it into variables.
+            int id = result.getInt(KEY_ID);
+            String title = result.getString(KEY_TITLE);
+            double rating = result.getDouble(KEY_RATING);
+            String imageUrl = UrlBuilder.buildPosterImageUrl(result.getString(KEY_POSTER_PATH));
+
+            JSONArray arrayGenres = result.getJSONArray(ARRAY_GENRE_IDS);
+            ArrayList<Integer> genreIds = new ArrayList<>();
+
+            for (int j = 0; j < arrayGenres.length(); j++) {
+                genreIds.add(arrayGenres.getInt(j));
+            }
+
+            HashMap<Integer, String> genreMap = new HashMap<>();
+
+            for (Genre genre : mGenres) {
+                int genreId = genre.getId();
+                String genreName = genre.getName();
+
+                genreMap.put(genreId, genreName);
+            }
+
+            ArrayList<Genre> genres = new ArrayList<>();
+
+            for (int genreId : genreIds) {
+                if (genreMap.containsKey(genreId)) {
+                    genres.add(new Genre(genreId, genreMap.get(genreId)));
+                }
+            }
+
+            movies.add(new Movie(id, title, imageUrl, rating, genres));
+
+        }
+
+        return movies;
     }
 
     public static class GenresApiListener implements GenresGetRequest.GenresApiListener {

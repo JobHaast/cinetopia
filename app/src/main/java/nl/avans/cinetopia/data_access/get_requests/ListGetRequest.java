@@ -33,7 +33,7 @@ public class ListGetRequest extends AsyncTask<URL, Void, ArrayList<Movie>> {
         String jsonResult;
         try {
             jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
-            movies = JsonUtils.parseMoviesJson(jsonResult);
+            movies = JsonUtils.parseListMoviesJson(jsonResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
