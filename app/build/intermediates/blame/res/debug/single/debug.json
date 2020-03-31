@@ -76,16 +76,16 @@
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item_main_movies.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\list_item_main_movies.xml"
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_popular_icon.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_popular_icon.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_popular_icon.xml.flat",
-        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_popular_icon.xml"
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item_main_movies.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\layout\\list_item_main_movies.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
@@ -186,6 +186,10 @@
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_open_in_browser.xml.flat",
+        "source": "D:\\Avans\\cinetopia\\app\\src\\main\\res\\drawable\\ic_open_in_browser.xml"
     },
     {
         "merged": "D:\\Avans\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",

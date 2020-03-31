@@ -1441,6 +1441,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_open_in_browser
 drawable ic_popular_icon
 drawable ic_search
 drawable ic_settings_icon
@@ -1544,6 +1545,8 @@ id activity_main_recyclerView
 id activity_search_recyclerView
 id activity_top_rated_recyclerView
 id add
+id add_to_watched
+id add_to_watchlist
 id alertTitle
 id all
 id always
@@ -1688,6 +1691,7 @@ id notification_main_column_container
 id nvView
 id off
 id on
+id open_browser
 id outline
 id packed
 id parallax
@@ -1994,6 +1998,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string add_to_watched
+string add_to_watchlist
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
@@ -2060,6 +2066,7 @@ string mtrl_picker_toggle_to_year_selection
 string navigation_drawer_close
 string navigation_drawer_open
 string not_set
+string open_in_browser
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
