@@ -1971,7 +1971,8 @@ layout text_view_without_line_height
 layout toolbar
 menu hamburger_menu
 menu moviedetails_menu
-menu search_menu
+menu search_filter_menu
+menu share_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
