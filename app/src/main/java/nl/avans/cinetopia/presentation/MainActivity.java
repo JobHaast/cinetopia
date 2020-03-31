@@ -2,6 +2,7 @@ package nl.avans.cinetopia.presentation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -14,10 +15,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
 import nl.avans.cinetopia.R;
+import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
@@ -99,6 +103,27 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_search:
 //                startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity(sessionId)).addToBackStack(null).commit();
+                break;
+            case R.id.action_filter_rating:
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                final View dialog_layout = getLayoutInflater().inflate(R.layout.filter_layout, null);
+
+                alertDialog.setView(dialog_layout);
+                alertDialog.show();
+
+                Button cancelButton = dialog_layout.findViewById(R.id.date_alertdialog_cancel);
+
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d(TAG, "onClick voor cancelbutton aangeroepen");
+                        alertDialog.cancel();
+                    }
+                });
+
+                break;
+
+
         }
         return super.onOptionsItemSelected(item);
     }

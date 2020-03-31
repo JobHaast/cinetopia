@@ -1541,6 +1541,7 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_search
+id action_share
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1583,6 +1584,10 @@ id coordinator
 id custom
 id customPanel
 id cut
+id date_alertdialog_cancel
+id date_alertdialog_end_date
+id date_alertdialog_search
+id date_alertdialog_start_date
 id date_picker_actions
 id decor_content_parent
 id default_activity_button
@@ -1898,6 +1903,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout expand_button
+layout filter_layout
 layout header
 layout image_frame
 layout item_progress
@@ -2008,6 +2014,7 @@ string add_to_watchlist
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string cancel_button
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
