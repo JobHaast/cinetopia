@@ -35,4 +35,5 @@
     <string name="alertdialog_rating_radio_button_4">rating 8.0 tot 10.0</string>
     <string name="alertdialog_rating_radio_button_3">rating 6.0 tot 8.0</string>
     <string name="filter_by_genre">Filter op Genre</string>
+    <string name="add_movie_result">Film succesvol toegevoed</string>
 </resources>

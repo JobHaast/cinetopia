@@ -2014,6 +2014,7 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string add_movie_result
 string add_to_watched
 string add_to_watchlist
 string alertdialog_rating_cancel

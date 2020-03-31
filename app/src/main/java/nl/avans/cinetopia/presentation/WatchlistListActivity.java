@@ -156,6 +156,7 @@ public class WatchlistListActivity extends Fragment implements PopularMoviesRecy
         }
     }
 
+
     @Override
     public void onItemClick(int position) {
         getActivity().getSupportFragmentManager().beginTransaction()

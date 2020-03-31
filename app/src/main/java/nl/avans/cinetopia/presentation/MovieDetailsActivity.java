@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +26,10 @@ import java.util.ArrayList;
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
+import nl.avans.cinetopia.data_access.post_requests.AddMovieToList;
+import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
+import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
+import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
@@ -68,7 +75,7 @@ public class MovieDetailsActivity extends Fragment {
         if (itemSearch != null) {
             itemSearch.setVisible(false);
         }
-        if (itemFilter != null){
+        if (itemFilter != null) {
             itemFilter.setVisible(false);
         }
     }
@@ -102,8 +109,13 @@ public class MovieDetailsActivity extends Fragment {
         switch (item.getItemId()) {
             case R.id.moviedetails_menu_share:
                 composeImplicitIntent();
-            case R.id.moviedetails_menu_options:
-
+                break;
+            case R.id.add_to_watched:
+                addMovieToWatchedList();
+                break;
+            case R.id.add_to_watchlist:
+                addMovieToWatchList();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -160,6 +172,27 @@ public class MovieDetailsActivity extends Fragment {
         intent.putExtra(Intent.EXTRA_TEXT, builder.toString());
         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivity(Intent.createChooser(intent, "Send Movie"));
+        }
+    }
+
+    public void addMovieToWatchedList() {
+        AddMovieToList task = new AddMovieToList(new AsyncResponse());
+        task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchedListId));
+    }
+
+    public void addMovieToWatchList() {
+        AddMovieToList task = new AddMovieToList(new AsyncResponse());
+        task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchListId));
+    }
+
+    class AsyncResponse implements AddMovieToList.AsyncResponse {
+
+        @Override
+        public void processFinish(int output) {
+            if (output == 12) {
+                Toast.makeText(getActivity(), getString(R.string.add_movie_result),
+                        Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

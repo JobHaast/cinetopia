@@ -40,6 +40,7 @@ public class JsonUtils {
     private static final String KEY_SESSION_ID = "session_id";
     private static final String KEY_LIST_ID = "list_id";
     private static final String KEY_ITEMS = "items";
+    private static final String KEY_STATUS_CODE = "status_code";
 
     /**
      * Parses the JSON result of the movies GET-request and stores the data into new Movie objects.
@@ -232,6 +233,14 @@ public class JsonUtils {
         }
 
         return movies;
+    }
+
+    public static int parseAddMovieToListResponse(String jsonResult) throws JSONException {
+        Log.d(TAG, "Method called: parseSessionId");
+
+        JSONObject response = new JSONObject(jsonResult);
+
+        return response.getInt(KEY_STATUS_CODE);
     }
 
     public static class GenresApiListener implements GenresGetRequest.GenresApiListener {

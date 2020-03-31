@@ -36,4 +36,5 @@
     <string name="alertdialog_rating_radio_button_3">rating between 6.0 and 8.0</string>
     <string name="alertdialog_rating_radio_button_4">rating between 8.0 and 10.0</string>
     <string name="filter_by_genre">Filter by genre</string>
+    <string name="add_movie_result">Movie succesfully added</string>
 </resources>
