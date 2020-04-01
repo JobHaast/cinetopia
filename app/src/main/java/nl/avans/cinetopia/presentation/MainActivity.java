@@ -87,15 +87,76 @@ public class MainActivity extends AppCompatActivity {
             if (sessionId == null) {
                 setUpSession();
             }
+
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
     }
+    class AsyncResponse implements RequestTokenGetRequest.AsyncResponse {
 
+        @Override
+        public void processFinish(String output) {
+            token = output;
+            openWebPage(UrlBuilder.buildRequestTokenAuthorizationUrl(output));
+        }
+    }
+
+    private void setUpSession() {
+        RequestTokenGetRequest task = new RequestTokenGetRequest(new AsyncResponse());
+        task.execute(UrlBuilder.buildRequestTokenUrl());
+    }
+
+    class AsyncResponseSessionId implements CreateSessionPostRequest.AsyncResponse {
+
+        @Override
+        public void processFinish(String output) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(SESSIONID, output);
+            editor.apply();
+            sessionId = output;
+
+            CreateWatchedList createWatchedList = new CreateWatchedList(new AsyncResponseWatchedList());
+            createWatchedList.execute(UrlBuilder.createWatchedList(output));
+            CreateWatchList createWatchList = new CreateWatchList(new AsyncResponseCreateWatchList());
+            createWatchList.execute(UrlBuilder.createWatchList(output));
+        }
+    }
+
+    private void retrieveSessionId() {
+        CreateSessionPostRequest task = new CreateSessionPostRequest(new AsyncResponseSessionId());
+        task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
+    }
+
+    class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList {
+
+        @Override
+        public void processFinish(String output) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(WATCHEDLISTID, output);
+            editor.apply();
+            watchedListId = output;
+            Log.d(TAG, "Hierzo:"+watchedListId);
+        }
+    }
+
+    class AsyncResponseCreateWatchList implements CreateWatchList.AsyncResponseCreateWatchList {
+
+        @Override
+        public void processFinish(String output) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(WATCHLISTID, output);
+            editor.apply();
+            watchListId = output;
+            Log.d(TAG, "Hierzo:"+watchListId);
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
+            nvDrawer.setCheckedItem(R.id.nav_popular);
+            setTitle(getString(R.string.popular));
+        }
+    }
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onRestart() {
+        super.onRestart();
         if (sessionId == null) {
             retrieveSessionId();
         }
@@ -241,57 +302,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class AsyncResponse implements RequestTokenGetRequest.AsyncResponse {
 
-        @Override
-        public void processFinish(String output) {
-            token = output;
-            openWebPage(UrlBuilder.buildRequestTokenAuthorizationUrl(output));
-        }
-    }
-
-    private void setUpSession() {
-        RequestTokenGetRequest task = new RequestTokenGetRequest(new AsyncResponse());
-        task.execute(UrlBuilder.buildRequestTokenUrl());
-    }
-
-    class AsyncResponseSessionId implements CreateSessionPostRequest.AsyncResponse {
-
-        @Override
-        public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(SESSIONID, output);
-            editor.apply();
-
-            CreateWatchedList createWatchedList = new CreateWatchedList(new AsyncResponseWatchedList());
-            createWatchedList.execute(UrlBuilder.createWatchedList(output));
-            CreateWatchList createWatchList = new CreateWatchList(new AsyncResponseCreateWatchList());
-            createWatchList.execute(UrlBuilder.createWatchList(output));
-        }
-    }
-
-    private void retrieveSessionId() {
-        CreateSessionPostRequest task = new CreateSessionPostRequest(new AsyncResponseSessionId());
-        task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
-    }
-
-    class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList {
-
-        @Override
-        public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(WATCHEDLISTID, output);
-            editor.apply();
-        }
-    }
-
-    class AsyncResponseCreateWatchList implements CreateWatchList.AsyncResponseCreateWatchList {
-
-        @Override
-        public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(WATCHLISTID, output);
-            editor.apply();
-        }
-    }
 }
