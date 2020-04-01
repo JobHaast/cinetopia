@@ -2107,6 +2107,8 @@ string path_password_strike_through
 string popular
 string poster_content_desc
 string preference_copied
+string rating_result_rerate
+string rating_result_succes
 string remove_from_list_confirmation
 string remove_movie_result
 string remove_movie_result_duplicate

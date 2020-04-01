@@ -54,6 +54,7 @@ public class UrlBuilder {
     private static final String PARAM_SESSION_ID = "session_id";
     private static final String ADD_ITEM = "add_item";
     private static final String REMOVE_ITEM = "remove_item";
+    private static final String RATING_PATH = "rating";
 
     public static URL buildPopularMovieListUrl() {
         Log.d(TAG, "Method called: buildPopularMovieListUrl");
@@ -392,6 +393,35 @@ public class UrlBuilder {
                 .build();
 
         Log.d(TAG, "Built buildRemoveMovieUrl: " + request.toString());
+
+        return request;
+    }
+
+    public static Request buildRatingPostUrl(double rating, int movieId, String sessionId) {
+        Log.d(TAG, "buildRemoveMovieUrl called");
+
+        // Paths and parameters are appended to the base URL.
+        Uri builtUri = Uri.parse(BASE_URL_TMDB).buildUpon()
+                .appendPath(MOVIE_PATH)
+                .appendPath(String.valueOf(movieId))
+                .appendPath(RATING_PATH)
+                .appendQueryParameter(PARAM_API_KEY, API_KEY)
+                .appendQueryParameter(PARAM_SESSION_ID, sessionId)
+                .build();
+
+        String json = "{" +
+                "\"value\":\"" +
+                rating +
+                "\"}";
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+
+        Request request = new Request.Builder()
+                .url(builtUri.toString())
+                .post(body)
+                .build();
+
+        Log.d(TAG, "Built buildRatingPostUrl: " + request.toString());
 
         return request;
     }
