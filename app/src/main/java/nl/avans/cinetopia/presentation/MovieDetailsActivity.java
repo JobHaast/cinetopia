@@ -199,34 +199,12 @@ public class MovieDetailsActivity extends Fragment {
         task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchListId));
     }
 
-    //Todo Create button of some sorts to call this method
-    private void removeMovieFromWatchedList(){
-        RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
-        task.execute(UrlBuilder.buildRemoveMovieUrl(mId, sessionId, watchListId));
-    }
-
-    private void removeMovieFromWatchList(){
-        RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
-        task.execute(UrlBuilder.buildRemoveMovieUrl(mId, sessionId, watchListId));
-    }
-
     class AsyncResponseAdd implements AddMovieToList.AsyncResponse {
 
         @Override
         public void processFinish(int output) {
             if (output == 12) {
                 Toast.makeText(getActivity(), getString(R.string.add_movie_result),
-                        Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    class AsyncResponseRemove implements RemoveMovieFromList.AsyncResponse {
-
-        @Override
-        public void processFinish(int output) {
-            if (output == 13) {
-                Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
                         Toast.LENGTH_LONG).show();
             }
         }

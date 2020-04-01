@@ -812,6 +812,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1426,6 +1427,7 @@ drawable ic_add_icon
 drawable ic_arrow_down_24dp
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
+drawable ic_delete
 drawable ic_edit_black_24dp
 drawable ic_filter_icon
 drawable ic_gerne_filter_icon
@@ -1476,6 +1478,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable preference_list_divider_material
+drawable rounded_button
 drawable rv_divider
 drawable test_custom_background
 drawable tooltip_frame_dark
@@ -1889,7 +1892,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_list
 layout activity_main
 layout activity_main_fragment
 layout activity_movie_details
@@ -2105,6 +2107,7 @@ string path_password_strike_through
 string popular
 string poster_content_desc
 string preference_copied
+string remove_from_list_confirmation
 string remove_movie_result
 string search
 string search_menu_title

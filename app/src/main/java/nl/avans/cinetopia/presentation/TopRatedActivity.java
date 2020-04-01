@@ -16,15 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.adapters.PopularMoviesRecyclerViewAdapter;
+import nl.avans.cinetopia.adapters.MoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
-import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.TopRatedMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Movie;
 
-public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerViewAdapter.OnItemClickListener {
+public class TopRatedActivity extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = TopRatedActivity.class.getSimpleName();
 
     // RecyclerView attributes
@@ -32,7 +31,7 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
     private String watchedListId;
     private String watchListId;
     private RecyclerView mRecyclerView;
-    private PopularMoviesRecyclerViewAdapter mAdapter;
+    private MoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -59,7 +58,7 @@ public class TopRatedActivity extends Fragment implements PopularMoviesRecyclerV
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Specify an adapter.
-        mAdapter = new PopularMoviesRecyclerViewAdapter(getActivity(), mMovies);
+        mAdapter = new MoviesRecyclerViewAdapter(getActivity(), mMovies);
         // Connect the RecyclerView to the adapter.
         mRecyclerView.setAdapter(mAdapter);
         // Set OnItemClickListener.

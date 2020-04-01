@@ -36,9 +36,10 @@
     <string name="alertdialog_rating_radio_button_3">rating between 6.0 and 8.0</string>
     <string name="alertdialog_rating_radio_button_4">rating between 8.0 and 10.0</string>
     <string name="filter_by_genre">Filter by genre</string>
-    <string name="add_movie_result">Movie succesfully added</string>
-    <string name="remove_movie_result">Movie succesfully removed</string>
+    <string name="add_movie_result">Movie successfully added</string>
+    <string name="remove_movie_result">Movie successfully removed</string>
     <string name="backdrop_content_desc">A backdrop image of the movie.</string>
     <string name="poster_content_desc">Movie poster image.</string>
-    <string name="submit_button">Sumbit</string>
+    <string name="submit_button">Sumbit vote</string>
+    <string name="remove_from_list_confirmation">Are you sure you want to remove this movie from the list?</string>
 </resources>
