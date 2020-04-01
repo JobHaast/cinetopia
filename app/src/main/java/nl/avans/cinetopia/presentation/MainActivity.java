@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Genre> tempGenres;
     private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
-    private boolean[] tempBooleans;
+    private boolean[] ifItemsCheckedBooleans;
     private ArrayList<Integer> mCheckedItems = new ArrayList<>();
 
 
@@ -231,8 +231,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_filter_genre:
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
                 mBuilder.setTitle(R.string.filter_by_genre);
-                tempBooleans = new boolean[tempGenreNames.length];
-                mBuilder.setMultiChoiceItems(tempGenreNames, tempBooleans, new DialogInterface.OnMultiChoiceClickListener() {
+                ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
+                mBuilder.setMultiChoiceItems(tempGenreNames, ifItemsCheckedBooleans, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
                         Log.d(TAG, "onClick aangeroepen op multipleChoiceButton:" + position);
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         for (int i = 0; i < tempGenreNames.length; i++) {
-                            tempBooleans[i] = false;
+                            ifItemsCheckedBooleans[i] = false;
                         }
                         mCheckedItems.clear();
                     }
