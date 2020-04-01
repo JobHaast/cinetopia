@@ -104,7 +104,7 @@ public class MovieDetailsActivity extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Your rating is: " + ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Your rating has been submitted.", Toast.LENGTH_SHORT).show();
             }
         });
 
