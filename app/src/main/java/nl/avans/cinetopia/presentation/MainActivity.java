@@ -198,28 +198,21 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 final RadioGroup ratingGroup = dialog_layout.findViewById(R.id.rating_radioGroup);
-                ratingGroup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(TAG, "onClick voor radioGroup aangeroepen, ");
-                        int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
-                        Log.d(TAG, "onClick selected:" + checkedRadioButtonId);
-                        if (checkedRadioButtonId > -1) {
-                            checkedRadioButtonId++;
-                            Filter filter = new Filter();
-                            filter.filterRating(checkedRadioButtonId);
-                        }
-                    }
-                });
 
                 Button filterButton = dialog_layout.findViewById(R.id.rating_alertdialog_search);
 
                 filterButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        alertDialog.cancel();
+                        //Option 1 id: 2131296490
+                        //Option 2 id: 2131296491
+                        //Option 3 id: 2131296492
+                        //Option 4 id: 2131296493
                         int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
                         Log.d(TAG, "onClick :" + checkedRadioButtonId);
+                        Filter filter = new Filter();
+                        filter.filterRating(checkedRadioButtonId);
+//                        alertDialog.cancel();
                     }
                 });
                 break;
