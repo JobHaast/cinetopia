@@ -97,7 +97,7 @@ public class MovieDetailsFragment extends Fragment {
         textViewGenres = view.findViewById(R.id.tv_movie_detail_genres);
         textViewRating = view.findViewById(R.id.tv_movie_details_rating);
         imageViewPoster = view.findViewById(R.id.iv_movie_list_picture);
-        imageViewBackdrop = view.findViewById(R.id.iv_movie_list_backdrop_picture);
+        imageViewBackdrop = view.findViewById(R.id.iv_movie_backdrop_picture);
         imageViewTmdbLogo = view.findViewById(R.id.iv_tmdb_logo_details);
 
         ratingBar = view.findViewById(R.id.rating_rating_bar);

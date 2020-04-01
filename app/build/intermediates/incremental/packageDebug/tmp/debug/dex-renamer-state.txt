@@ -1,4 +1,4 @@
-#Wed Apr 01 22:23:25 CEST 2020
+#Wed Apr 01 23:00:27 CEST 2020
 base.0=C\:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

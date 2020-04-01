@@ -25,10 +25,9 @@
                 android:theme="@style/CircularProgress" />
 
             <ImageView
-                android:id="@+id/iv_movie_list_backdrop_picture"
+                android:id="@+id/iv_movie_backdrop_picture"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="-40dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/backdrop_content_desc"
                 android:scaleType="fitXY" />

@@ -44,12 +44,12 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_list_add_icon.xml"
     },
     {
-        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rounded_button.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\rounded_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\ic_language_icon.xml"
     },
     {
-        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
-    },
-    {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rv_divider.xml.flat",
         "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable\\rv_divider.xml"
+    },
+    {
+        "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
         "merged": "C:\\Users\\stefa\\Documents\\androidstudioprojects\\cinetopia\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_to_be_watched_icon.xml.flat",
