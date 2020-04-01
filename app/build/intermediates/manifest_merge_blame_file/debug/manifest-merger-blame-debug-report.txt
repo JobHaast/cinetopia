@@ -35,7 +35,7 @@
 23-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:13:9-40
 24        <activity
 24-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:9-17:45
-25            android:name="nl.avans.cinetopia.presentation.MovieDetailsActivity"
+25            android:name="nl.avans.cinetopia.presentation.MovieDetailsFragment"
 25-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:15:13-62
 26            android:launchMode="singleTop"
 26-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:17:13-43
@@ -43,7 +43,7 @@
 27-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:16:13-68
 28        <activity
 28-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:18:9-20:71
-29            android:name="nl.avans.cinetopia.presentation.SearchActivity"
+29            android:name="nl.avans.cinetopia.presentation.SearchFragment"
 29-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:19:13-56
 30            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" />
 30-->C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:20:13-68

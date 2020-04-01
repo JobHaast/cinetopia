@@ -82,7 +82,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\st
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:13:9-40
-activity#nl.avans.cinetopia.presentation.MovieDetailsActivity
+activity#nl.avans.cinetopia.presentation.MovieDetailsFragment
 ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:14:9-17:45
 	android:parentActivityName
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:16:13-68
@@ -90,7 +90,7 @@ ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:17:13-43
 	android:name
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:15:13-62
-activity#nl.avans.cinetopia.presentation.SearchActivity
+activity#nl.avans.cinetopia.presentation.SearchFragment
 ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:18:9-20:71
 	android:parentActivityName
 		ADDED from C:\Users\stefa\Documents\androidstudioprojects\cinetopia\app\src\main\AndroidManifest.xml:20:13-68
