@@ -1636,7 +1636,6 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
-id iv_movie_detail_picture
 id iv_movie_list_backdrop_picture
 id iv_movie_list_picture
 id iv_tmdb_logo
@@ -1686,7 +1685,6 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
 id nav_popular
-id nav_settings
 id nav_to_be_watched
 id nav_top_rated
 id nav_watched

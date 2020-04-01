@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.business_logic.Filter;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String WATCHEDLISTID = "watchedListId";
     private static final String WATCHLISTID = "watchListId";
 
-    private androidx.appcompat.widget.Toolbar toolbar;
     private DrawerLayout mDrawer;
     private NavigationView nvDrawer;
 
@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //set a toolbar to replace the actionbar
-        toolbar = findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Find our drawer view
         mDrawer = findViewById(R.id.drawer_layout);
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         selectDrawerItem(menuItem);
                         return true;
                     }
@@ -295,9 +295,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_watched:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
-                break;
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             default:
 

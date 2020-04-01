@@ -13,12 +13,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.MovieDetailsFragment"
+            android:launchMode="singleTop"
             android:parentActivityName=".presentation.MainActivity"
-            android:launchMode="singleTop"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.SearchFragment"
-            android:parentActivityName=".presentation.MainActivity" />
-        <activity android:name=".presentation.MainActivity">
+            android:parentActivityName=".presentation.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -74,9 +74,11 @@ public class MovieDetailsFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
         MenuItem itemSearch = menu.findItem(R.id.action_search);
         MenuItem itemFilter = menu.findItem(R.id.action_filter);
+
         if (itemSearch != null) {
             itemSearch.setVisible(false);
         }
+
         if (itemFilter != null) {
             itemFilter.setVisible(false);
         }
@@ -116,7 +118,7 @@ public class MovieDetailsFragment extends Fragment {
 
         @Override
         public void processFinish(int output) {
-            switch (output){
+            switch (output) {
                 case (1):
                     Toast.makeText(getActivity(), getString(R.string.rating_result_succes),
                             Toast.LENGTH_SHORT).show();
@@ -221,7 +223,7 @@ public class MovieDetailsFragment extends Fragment {
 
         @Override
         public void processFinish(int output) {
-            switch (output){
+            switch (output) {
                 case (12):
                     Toast.makeText(getActivity(), getString(R.string.add_movie_result),
                             Toast.LENGTH_SHORT).show();

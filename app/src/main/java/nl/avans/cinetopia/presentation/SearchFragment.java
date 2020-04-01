@@ -44,7 +44,7 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
     private String watchedListId;
     private String watchListId;
 
-    public SearchFragment(String sessionId, String watchedListId, String watchListId){
+    public SearchFragment(String sessionId, String watchedListId, String watchListId) {
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
         this.watchListId = watchListId;
@@ -103,9 +103,16 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        if(item!=null)
+        MenuItem item = menu.findItem(R.id.action_search);
+        MenuItem itemFilter = menu.findItem(R.id.action_filter);
+
+        if (item != null) {
             item.setVisible(false);
+        }
+
+        if (itemFilter != null) {
+            itemFilter.setVisible(false);
+        }
     }
 
     private void retrieveSearchResultsFromApi(String query) {
