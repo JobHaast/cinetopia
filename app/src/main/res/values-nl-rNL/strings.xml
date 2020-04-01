@@ -38,4 +38,5 @@
     <string name="add_movie_result">Film succesvol toegevoed</string>
     <string name="remove_movie_result">Movie succesvol verwijderd</string>
     <string name="submit_button">Bevestig</string>
+    <string name="remove_movie_result_duplicate">Deze film zit al in je lijst</string>
 </resources>

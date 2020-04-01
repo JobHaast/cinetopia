@@ -2109,6 +2109,7 @@ string poster_content_desc
 string preference_copied
 string remove_from_list_confirmation
 string remove_movie_result
+string remove_movie_result_duplicate
 string search
 string search_menu_title
 string search_movies

@@ -203,9 +203,15 @@ public class MovieDetailsActivity extends Fragment {
 
         @Override
         public void processFinish(int output) {
-            if (output == 12) {
-                Toast.makeText(getActivity(), getString(R.string.add_movie_result),
-                        Toast.LENGTH_LONG).show();
+            switch (output){
+                case (12):
+                    Toast.makeText(getActivity(), getString(R.string.add_movie_result),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case (0):
+                    Toast.makeText(getActivity(), getString(R.string.remove_movie_result_duplicate),
+                            Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     }

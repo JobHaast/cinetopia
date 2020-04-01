@@ -42,4 +42,5 @@
     <string name="poster_content_desc">Movie poster image.</string>
     <string name="submit_button">Sumbit vote</string>
     <string name="remove_from_list_confirmation">Are you sure you want to remove this movie from the list?</string>
+    <string name="remove_movie_result_duplicate">This movie is already in this list</string>
 </resources>

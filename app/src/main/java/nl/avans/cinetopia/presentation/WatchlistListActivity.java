@@ -211,9 +211,11 @@ public class WatchlistListActivity extends Fragment implements MoviesRecyclerVie
 
         @Override
         public void processFinish(int output) {
-            if (output == 13) {
-                Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
-                        Toast.LENGTH_LONG).show();
+            switch (output){
+                case (13):
+                    Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
+                            Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     }
