@@ -1,17 +1,21 @@
 package nl.avans.cinetopia.business_logic;
 
-import android.nfc.Tag;
 import android.util.Log;
 
-import com.google.android.material.tabs.TabLayout;
+import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
-
-
-
+import nl.avans.cinetopia.domain.Genre;
+import nl.avans.cinetopia.domain.Movie;
 
 public class Filter {
     private final String TAG = "Filter";
+    private ArrayList<Genre> genres;
+    private ArrayList<Movie> movies;
+
+    public Filter() {
+
+    }
 
     public void filterRating(int ratingGroup) {
         //Option 1 id: 2131296490
@@ -50,7 +54,28 @@ public class Filter {
         }
     }
 
-    public void filterGenre(){
+    public void filterGenre(int[] selectedGenreIds) {
+        ArrayList<Movie> newMovieList = new ArrayList<>();
+
+        for (Movie movie : movies) {
+
+            int counter = 0;
+
+            for (int id : selectedGenreIds) {
+
+                for (Genre genre : genres) {
+                    if (genre.getId() == id) {
+                        counter++;
+                    }
+                }
+
+            }
+
+            if (counter == selectedGenreIds.length) {
+                newMovieList.add(movie);
+            }
+
+        }
 
     }
 

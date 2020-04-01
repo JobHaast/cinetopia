@@ -30,46 +30,45 @@
 20-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:11:9-54
 21        android:supportsRtl="true"
 21-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:12:9-35
-22        android:testOnly="true"
-23        android:theme="@style/AppTheme" >
-23-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:13:9-40
-24        <activity
-24-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:14:9-17:45
-25            android:name="nl.avans.cinetopia.presentation.MovieDetailsActivity"
-25-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:15:13-62
-26            android:launchMode="singleTop"
-26-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:17:13-43
-27            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" />
-27-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:16:13-68
-28        <activity
-28-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:18:9-20:71
-29            android:name="nl.avans.cinetopia.presentation.SearchActivity"
-29-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:19:13-56
-30            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" />
-30-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:20:13-68
-31        <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
-31-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:21:9-27:20
-31-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:21:19-60
-32            <intent-filter>
-32-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:22:13-26:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:23:17-69
-33-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:23:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:25:17-77
-35-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:25:27-74
-36            </intent-filter>
-37        </activity>
-38
-39        <provider
-39-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
-40            android:name="com.squareup.picasso.PicassoProvider"
-40-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
-41            android:authorities="nl.avans.cinetopia.com.squareup.picasso"
-41-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
-42            android:exported="false" />
-42-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
-43    </application>
-44
-45</manifest>
+22        android:theme="@style/AppTheme" >
+22-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:13:9-40
+23        <activity
+23-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:14:9-17:45
+24            android:name="nl.avans.cinetopia.presentation.MovieDetailsActivity"
+24-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:15:13-62
+25            android:launchMode="singleTop"
+25-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:17:13-43
+26            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" />
+26-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:16:13-68
+27        <activity
+27-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:18:9-20:71
+28            android:name="nl.avans.cinetopia.presentation.SearchActivity"
+28-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:19:13-56
+29            android:parentActivityName="nl.avans.cinetopia.presentation.MainActivity" />
+29-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:20:13-68
+30        <activity android:name="nl.avans.cinetopia.presentation.MainActivity" >
+30-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:21:9-27:20
+30-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:21:19-60
+31            <intent-filter>
+31-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:22:13-26:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:23:17-69
+32-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:23:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:25:17-77
+34-->D:\Avans\Periode 3\cinetopia\app\src\main\AndroidManifest.xml:25:27-74
+35            </intent-filter>
+36        </activity>
+37
+38        <provider
+38-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+39            android:name="com.squareup.picasso.PicassoProvider"
+39-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+40            android:authorities="nl.avans.cinetopia.com.squareup.picasso"
+40-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+41            android:exported="false" />
+41-->[com.squareup.picasso:picasso:2.71828] C:\Users\noahs\.gradle\caches\transforms-2\files-2.1\b8e6529739994ffdb63502c79d687065\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+42    </application>
+43
+44</manifest>
