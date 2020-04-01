@@ -135,7 +135,7 @@ public class WatchedListActivity extends Fragment implements MoviesRecyclerViewA
 
     private void removeMovieFromWatchedList(int id) {
         RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
-        task.execute(UrlBuilder.buildRemoveMovieUrl(id, sessionId, watchListId));
+        task.execute(UrlBuilder.buildRemoveMovieUrl(id, sessionId, watchedListId));
     }
 
     class MovieApiListener implements ListGetRequest.WatchedListApiListener {
@@ -144,6 +144,7 @@ public class WatchedListActivity extends Fragment implements MoviesRecyclerViewA
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
         }

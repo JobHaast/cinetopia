@@ -143,6 +143,7 @@ public class WatchlistListActivity extends Fragment implements MoviesRecyclerVie
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();
         }
