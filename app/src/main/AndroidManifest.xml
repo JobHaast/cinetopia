@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.MovieDetailsActivity"
+            android:name=".presentation.MovieDetailsFragment"
             android:parentActivityName=".presentation.MainActivity"
             android:launchMode="singleTop"/>
         <activity
-            android:name=".presentation.SearchActivity"
+            android:name=".presentation.SearchFragment"
             android:parentActivityName=".presentation.MainActivity" />
         <activity android:name=".presentation.MainActivity">
             <intent-filter>

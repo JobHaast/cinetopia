@@ -1429,7 +1429,7 @@ drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_delete
 drawable ic_edit_black_24dp
-drawable ic_filter_icon
+drawable ic_filter
 drawable ic_gerne_filter_icon
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1986,9 +1986,9 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout toolbar
+menu actionbar_menu
 menu hamburger_menu
 menu moviedetails_menu
-menu search_filter_menu
 menu share_menu
 mipmap ic_launcher
 mipmap ic_launcher_round

@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 setUpSession();
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
 
             watchListId = output;
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_filter_menu, menu);
+        inflater.inflate(R.menu.actionbar_menu, menu);
         return true;
     }
 
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 mDrawer.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.action_filter_rating:
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -285,19 +285,19 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_top_rated:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedMoviesFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_to_be_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistListActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsActivity(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SettingsFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
             default:
 
