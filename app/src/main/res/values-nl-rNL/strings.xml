@@ -39,4 +39,6 @@
     <string name="remove_movie_result">Movie succesvol verwijderd</string>
     <string name="submit_button">Bevestig</string>
     <string name="remove_movie_result_duplicate">Deze film zit al in je lijst</string>
+    <string name="rating_result_succes">Rating is verstuurd</string>
+    <string name="rating_result_rerate">De rating is opnieuw gezet</string>
 </resources>

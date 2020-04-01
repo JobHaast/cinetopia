@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(WATCHEDLISTID, output);
             editor.apply();
             watchedListId = output;
-            Log.d(TAG, "Hierzo:"+watchedListId);
         }
     }
 
@@ -147,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(WATCHLISTID, output);
             editor.apply();
+
             watchListId = output;
-            Log.d(TAG, "Hierzo:"+watchListId);
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new MainActivityFragment(sessionId, watchedListId, watchListId)).commit();
             nvDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));

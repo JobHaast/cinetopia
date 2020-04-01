@@ -28,6 +28,7 @@ import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieDetailsGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.AddMovieToList;
+import nl.avans.cinetopia.data_access.post_requests.RatingPostRequest;
 import nl.avans.cinetopia.data_access.post_requests.RemoveMovieFromList;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
@@ -104,11 +105,29 @@ public class MovieDetailsActivity extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Your rating has been submitted.", Toast.LENGTH_SHORT).show();
+                RatingPostRequest task = new RatingPostRequest(new AsyncResponsePostRating());
+                task.execute(UrlBuilder.buildRatingPostUrl(ratingBar.getProgress(), mId, sessionId));
             }
         });
 
         return view;
+    }
+
+    class AsyncResponsePostRating implements RatingPostRequest.AsyncResponse {
+
+        @Override
+        public void processFinish(int output) {
+            switch (output){
+                case (1):
+                    Toast.makeText(getActivity(), getString(R.string.rating_result_succes),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case (12):
+                    Toast.makeText(getActivity(), getString(R.string.rating_result_rerate),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
     }
 
     @Override
