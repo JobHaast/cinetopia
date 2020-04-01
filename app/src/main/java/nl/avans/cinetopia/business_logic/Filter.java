@@ -2,7 +2,7 @@ package nl.avans.cinetopia.business_logic;
 
 public class Filter {
 
-    public static void filterRating(int ratingGroup) {
+    public void filterRating(int ratingGroup) {
         switch (ratingGroup) {
             //If the ratingGroup is 1, the movies with ratings between 0 and 4 are loaded.
             case 1:
@@ -30,6 +30,10 @@ public class Filter {
 
 
         }
+
+    }
+
+    public void filterGenre(){
 
     }
 

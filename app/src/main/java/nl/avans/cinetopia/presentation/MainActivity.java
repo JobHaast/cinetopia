@@ -145,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "onClick selected:" + checkedRadioButtonId);
                         if (checkedRadioButtonId > -1) {
                             checkedRadioButtonId++;
-                            Filter.filterRating(checkedRadioButtonId);
+                            Filter filter = new Filter();
+                            filter.filterRating(checkedRadioButtonId);
                         }
                     }
                 });
