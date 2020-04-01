@@ -41,4 +41,8 @@
     <string name="remove_movie_result_duplicate">Deze film zit al in je lijst</string>
     <string name="rating_result_succes">Rating is verstuurd</string>
     <string name="rating_result_rerate">De rating is opnieuw gezet</string>
+    <string name="clear_all_label">Maak alle opties leeg</string>
+    <string name="backdrop_content_desc">een achtergrondfoto</string>
+    <string name="poster_content_desc">filmposter</string>
+    <string name="remove_from_list_confirmation">Weet je zeker dat je deze wilt verwijderen?</string>
 </resources>

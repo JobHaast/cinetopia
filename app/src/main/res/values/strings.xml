@@ -45,4 +45,5 @@
     <string name="remove_movie_result_duplicate">This movie is already in this list</string>
     <string name="rating_result_succes">Rating has been submitted</string>
     <string name="rating_result_rerate">The rating has been changed</string>
+    <string name="clear_all_label">Clear all</string>
 </resources>

@@ -1,6 +1,7 @@
 package nl.avans.cinetopia.presentation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -23,6 +24,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
@@ -30,6 +33,7 @@ import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
+import nl.avans.cinetopia.domain.Genre;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -48,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private String sessionId;
     private String watchedListId;
     private String watchListId;
+
+    private ArrayList<Genre> tempGenres;
+    private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
+    private boolean[] tempBooleans;
+    private ArrayList<Integer> mCheckedItems = new ArrayList<>();
 
 
     @Override
@@ -93,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             setTitle(getString(R.string.popular));
         }
     }
+
     class AsyncResponse implements RequestTokenGetRequest.AsyncResponse {
 
         @Override
@@ -153,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             setTitle(getString(R.string.popular));
         }
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -212,9 +223,50 @@ public class MainActivity extends AppCompatActivity {
                         Filter filter = new Filter();
                         filter.filterRating(checkedRadioButtonId);
 //                        alertDialog.cancel();
+
                     }
                 });
                 break;
+
+            case R.id.action_filter_genre:
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+                mBuilder.setTitle(R.string.filter_by_genre);
+                tempBooleans = new boolean[tempGenreNames.length];
+                mBuilder.setMultiChoiceItems(tempGenreNames, tempBooleans, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position, boolean isChecked) {
+                        Log.d(TAG, "onClick aangeroepen op multipleChoiceButton:" + position);
+
+                        if (isChecked) {
+                            if (!mCheckedItems.contains(position)) {
+                                mCheckedItems.add(position);
+                            } else {
+                                mCheckedItems.remove(position);
+                            }
+                        }
+                    }
+                });
+                mBuilder.setCancelable(false);
+                mBuilder.setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(TAG, "onClick aangeroepen op positiveButton");
+                        Filter filter = new Filter();
+                        filter.filterGenre(mCheckedItems);
+                    }
+                });
+
+                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < tempGenreNames.length; i++) {
+                            tempBooleans[i] = false;
+                        }
+                        mCheckedItems.clear();
+                    }
+                });
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }

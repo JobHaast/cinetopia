@@ -2036,6 +2036,7 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
+string clear_all_label
 string clear_text_end_icon_content_description
 string copy
 string drawer_close

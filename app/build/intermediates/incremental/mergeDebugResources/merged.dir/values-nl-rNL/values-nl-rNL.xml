@@ -9,6 +9,7 @@
     <string name="alertdialog_rating_radio_button_3">rating 6.0 tot 8.0</string>
     <string name="alertdialog_rating_radio_button_4">rating 8.0 tot 10.0</string>
     <string name="app_name">Cinetopia</string>
+    <string name="clear_all_label">Maak alle opties leeg</string>
     <string name="drawer_close">Sluit navigatie lade</string>
     <string name="drawer_open">Open navigatie lade</string>
     <string name="dutch">Nederlands</string>
