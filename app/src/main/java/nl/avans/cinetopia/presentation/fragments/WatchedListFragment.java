@@ -38,7 +38,6 @@ import nl.avans.cinetopia.domain.Movie;
 public class WatchedListFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = WatchedListFragment.class.getSimpleName();
 
-    private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter mAdapter;
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private ArrayList<Genre> tempGenres = new ArrayList<>();
@@ -85,7 +84,7 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
 
         // Obtain a handle to the object.
         // RecyclerView attributes
-        mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
+        RecyclerView mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
         // Use a linear layout manager.
@@ -234,11 +233,9 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
 
         @Override
         public void processFinish(int output) {
-            switch (output) {
-                case (13):
-                    Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
-                            Toast.LENGTH_SHORT).show();
-                    break;
+            if (output == 13) {
+                Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

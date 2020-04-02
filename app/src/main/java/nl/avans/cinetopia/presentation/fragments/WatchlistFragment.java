@@ -235,11 +235,9 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
 
         @Override
         public void processFinish(int output) {
-            switch (output){
-                case (13):
-                    Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
-                            Toast.LENGTH_SHORT).show();
-                    break;
+            if (output == 13) {
+                Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

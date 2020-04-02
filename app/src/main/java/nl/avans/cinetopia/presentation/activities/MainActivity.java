@@ -33,20 +33,20 @@ import nl.avans.cinetopia.presentation.fragments.WatchlistFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String MyPREFERENCES = "myPreferences";
-    private static final String SESSIONID = "sessionId";
-    private static final String WATCHEDLISTID = "watchedListId";
-    private static final String WATCHLISTID = "watchListId";
+    private static final String MY_PREFERENCES = "myPreferences";
+    private static final String SESSION_ID = "sessionId";
+    private static final String WATCHED_LIST_ID = "watchedListId";
+    private static final String WATCH_LIST_ID = "watchListId";
 
-    private DrawerLayout mDrawer;
-    private NavigationView nvDrawer;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavDrawer;
 
-    private SharedPreferences preferences;
+    private SharedPreferences mPreferences;
 
-    private String token;
-    private String sessionId;
-    private String watchedListId;
-    private String watchListId;
+    private String mToken;
+    private String mSessionId;
+    private String mWatchedListId;
+    private String mWatchListId;
 
 
 
@@ -63,33 +63,33 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Find our drawer view
-        mDrawer = findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
 
         // Takes care of the hamburger icon animation.
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.addDrawerListener(toggle);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         // Find our drawer view and set it up
-        nvDrawer = findViewById(R.id.nvView);
-        setupDrawerContent(nvDrawer);
+        mNavDrawer = findViewById(R.id.nvView);
+        setupDrawerContent(mNavDrawer);
 
         //Shared preferences setup
-        preferences = getApplicationContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        mPreferences = getApplicationContext().getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
 
         //Set first fragment first time
         if (savedInstanceState == null) {
-            sessionId = preferences.getString(SESSIONID, null);
-            watchedListId = preferences.getString(WATCHEDLISTID, null);
-            watchListId = preferences.getString(WATCHLISTID, null);
+            mSessionId = mPreferences.getString(SESSION_ID, null);
+            mWatchedListId = mPreferences.getString(WATCHED_LIST_ID, null);
+            mWatchListId = mPreferences.getString(WATCH_LIST_ID, null);
 
-            if (sessionId == null) {
+            if (mSessionId == null) {
                 setUpSession();
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).commit();
-            nvDrawer.setCheckedItem(R.id.nav_popular);
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).commit();
+            mNavDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
     }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void processFinish(String output) {
-            token = output;
+            mToken = output;
             openWebPage(UrlBuilder.buildRequestTokenAuthorizationUrl(output));
         }
     }
@@ -112,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(SESSIONID, output);
+            SharedPreferences.Editor editor = mPreferences.edit();
+            editor.putString(SESSION_ID, output);
             editor.apply();
-            sessionId = output;
+            mSessionId = output;
 
             CreateWatchedList createWatchedList = new CreateWatchedList(new AsyncResponseWatchedList());
             createWatchedList.execute(UrlBuilder.createWatchedList(output));
@@ -126,17 +126,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void retrieveSessionId() {
         CreateSessionPostRequest task = new CreateSessionPostRequest(new AsyncResponseSessionId());
-        task.execute(UrlBuilder.buildSessionPostRequestUrl(token));
+        task.execute(UrlBuilder.buildSessionPostRequestUrl(mToken));
     }
 
     class AsyncResponseWatchedList implements CreateWatchedList.AsyncResponseCreateWatchedList {
 
         @Override
         public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(WATCHEDLISTID, output);
+            SharedPreferences.Editor editor = mPreferences.edit();
+            editor.putString(WATCHED_LIST_ID, output);
             editor.apply();
-            watchedListId = output;
+            mWatchedListId = output;
         }
     }
 
@@ -144,13 +144,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void processFinish(String output) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(WATCHLISTID, output);
+            SharedPreferences.Editor editor = mPreferences.edit();
+            editor.putString(WATCH_LIST_ID, output);
             editor.apply();
 
-            watchListId = output;
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).commit();
-            nvDrawer.setCheckedItem(R.id.nav_popular);
+            mWatchListId = output;
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).commit();
+            mNavDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
     }
@@ -158,30 +158,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (sessionId == null) {
+        if (mSessionId == null) {
             retrieveSessionId();
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.actionbar_menu, menu);
-//        return true;
-//    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // The action bar home/up action should open or close the drawer.
         switch (item.getItemId()) {
             case android.R.id.home:
-                mDrawer.openDrawer(GravityCompat.START);
+                mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
                 break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -199,16 +192,16 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_top_rated:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedMoviesFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_to_be_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
                 break;
             case R.id.nav_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
                 break;
             default:
 
@@ -219,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         // Set action bar title
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
-        mDrawer.closeDrawers();
+        mDrawerLayout.closeDrawers();
     }
 
     @Override

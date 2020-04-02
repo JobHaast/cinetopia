@@ -19,6 +19,7 @@ import androidx.appcompat.widget.SearchView;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.MovieSearchRecyclerViewAdapter;
@@ -31,24 +32,17 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private androidx.appcompat.widget.Toolbar toolbar;
-
-    private SearchView mSearchView;
-
-    // RecyclerView attributes
-    private RecyclerView mRecyclerView;
     private MovieSearchRecyclerViewAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
-    private String sessionId;
-    private String watchedListId;
-    private String watchListId;
+    private String mSessionId;
+    private String mWatchedListId;
+    private String mWatchListId;
 
     public SearchFragment(String sessionId, String watchedListId, String watchListId) {
-        this.sessionId = sessionId;
-        this.watchedListId = watchedListId;
-        this.watchListId = watchListId;
+        this.mSessionId = sessionId;
+        this.mWatchedListId = watchedListId;
+        this.mWatchListId = watchListId;
     }
 
     @Nullable
@@ -57,15 +51,14 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
         View view = inflater.inflate(R.layout.activity_search, container, false);
         setHasOptionsMenu(true);
 
-        toolbar = view.findViewById(R.id.toolbar);
-
-        mSearchView = view.findViewById(R.id.movie_search_view);
+        SearchView mSearchView = view.findViewById(R.id.movie_search_view);
         mSearchView.setIconified(false);
 
         // Obtain a handle to the object.
-        mRecyclerView = view.findViewById(R.id.activity_search_recyclerView);
+        // RecyclerView attributes
+        RecyclerView mRecyclerView = view.findViewById(R.id.activity_search_recyclerView);
         // Use a linear layout manager.
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Connect the RecyclerView to the layout manager.
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -77,7 +70,7 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
         mAdapter.setOnItemClickListener(SearchFragment.this);
 
         /* Add a divider to the RecyclerView. */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -136,8 +129,8 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
 
     @Override
     public void onItemClick(int position) {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), mSessionId, mWatchedListId, mWatchListId))
                 .addToBackStack(null).commit();
     }
 }

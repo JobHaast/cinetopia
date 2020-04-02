@@ -1,5 +1,6 @@
 package nl.avans.cinetopia.presentation.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.MoviesRecyclerViewAdapter;
@@ -34,31 +35,27 @@ import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class PopularMoviesFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
+
+    // Tag for logging.
     private static final String TAG = PopularMoviesFragment.class.getSimpleName();
 
-    // RecyclerView attributes
-    private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
-    private ArrayList<Movie> mMoviesBackUp = new ArrayList<>();
-    private ProgressBar mProgressBar;
+    private ArrayList<Movie> mMoviesBackup = new ArrayList<>();
 
-    private String sessionId;
-    private String watchedListId;
-    private String watchListId;
+    private String mSessionId;
+    private String mWatchedListId;
+    private String mWatchListId;
 
-    private ArrayList<Genre> tempGenres = new ArrayList<>();
-    private String[] tempGenreNames;
-    private boolean[] ifItemsCheckedBooleans;
+    private ArrayList<Genre> mTempGenres = new ArrayList<>();
     private ArrayList<Integer> mCheckedItems = new ArrayList<>();
-    private boolean backUp = false;
+    private boolean mBackup = false;
 
 
     public PopularMoviesFragment(String sessionId, String watchedListId, String watchListId) {
-        this.sessionId = sessionId;
-        this.watchedListId = watchedListId;
-        this.watchListId = watchListId;
+        this.mSessionId = sessionId;
+        this.mWatchedListId = watchedListId;
+        this.mWatchListId = watchListId;
     }
 
     @Nullable
@@ -73,10 +70,10 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         retrievePopularMoviesFromApi();
 
         // Obtain a handle to the objects.
-        mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
-        mProgressBar = view.findViewById(R.id.main_progress);
+        // RecyclerView attributes
+        RecyclerView mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
         // Use a linear layout manager.
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Connect the RecyclerView to the layout manager.
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -88,7 +85,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         mAdapter.setOnItemClickListener(this);
 
         /* Add a divider to the RecyclerView. */
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
@@ -121,8 +118,8 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         public void handleGenresResult(ArrayList<Genre> genres) {
             Log.d(TAG, "Method called: handleGenresResult");
 
-            tempGenres.clear();
-            tempGenres.addAll(genres);
+            mTempGenres.clear();
+            mTempGenres.addAll(genres);
         }
     }
 
@@ -142,9 +139,9 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
             Log.d(TAG, "Method called: handleMovieResult");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!backUp){
-                mMoviesBackUp.addAll(movies);
-                backUp = !backUp;
+            if(!mBackup){
+                mMoviesBackup.addAll(movies);
+                mBackup = !mBackup;
             }
 
             mMovies.clear();
@@ -156,13 +153,13 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
     @Override
     public void onItemClick(int position) {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), mSessionId, mWatchedListId, mWatchListId))
                 .addToBackStack(null).commit();
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.actionbar_menu, menu);
     }
 
@@ -171,8 +168,8 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         switch (item.getItemId()) {
             case R.id.action_filter_rating:
                 Log.d(TAG, "onOptionsItemSelected in PopularMoviesFragment aangeroepen op action_filter_rating");
-                final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-                final View dialog_layout = getLayoutInflater().inflate(R.layout.filter_layout, null);
+                final AlertDialog alertDialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity())).create();
+                @SuppressLint("InflateParams") final View dialog_layout = getLayoutInflater().inflate(R.layout.filter_layout, null);
 
                 alertDialog.setView(dialog_layout);
                 alertDialog.show();
@@ -196,7 +193,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                     public void onClick(View v) {
                         int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
                         Log.d(TAG, "onClick :" + checkedRadioButtonId);
-                        Filter filter = new Filter(mMoviesBackUp);
+                        Filter filter = new Filter(mMoviesBackup);
                         PopularMovieApiListener task = new PopularMovieApiListener();
                         task.handleMovieResult(filter.filterRating(checkedRadioButtonId));
                         alertDialog.cancel();
@@ -207,14 +204,14 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
             case R.id.action_filter_genre:
                 Log.d(TAG, "onOptionsItemSelected in PopularMoviesFragment aangeroepen op action_filter_genre");
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
                 mBuilder.setTitle(R.string.filter_by_genre);
-                tempGenreNames = new String[tempGenres.size()];
-                for (int i = 0; i < tempGenres.size(); i++) {
-                    tempGenreNames[i] = tempGenres.get(i).getName();
+                String[] tempGenreNames = new String[mTempGenres.size()];
+                for (int i = 0; i < mTempGenres.size(); i++) {
+                    tempGenreNames[i] = mTempGenres.get(i).getName();
                 }
                 Log.d(TAG, "onOptionsItemSelected tempGenreNames length : " + tempGenreNames.length);
-                ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
+                boolean[] ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
                 mBuilder.setMultiChoiceItems(tempGenreNames, ifItemsCheckedBooleans, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
@@ -234,13 +231,13 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "onClick aangeroepen op positiveButton");
-                        Filter genreFilter = new Filter(mMoviesBackUp);
+                        Filter genreFilter = new Filter(mMoviesBackup);
                         ArrayList<Integer> checkedGenreIds = new ArrayList<>();
                         for (int i : mCheckedItems) {
-                            checkedGenreIds.add(tempGenres.get(i).getId());
+                            checkedGenreIds.add(mTempGenres.get(i).getId());
                         }
                         PopularMovieApiListener task = new PopularMovieApiListener();
-                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, tempGenres));
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, mTempGenres));
                         mCheckedItems.clear();
                         checkedGenreIds.clear();
                     }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,13 +52,12 @@ public class MovieDetailsFragment extends Fragment {
     private ImageView imageViewTmdbLogo;
     private StringBuilder mGenresString = new StringBuilder();
     private RatingBar ratingBar;
-    private Button submitButton;
 
-    private String sessionId;
+    private String mSessionId;
 
     MovieDetailsFragment(int id, String sessionId, String watchedListId, String watchListId) {
         this.mId = id;
-        this.sessionId = sessionId;
+        this.mSessionId = sessionId;
         this.watchedListId = watchedListId;
         this.watchListId = watchListId;
     }
@@ -101,13 +101,13 @@ public class MovieDetailsFragment extends Fragment {
         imageViewTmdbLogo = view.findViewById(R.id.iv_tmdb_logo_details);
 
         ratingBar = view.findViewById(R.id.rating_rating_bar);
-        submitButton = view.findViewById(R.id.submit_button);
+        Button submitButton = view.findViewById(R.id.submit_button);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RatingPostRequest task = new RatingPostRequest(new AsyncResponsePostRating());
-                task.execute(UrlBuilder.buildRatingPostUrl(ratingBar.getProgress(), mId, sessionId));
+                task.execute(UrlBuilder.buildRatingPostUrl(ratingBar.getProgress(), mId, mSessionId));
             }
         });
 
@@ -159,6 +159,7 @@ public class MovieDetailsFragment extends Fragment {
     }
 
     class MovieDetailsApiListener implements MovieDetailsGetRequest.MovieDetailsApiListener {
+        @SuppressLint("SetTextI18n")
         @Override
         public void handleMovieDetails(Movie movie) {
             textViewTitle.setText(movie.getTitle());
@@ -211,12 +212,12 @@ public class MovieDetailsFragment extends Fragment {
 
     private void addMovieToWatchedList() {
         AddMovieToList task = new AddMovieToList(new AsyncResponseAdd());
-        task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchedListId));
+        task.execute(UrlBuilder.buildAddMovieUrl(mId, mSessionId, watchedListId));
     }
 
     private void addMovieToWatchList() {
         AddMovieToList task = new AddMovieToList(new AsyncResponseAdd());
-        task.execute(UrlBuilder.buildAddMovieUrl(mId, sessionId, watchListId));
+        task.execute(UrlBuilder.buildAddMovieUrl(mId, mSessionId, watchListId));
     }
 
     class AsyncResponseAdd implements AddMovieToList.AsyncResponse {
