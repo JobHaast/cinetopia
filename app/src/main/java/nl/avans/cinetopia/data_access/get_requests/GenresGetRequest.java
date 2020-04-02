@@ -26,9 +26,6 @@ public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
         this.mListener2 = mListener2;
     }
 
-    public GenresGetRequest(GenresApiListener listener) {
-        this(listener, null);
-    }
 
     @Override
     protected ArrayList<Genre> doInBackground(URL... urls) {
