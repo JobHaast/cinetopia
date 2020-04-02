@@ -10,7 +10,6 @@ import nl.avans.cinetopia.domain.Movie;
 
 public class Filter {
     private final String TAG = "Filter";
-    private ArrayList<Genre> genres;
     private ArrayList<Movie> movies;
 
     public Filter(ArrayList<Movie> movies) {
@@ -46,29 +45,31 @@ public class Filter {
         }
     }
 
-    public void filterGenre(ArrayList<Integer> selectedGenreIds) {
+    public ArrayList<Movie> filterGenre(ArrayList<Integer> selectedGenreIds, ArrayList<Genre> genreList) {
         ArrayList<Movie> newMovieList = new ArrayList<>();
         Log.d(TAG, "filterGenre is aangeroepen");
 
-//        for (Movie movie : movies) {
-//
-//            int counter = 0;
-//
-//            for (int id : selectedGenreIds) {
-//
-//                for (Genre genre : genres) {
-//                    if (genre.getId() == id) {
-//                        counter++;
-//                    }
-//                }
-//
-//            }
-//
-//            if (counter == selectedGenreIds.size()) {
-//                newMovieList.add(movie);
-//            }
-//
-//        }
+        for (Movie movie : movies) {
+
+            int counter = 0;
+
+            for (int id : selectedGenreIds) {
+
+                for (Genre genre : genreList) {
+                    if (genre.getId() == id) {
+                        counter++;
+                    }
+                }
+
+            }
+
+            if (counter == selectedGenreIds.size()) {
+                newMovieList.add(movie);
+            }
+
+        }
+
+        return newMovieList;
 
     }
 

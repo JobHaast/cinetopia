@@ -41,6 +41,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     private MoviesRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+    private ArrayList<Movie> mMoviesBackUp = new ArrayList<>();
     private ProgressBar mProgressBar;
 
     private String sessionId;
@@ -48,12 +49,13 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     private String watchListId;
 
     private ArrayList<Genre> tempGenres = new ArrayList<>();
-    private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
+    private String[] tempGenreNames;
     private boolean[] ifItemsCheckedBooleans;
     private ArrayList<Integer> mCheckedItems = new ArrayList<>();
+    private boolean BackupIsNotMade = true;
 
 
-    public PopularMoviesFragment(String sessionId, String watchedListId, String watchListId){
+    public PopularMoviesFragment(String sessionId, String watchedListId, String watchListId) {
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
         this.watchListId = watchListId;
@@ -120,7 +122,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
             tempGenres.clear();
             tempGenres.addAll(genres);
-            Log.d(TAG, "Hier moet je zijn: " +tempGenres.size());
+            Log.d(TAG, "Hier moet je zijn: " + tempGenres.size());
         }
     }
 
@@ -203,6 +205,11 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                 Log.d(TAG, "onOptionsItemSelected in PopularMoviesFragment aangeroepen op action_filter_genre");
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 mBuilder.setTitle(R.string.filter_by_genre);
+                tempGenreNames = new String[tempGenres.size()];
+                for (int i = 0; i < tempGenres.size(); i++) {
+                    tempGenreNames[i] = tempGenres.get(i).getName();
+                }
+                Log.d(TAG, "onOptionsItemSelected tempGenreNames length : " + tempGenreNames.length);
                 ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
                 mBuilder.setMultiChoiceItems(tempGenreNames, ifItemsCheckedBooleans, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -218,23 +225,18 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                         }
                     }
                 });
-                mBuilder.setCancelable(false);
+                mBuilder.setCancelable(true);
                 mBuilder.setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "onClick aangeroepen op positiveButton");
                         Filter filter = new Filter(mMovies);
-                        filter.filterGenre(mCheckedItems);
-                    }
-                });
-
-                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i = 0; i < tempGenreNames.length; i++) {
-                            ifItemsCheckedBooleans[i] = false;
+                        PopularMovieApiListener task = new PopularMovieApiListener();
+                        ArrayList<Integer> checkedGenreIds = new ArrayList<>();
+                        for (int i : mCheckedItems) {
+                            checkedGenreIds.add(tempGenres.get(i).getId());
                         }
-                        mCheckedItems.clear();
+                        task.handleMovieResult(filter.filterGenre(checkedGenreIds, tempGenres));
                     }
                 });
                 AlertDialog dialog = mBuilder.create();
