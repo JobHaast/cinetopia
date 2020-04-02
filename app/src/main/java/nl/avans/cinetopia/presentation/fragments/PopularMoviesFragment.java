@@ -237,7 +237,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                             checkedGenreIds.add(mTempGenres.get(i).getId());
                         }
                         PopularMovieApiListener task = new PopularMovieApiListener();
-                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, mTempGenres));
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds));
                         mCheckedItems.clear();
                         checkedGenreIds.clear();
                     }

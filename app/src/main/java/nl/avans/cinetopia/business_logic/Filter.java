@@ -45,7 +45,7 @@ public class Filter {
         }
     }
 
-    public ArrayList<Movie> filterGenre(ArrayList<Integer> selectedGenreIds, ArrayList<Genre> genreList) {
+    public ArrayList<Movie> filterGenre(ArrayList<Integer> selectedGenreIds) {
         ArrayList<Movie> newMovieList = new ArrayList<>();
         Log.d(TAG, "filterGenre is aangeroepen");
 

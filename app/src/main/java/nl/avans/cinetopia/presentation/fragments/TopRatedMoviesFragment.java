@@ -225,7 +225,7 @@ public class TopRatedMoviesFragment extends Fragment implements MoviesRecyclerVi
                             checkedGenreIds.add(mTempGenres.get(i).getId());
                         }
                         TopRatedMoviesFragment.TopRatedMovieApiListener task = new TopRatedMoviesFragment.TopRatedMovieApiListener();
-                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, mTempGenres));
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds));
                         mCheckedItems.clear();
                         checkedGenreIds.clear();
                     }
