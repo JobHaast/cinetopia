@@ -89,19 +89,6 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//
-//                for(int i = 0; i < 5; i++) {
-//                    if (!recyclerView.canScrollVertically(1)) {
-//                        retrievePopularMoviesFromApi(i + 2);
-//                    }
-//                }
-//            }
-//        });
-
         return view;
     }
 
