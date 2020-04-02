@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.SearchFragment">
+    tools:context=".presentation.fragments.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/movie_search_view"

@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.MovieDetailsFragment"
+            android:name=".presentation.fragments.MovieDetailsFragment"
             android:launchMode="singleTop"
-            android:parentActivityName=".presentation.MainActivity"
+            android:parentActivityName=".presentation.activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.SearchFragment"
-            android:parentActivityName=".presentation.MainActivity"
+            android:name=".presentation.fragments.SearchFragment"
+            android:parentActivityName=".presentation.activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

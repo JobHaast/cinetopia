@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.presentation;
+package nl.avans.cinetopia.presentation.fragments;
 
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -35,9 +35,10 @@ import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
-public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener{
+public class WatchedListFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
     private static final String TAG = WatchedListFragment.class.getSimpleName();
 
+    private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter mAdapter;
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private ArrayList<Genre> tempGenres = new ArrayList<>();
@@ -48,7 +49,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
     private String watchedListId;
     private String watchListId;
 
-    WatchlistFragment(String sessionId, String watchedListId, String watchListId){
+    public WatchedListFragment(String sessionId, String watchedListId, String watchListId) {
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
         this.watchListId = watchListId;
@@ -69,7 +70,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         if (itemSearch != null) {
             itemSearch.setVisible(false);
         }
-        if (itemFilter != null){
+        if (itemFilter != null) {
             itemFilter.setVisible(false);
         }
     }
@@ -84,7 +85,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
 
         // Obtain a handle to the object.
         // RecyclerView attributes
-        RecyclerView mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
+        mRecyclerView = view.findViewById(R.id.activity_main_recyclerView);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
         // Use a linear layout manager.
@@ -128,9 +129,8 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
 
     private void retrieveWatchedMoviesFromApi() {
         ListGetRequest task = new ListGetRequest(new MovieApiListener());
-        task.execute(UrlBuilder.buildGetListUrl(watchListId));
+        task.execute(UrlBuilder.buildGetListUrl(watchedListId));
     }
-
 
     private void retrieveLatestGenresFromApi() {
         GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener(), new GenresApiListener());
@@ -152,9 +152,9 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         }
     }
 
-    private void removeMovieFromWatchList(int id){
+    private void removeMovieFromWatchedList(int id) {
         RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
-        task.execute(UrlBuilder.buildRemoveMovieUrl(id, sessionId, watchListId));
+        task.execute(UrlBuilder.buildRemoveMovieUrl(id, sessionId, watchedListId));
     }
 
     class MovieApiListener implements ListGetRequest.WatchedListApiListener {
@@ -179,7 +179,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < mMovies.size(); i++) {
             builder.append(mMovies.get(i).getTitle());
-            if (i != mMovies.size()){
+            if (i != mMovies.size()) {
                 builder.append("\n");
             }
         }
@@ -192,7 +192,6 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
             startActivity(Intent.createChooser(intent, "Send Watched List"));
         }
     }
-
 
     @Override
     public void onItemClick(int position) {
@@ -213,7 +212,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
             if (direction == ItemTouchHelper.LEFT) {
                 final int position = viewHolder.getAdapterPosition();
                 int id = mMovies.get(position).getId();
-                removeMovieFromWatchList(id);
+                removeMovieFromWatchedList(id);
                 mMovies.remove(position);
                 mAdapter.notifyItemRemoved(position);
             }
@@ -235,7 +234,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
 
         @Override
         public void processFinish(int output) {
-            switch (output){
+            switch (output) {
                 case (13):
                     Toast.makeText(getActivity(), getString(R.string.remove_movie_result),
                             Toast.LENGTH_SHORT).show();

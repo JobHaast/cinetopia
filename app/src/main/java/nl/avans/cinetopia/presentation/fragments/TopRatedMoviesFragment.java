@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.presentation;
+package nl.avans.cinetopia.presentation.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

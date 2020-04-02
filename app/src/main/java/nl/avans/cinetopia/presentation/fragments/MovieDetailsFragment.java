@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.presentation;
+package nl.avans.cinetopia.presentation.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

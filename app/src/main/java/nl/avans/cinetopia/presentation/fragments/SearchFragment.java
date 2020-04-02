@@ -1,4 +1,4 @@
-package nl.avans.cinetopia.presentation;
+package nl.avans.cinetopia.presentation.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +25,7 @@ import nl.avans.cinetopia.adapters.MovieSearchRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieSearchGetRequest;
 import nl.avans.cinetopia.domain.Movie;
+import nl.avans.cinetopia.presentation.activities.MainActivity;
 
 public class SearchFragment extends Fragment implements MovieSearchRecyclerViewAdapter.OnItemClickListener {
 

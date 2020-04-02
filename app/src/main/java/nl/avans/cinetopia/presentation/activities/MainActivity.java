@@ -1,22 +1,15 @@
-package nl.avans.cinetopia.presentation;
+package nl.avans.cinetopia.presentation.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,17 +17,19 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.RequestTokenGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateSessionPostRequest;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchList;
 import nl.avans.cinetopia.data_access.post_requests.CreateWatchedList;
-import nl.avans.cinetopia.domain.Genre;
+import nl.avans.cinetopia.presentation.fragments.PopularMoviesFragment;
+import nl.avans.cinetopia.presentation.fragments.SearchFragment;
+import nl.avans.cinetopia.presentation.fragments.TopRatedMoviesFragment;
+import nl.avans.cinetopia.presentation.fragments.WatchedListFragment;
+import nl.avans.cinetopia.presentation.fragments.WatchlistFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
