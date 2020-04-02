@@ -55,7 +55,7 @@ public class Filter {
 
             for (int id : selectedGenreIds) {
 
-                for (Genre genre : genreList) {
+                for (Genre genre : movie.getGenres()) {
                     if (genre.getId() == id) {
                         counter++;
                     }

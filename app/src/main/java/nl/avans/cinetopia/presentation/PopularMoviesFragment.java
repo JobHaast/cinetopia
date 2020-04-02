@@ -237,13 +237,13 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "onClick aangeroepen op positiveButton");
-                        Filter filter = new Filter(mMovies);
-                        PopularMovieApiListener task = new PopularMovieApiListener();
+                        Filter genreFilter = new Filter(mMoviesBackUp);
                         ArrayList<Integer> checkedGenreIds = new ArrayList<>();
                         for (int i : mCheckedItems) {
                             checkedGenreIds.add(tempGenres.get(i).getId());
                         }
-                        task.handleMovieResult(filter.filterGenre(checkedGenreIds, tempGenres));
+                        PopularMovieApiListener task = new PopularMovieApiListener();
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, tempGenres));
                     }
                 });
                 AlertDialog dialog = mBuilder.create();
