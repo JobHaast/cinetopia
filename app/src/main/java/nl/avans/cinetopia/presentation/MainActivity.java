@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private String watchedListId;
     private String watchListId;
 
-    private ArrayList<Genre> tempGenres;
-    private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
-    private boolean[] ifItemsCheckedBooleans;
-    private ArrayList<Integer> mCheckedItems = new ArrayList<>();
 
 
     @Override
@@ -172,12 +168,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.actionbar_menu, menu);
+//        return true;
+//    }
 
 
     @Override
@@ -190,83 +186,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_search:
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(sessionId, watchedListId, watchListId)).addToBackStack(null).commit();
                 break;
-            case R.id.action_filter_rating:
-                final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                final View dialog_layout = getLayoutInflater().inflate(R.layout.filter_layout, null);
-
-                alertDialog.setView(dialog_layout);
-                alertDialog.show();
-
-                Button cancelButton = dialog_layout.findViewById(R.id.rating_alertdialog_cancel);
-
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(TAG, "onClick voor cancelbutton aangeroepen");
-                        alertDialog.cancel();
-                    }
-                });
-
-                final RadioGroup ratingGroup = dialog_layout.findViewById(R.id.rating_radioGroup);
-
-                Button filterButton = dialog_layout.findViewById(R.id.rating_alertdialog_search);
-
-                filterButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Option 1 id: 2131296490
-                        //Option 2 id: 2131296491
-                        //Option 3 id: 2131296492
-                        //Option 4 id: 2131296493
-                        int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
-                        Log.d(TAG, "onClick :" + checkedRadioButtonId);
-                        Filter filter = new Filter();
-                        filter.filterRating(checkedRadioButtonId);
-//                        alertDialog.cancel();
-
-                    }
-                });
-                break;
-
-            case R.id.action_filter_genre:
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-                mBuilder.setTitle(R.string.filter_by_genre);
-                ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
-                mBuilder.setMultiChoiceItems(tempGenreNames, ifItemsCheckedBooleans, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int position, boolean isChecked) {
-                        Log.d(TAG, "onClick aangeroepen op multipleChoiceButton:" + position);
-
-                        if (isChecked) {
-                            if (!mCheckedItems.contains(position)) {
-                                mCheckedItems.add(position);
-                            } else {
-                                mCheckedItems.remove(position);
-                            }
-                        }
-                    }
-                });
-                mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "onClick aangeroepen op positiveButton");
-                        Filter filter = new Filter();
-                        filter.filterGenre(mCheckedItems);
-                    }
-                });
-
-                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i = 0; i < tempGenreNames.length; i++) {
-                            ifItemsCheckedBooleans[i] = false;
-                        }
-                        mCheckedItems.clear();
-                    }
-                });
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }

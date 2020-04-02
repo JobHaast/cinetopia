@@ -1,14 +1,21 @@
 package nl.avans.cinetopia.presentation;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,10 +25,12 @@ import java.util.ArrayList;
 
 import nl.avans.cinetopia.R;
 import nl.avans.cinetopia.adapters.MoviesRecyclerViewAdapter;
+import nl.avans.cinetopia.business_logic.Filter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.PopularMovieGetRequest;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
+import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class PopularMoviesFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
@@ -38,6 +47,12 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     private String watchedListId;
     private String watchListId;
 
+    private ArrayList<Genre> tempGenres;
+    private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
+    private boolean[] ifItemsCheckedBooleans;
+    private ArrayList<Integer> mCheckedItems = new ArrayList<>();
+
+
     public PopularMoviesFragment(String sessionId, String watchedListId, String watchListId){
         this.sessionId = sessionId;
         this.watchedListId = watchedListId;
@@ -48,6 +63,8 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main_fragment, container, false);
+
+        setHasOptionsMenu(true);
 
         retrieveLatestGenresFromApi();
         retrievePopularMoviesFromApi();
@@ -118,6 +135,97 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
                 .addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_menu, menu);
+//        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter_rating:
+                Log.d(TAG, "onOptionsItemSelected in PopularMoviesFragment aangeroepen op action_filter_rating");
+                final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                final View dialog_layout = getLayoutInflater().inflate(R.layout.filter_layout, null);
+
+                alertDialog.setView(dialog_layout);
+                alertDialog.show();
+
+                Button cancelButton = dialog_layout.findViewById(R.id.rating_alertdialog_cancel);
+
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d(TAG, "onClick voor cancelbutton aangeroepen");
+                        alertDialog.cancel();
+                    }
+                });
+
+                final RadioGroup ratingGroup = dialog_layout.findViewById(R.id.rating_radioGroup);
+
+                Button filterButton = dialog_layout.findViewById(R.id.rating_alertdialog_search);
+
+                filterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
+                        Log.d(TAG, "onClick :" + checkedRadioButtonId);
+                        Filter filter = new Filter(mMovies);
+                        mMovies.clear();
+                        mMovies.addAll(filter.filterRating(checkedRadioButtonId));
+                        mAdapter.notifyDataSetChanged();
+                        alertDialog.cancel();
+
+                    }
+                });
+                break;
+
+            case R.id.action_filter_genre:
+                Log.d(TAG, "onOptionsItemSelected in PopularMoviesFragment aangeroepen op action_filter_genre");
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                mBuilder.setTitle(R.string.filter_by_genre);
+                ifItemsCheckedBooleans = new boolean[tempGenreNames.length];
+                mBuilder.setMultiChoiceItems(tempGenreNames, ifItemsCheckedBooleans, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position, boolean isChecked) {
+                        Log.d(TAG, "onClick aangeroepen op multipleChoiceButton:" + position);
+
+                        if (isChecked) {
+                            if (!mCheckedItems.contains(position)) {
+                                mCheckedItems.add(position);
+                            } else {
+                                mCheckedItems.remove(position);
+                            }
+                        }
+                    }
+                });
+                mBuilder.setCancelable(false);
+                mBuilder.setPositiveButton(R.string.filter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(TAG, "onClick aangeroepen op positiveButton");
+                        Filter filter = new Filter(mMovies);
+                        filter.filterGenre(mCheckedItems);
+                    }
+                });
+
+                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < tempGenreNames.length; i++) {
+                            ifItemsCheckedBooleans[i] = false;
+                        }
+                        mCheckedItems.clear();
+                    }
+                });
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

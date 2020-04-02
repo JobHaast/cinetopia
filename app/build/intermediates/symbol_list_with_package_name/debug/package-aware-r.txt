@@ -568,22 +568,6 @@ attr passwordToggleEnabled
 attr passwordToggleTint
 attr passwordToggleTintMode
 attr persistent
-attr piv_animationDuration
-attr piv_animationType
-attr piv_autoVisibility
-attr piv_count
-attr piv_dynamicCount
-attr piv_interactiveAnimation
-attr piv_orientation
-attr piv_padding
-attr piv_radius
-attr piv_rtl_mode
-attr piv_scaleFactor
-attr piv_select
-attr piv_selectedColor
-attr piv_strokeWidth
-attr piv_unselectedColor
-attr piv_viewPager
 attr popupMenuBackground
 attr popupMenuStyle
 attr popupTheme
@@ -641,24 +625,6 @@ attr singleChoiceItemLayout
 attr singleLine
 attr singleLineTitle
 attr singleSelection
-attr sliderAnimationDuration
-attr sliderAutoCycleDirection
-attr sliderAutoCycleEnabled
-attr sliderIndicatorAnimationDuration
-attr sliderIndicatorGravity
-attr sliderIndicatorMargin
-attr sliderIndicatorMarginBottom
-attr sliderIndicatorMarginLeft
-attr sliderIndicatorMarginRight
-attr sliderIndicatorMarginTop
-attr sliderIndicatorOrientation
-attr sliderIndicatorPadding
-attr sliderIndicatorRadius
-attr sliderIndicatorRtlMode
-attr sliderIndicatorSelectedColor
-attr sliderIndicatorUnselectedColor
-attr sliderScrollTimeInSec
-attr sliderStartAutoCycle
 attr snackbarButtonStyle
 attr snackbarStyle
 attr spanCount
@@ -1596,7 +1562,6 @@ id all
 id always
 id async
 id auto
-id back_and_forth
 id barrier
 id beginning
 id blocking
@@ -1616,7 +1581,6 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
-id color
 id confirm_button
 id container
 id content
@@ -1638,7 +1602,6 @@ id dimensions
 id direct
 id disableHome
 id drawer_layout
-id drop
 id dropdown_menu
 id edit_query
 id end
@@ -1664,7 +1627,6 @@ id groups
 id hideable
 id home
 id homeAsUp
-id horizontal
 id icon
 id icon_frame
 id icon_group
@@ -1740,7 +1702,6 @@ id on
 id open_browser
 id outline
 id packed
-id pager_indicator
 id parallax
 id parent
 id parentPanel
@@ -1770,7 +1731,6 @@ id rounded
 id save_non_transition_alpha
 id save_overlay_view
 id scale
-id scale_down
 id screen
 id scroll
 id scrollIndicatorDown
@@ -1816,7 +1776,6 @@ id stretch
 id submenuarrow
 id submit_area
 id submit_button
-id swap
 id switchWidget
 id tabMode
 id tag_accessibility_actions
@@ -1840,7 +1799,6 @@ id text_input_start_icon
 id textinput_counter
 id textinput_error
 id textinput_helper_text
-id thinWorm
 id time
 id title
 id titleDividerNoCustom
@@ -1867,12 +1825,9 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id vertical
 id view_offset_helper
 id visible
-id vp_slider_layout
 id withText
-id worm
 id wrap
 id wrap_content
 integer abc_config_activityDefaultDur
@@ -2015,7 +1970,6 @@ layout preference_widget_switch_compat
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
-layout slider_view
 layout support_simple_spinner_dropdown_item
 layout test_action_chip
 layout test_design_checkbox
@@ -2947,7 +2901,6 @@ styleable MenuItem android_icon android_enabled android_id android_checked andro
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow
 styleable MultiSelectListPreference android_entries android_entryValues entries entryValues
 styleable NavigationView android_background android_fitsSystemWindows android_maxWidth elevation headerLayout itemBackground itemHorizontalPadding itemIconPadding itemIconSize itemIconTint itemMaxLines itemShapeAppearance itemShapeAppearanceOverlay itemShapeFillColor itemShapeInsetBottom itemShapeInsetEnd itemShapeInsetStart itemShapeInsetTop itemTextAppearance itemTextColor menu
-styleable PageIndicatorView piv_animationDuration piv_animationType piv_autoVisibility piv_count piv_dynamicCount piv_interactiveAnimation piv_orientation piv_padding piv_radius piv_rtl_mode piv_scaleFactor piv_select piv_selectedColor piv_strokeWidth piv_unselectedColor piv_viewPager
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
 styleable Preference android_icon android_persistent android_enabled android_layout android_title android_selectable android_key android_summary android_order android_widgetLayout android_dependency android_defaultValue android_shouldDisableView android_fragment android_singleLineTitle android_iconSpaceReserved allowDividerAbove allowDividerBelow defaultValue dependency enableCopying enabled fragment icon iconSpaceReserved isPreferenceVisible key layout order persistent selectable shouldDisableView singleLineTitle summary title widgetLayout
@@ -2963,7 +2916,6 @@ styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable SeekBarPreference android_layout android_max adjustable min seekBarIncrement showSeekBarValue updatesContinuously
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
-styleable SliderView sliderAnimationDuration sliderAutoCycleDirection sliderAutoCycleEnabled sliderIndicatorAnimationDuration sliderIndicatorGravity sliderIndicatorMargin sliderIndicatorMarginBottom sliderIndicatorMarginLeft sliderIndicatorMarginRight sliderIndicatorMarginTop sliderIndicatorOrientation sliderIndicatorPadding sliderIndicatorRadius sliderIndicatorRtlMode sliderIndicatorSelectedColor sliderIndicatorUnselectedColor sliderScrollTimeInSec sliderStartAutoCycle
 styleable Snackbar snackbarButtonStyle snackbarStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha elevation maxActionInlineWidth
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
