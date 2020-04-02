@@ -32,6 +32,7 @@ import nl.avans.cinetopia.data_access.get_requests.GenresGetRequest;
 import nl.avans.cinetopia.data_access.get_requests.ListGetRequest;
 import nl.avans.cinetopia.data_access.post_requests.RemoveMovieFromList;
 import nl.avans.cinetopia.data_access.utilities.JsonUtils;
+import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class WatchedListFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
@@ -40,6 +41,9 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
     private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter mAdapter;
     private ArrayList<Movie> mMovies = new ArrayList<>();
+    private ArrayList<Genre> tempGenres = new ArrayList<>();
+    private ArrayList<Movie> mMoviesBackUp = new ArrayList<>();
+    private boolean backUp = false;
 
     private String sessionId;
     private String watchedListId;
@@ -129,8 +133,23 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
     }
 
     private void retrieveLatestGenresFromApi() {
-        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener());
+        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener(), new GenresApiListener());
         task.execute(UrlBuilder.buildGenreUrl());
+    }
+
+    class GenresApiListener implements GenresGetRequest.GenresApiListener {
+        /**
+         * Fills our global ArrayList with the retrieved genres.
+         *
+         * @param genres The list of genres retrieved by our GenresGetRequest.
+         */
+        @Override
+        public void handleGenresResult(ArrayList<Genre> genres) {
+            Log.d(TAG, "Method called: handleGenresResult");
+
+            tempGenres.clear();
+            tempGenres.addAll(genres);
+        }
     }
 
     private void removeMovieFromWatchedList(int id) {
@@ -144,6 +163,10 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            if(!backUp){
+                mMoviesBackUp.addAll(movies);
+                backUp = !backUp;
+            }
             mMovies.clear();
             mMovies.addAll(movies);
             mAdapter.notifyDataSetChanged();

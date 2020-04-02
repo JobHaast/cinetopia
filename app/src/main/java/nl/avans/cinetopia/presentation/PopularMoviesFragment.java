@@ -122,7 +122,6 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
             tempGenres.clear();
             tempGenres.addAll(genres);
-//            Log.d(TAG, "Hier moet je zijn: " + tempGenres.size());
         }
     }
 
@@ -146,7 +145,6 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                 mMoviesBackUp.addAll(movies);
                 backUp = !backUp;
             }
-            Log.d(TAG, "Hier moet je zijn: " + mMoviesBackUp.size());
 
             mMovies.clear();
             mMovies.addAll(movies);
