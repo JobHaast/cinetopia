@@ -78,9 +78,9 @@ public class Filter {
 
         for (Movie movie : movies) {
             double rating = movie.getRating();
-//            if (rating > min && rating < max) {
+            if (rating > min && rating < max) {
                 newMovieList.add(movie);
-//            }
+            }
         }
 
         Log.d(TAG, "doFilterOnRatings newMovieListSize: " + newMovieList.size());
