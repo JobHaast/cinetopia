@@ -44,6 +44,6 @@
     <string name="remove_from_list_confirmation">Are you sure you want to remove this movie from the list?</string>
     <string name="remove_movie_result_duplicate">This movie is already in this list</string>
     <string name="rating_result_succes">Rating has been submitted</string>
-    <string name="rating_result_rerate">The rating has been changed</string>
+    <string name="rating_result_rerate">The rating of your vote has been changed</string>
     <string name="clear_all_label">Clear all</string>
 </resources>
