@@ -52,7 +52,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     private String[] tempGenreNames;
     private boolean[] ifItemsCheckedBooleans;
     private ArrayList<Integer> mCheckedItems = new ArrayList<>();
-    private boolean BackupIsNotMade = true;
+    private boolean backUp = false;
 
 
     public PopularMoviesFragment(String sessionId, String watchedListId, String watchListId) {
@@ -122,7 +122,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
             tempGenres.clear();
             tempGenres.addAll(genres);
-            Log.d(TAG, "Hier moet je zijn: " + tempGenres.size());
+//            Log.d(TAG, "Hier moet je zijn: " + tempGenres.size());
         }
     }
 
@@ -142,8 +142,15 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
             Log.d(TAG, "Method called: handleMovieResult");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
+            if(!backUp){
+                mMoviesBackUp.addAll(movies);
+                backUp = !backUp;
+            }
+            Log.d(TAG, "Hier moet je zijn: " + mMoviesBackUp.size());
+
             mMovies.clear();
             mMovies.addAll(movies);
+
             mAdapter.notifyDataSetChanged();
         }
     }
