@@ -164,9 +164,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar_menu, menu);
-//        return true;
     }
 
     @Override
