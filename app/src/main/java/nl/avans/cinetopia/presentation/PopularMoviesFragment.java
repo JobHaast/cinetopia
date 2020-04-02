@@ -244,6 +244,8 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                         }
                         PopularMovieApiListener task = new PopularMovieApiListener();
                         task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, tempGenres));
+                        mCheckedItems.clear();
+                        checkedGenreIds.clear();
                     }
                 });
                 AlertDialog dialog = mBuilder.create();
