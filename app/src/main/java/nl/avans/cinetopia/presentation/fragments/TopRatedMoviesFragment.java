@@ -38,17 +38,19 @@ public class TopRatedMoviesFragment extends Fragment implements MoviesRecyclerVi
 
     private static final String TAG = TopRatedMoviesFragment.class.getSimpleName();
 
+    private MoviesRecyclerViewAdapter mAdapter;
+    private ArrayList<Movie> mMovies = new ArrayList<>();
+    private ArrayList<Movie> mMoviesBackup = new ArrayList<>();
+
     private String mSessionId;
     private String mWatchedListId;
     private String mWatchListId;
-    private MoviesRecyclerViewAdapter mAdapter;
-    private ArrayList<Movie> mMovies = new ArrayList<>();
-    private ArrayList<Genre> mTempGenres = new ArrayList<>();
-    private ArrayList<Movie> mMoviesBackup = new ArrayList<>();
-    private boolean mBackup = false;
-    private ArrayList<Integer> mCheckedItems = new ArrayList<>();
 
-    public TopRatedMoviesFragment(String sessionId, String watchedListId, String watchListId){
+    private ArrayList<Genre> mTempGenres = new ArrayList<>();
+    private ArrayList<Integer> mCheckedItems = new ArrayList<>();
+    private boolean mBackup = false;
+
+    public TopRatedMoviesFragment(String sessionId, String watchedListId, String watchListId) {
         this.mSessionId = sessionId;
         this.mWatchedListId = watchedListId;
         this.mWatchListId = watchListId;
@@ -109,7 +111,9 @@ public class TopRatedMoviesFragment extends Fragment implements MoviesRecyclerVi
 
     private void retrieveTopRatedMoviesFromApi() {
         TopRatedMovieGetRequest task = new TopRatedMovieGetRequest(new TopRatedMoviesFragment.TopRatedMovieApiListener());
-        task.execute(UrlBuilder.buildTopRatedMovieListUrl());
+        task.execute(UrlBuilder.buildTopRatedMovieListUrl(1), UrlBuilder.buildTopRatedMovieListUrl(2),
+                UrlBuilder.buildTopRatedMovieListUrl(3), UrlBuilder.buildTopRatedMovieListUrl(4),
+                UrlBuilder.buildTopRatedMovieListUrl(5));
     }
 
     @Override
@@ -128,7 +132,7 @@ public class TopRatedMoviesFragment extends Fragment implements MoviesRecyclerVi
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!mBackup){
+            if (!mBackup) {
                 mMoviesBackup.addAll(movies);
                 mBackup = !mBackup;
             }
@@ -225,7 +229,7 @@ public class TopRatedMoviesFragment extends Fragment implements MoviesRecyclerVi
                             checkedGenreIds.add(mTempGenres.get(i).getId());
                         }
                         TopRatedMoviesFragment.TopRatedMovieApiListener task = new TopRatedMoviesFragment.TopRatedMovieApiListener();
-                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, mTempGenres));
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds));
                         mCheckedItems.clear();
                         checkedGenreIds.clear();
                     }

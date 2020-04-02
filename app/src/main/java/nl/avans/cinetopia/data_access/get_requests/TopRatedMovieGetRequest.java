@@ -28,14 +28,15 @@ public class TopRatedMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movi
         Log.d(TAG, "Method called: doInBackground in TopRatedMovieGetRequest");
 
         ArrayList<Movie> movies = new ArrayList<>();
-        URL url = urls[0];
 
         String jsonResult;
-        try {
-            jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
-            movies = JsonUtils.parseMoviesJson(jsonResult);
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (URL url : urls) {
+            try {
+                jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
+                movies.addAll(JsonUtils.parseMoviesJson(jsonResult));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return movies;

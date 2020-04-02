@@ -36,22 +36,24 @@ import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
 public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener{
+
+    // Tag for logging.
     private static final String TAG = WatchedListFragment.class.getSimpleName();
 
     private MoviesRecyclerViewAdapter mAdapter;
     private ArrayList<Movie> mMovies = new ArrayList<>();
-    private ArrayList<Genre> tempGenres = new ArrayList<>();
-    private ArrayList<Movie> mMoviesBackUp = new ArrayList<>();
-    private boolean backUp = false;
+    private ArrayList<Genre> mTempGenres = new ArrayList<>();
+    private ArrayList<Movie> mMoviesBackup = new ArrayList<>();
+    private boolean mBackup = false;
 
-    private String sessionId;
-    private String watchedListId;
-    private String watchListId;
+    private String mSessionId;
+    private String mWatchedListId;
+    private String mWatchListId;
 
     public WatchlistFragment(String sessionId, String watchedListId, String watchListId){
-        this.sessionId = sessionId;
-        this.watchedListId = watchedListId;
-        this.watchListId = watchListId;
+        this.mSessionId = sessionId;
+        this.mWatchedListId = watchedListId;
+        this.mWatchListId = watchListId;
     }
 
     @Override
@@ -128,7 +130,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
 
     private void retrieveWatchedMoviesFromApi() {
         ListGetRequest task = new ListGetRequest(new MovieApiListener());
-        task.execute(UrlBuilder.buildGetListUrl(watchListId));
+        task.execute(UrlBuilder.buildGetListUrl(mWatchListId));
     }
 
 
@@ -147,14 +149,14 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         public void handleGenresResult(ArrayList<Genre> genres) {
             Log.d(TAG, "Method called: handleGenresResult");
 
-            tempGenres.clear();
-            tempGenres.addAll(genres);
+            mTempGenres.clear();
+            mTempGenres.addAll(genres);
         }
     }
 
     private void removeMovieFromWatchList(int id){
         RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
-        task.execute(UrlBuilder.buildRemoveMovieUrl(id, sessionId, watchListId));
+        task.execute(UrlBuilder.buildRemoveMovieUrl(id, mSessionId, mWatchListId));
     }
 
     class MovieApiListener implements ListGetRequest.WatchedListApiListener {
@@ -163,9 +165,9 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!backUp){
-                mMoviesBackUp.addAll(movies);
-                backUp = !backUp;
+            if(!mBackup){
+                mMoviesBackup.addAll(movies);
+                mBackup = !mBackup;
             }
             mMovies.clear();
             mMovies.addAll(movies);
@@ -197,7 +199,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
     @Override
     public void onItemClick(int position) {
         Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), sessionId, watchedListId, watchListId))
+                .replace(R.id.activity_main_frameLayout, new MovieDetailsFragment(mMovies.get(position).getId(), mSessionId, mWatchedListId, mWatchListId))
                 .addToBackStack(null).commit();
     }
 

@@ -28,14 +28,15 @@ public class PopularMovieGetRequest extends AsyncTask<URL, Void, ArrayList<Movie
         Log.d(TAG, "Method called: doInBackground");
 
         ArrayList<Movie> movies = new ArrayList<>();
-        URL url = urls[0];
 
         String jsonResult;
-        try {
-            jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
-            movies = JsonUtils.parseMoviesJson(jsonResult);
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (URL url : urls) {
+            try {
+                jsonResult = NetworkUtils.getResponseFromHttpUrl(url);
+                movies.addAll(JsonUtils.parseMoviesJson(jsonResult));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return movies;

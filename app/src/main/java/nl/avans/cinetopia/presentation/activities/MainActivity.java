@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             CreateWatchedList createWatchedList = new CreateWatchedList(new AsyncResponseWatchedList());
             createWatchedList.execute(UrlBuilder.createWatchedList(output));
             CreateWatchList createWatchList = new CreateWatchList(new AsyncResponseCreateWatchList());
-            createWatchList.execute(UrlBuilder.createWatchList(output));
+            createWatchList.execute(UrlBuilder.createWatchlist(output));
         }
     }
 

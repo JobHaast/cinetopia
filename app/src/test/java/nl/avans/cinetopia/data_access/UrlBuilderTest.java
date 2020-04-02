@@ -73,7 +73,7 @@ public class UrlBuilderTest {
 
     @Test
     public void createWatchList() {
-        String result = UrlBuilder.createWatchList("1").toString();
+        String result = UrlBuilder.createWatchlist("1").toString();
         assertEquals(result, "Request{method=POST, url=https://api.themoviedb.org/3/list?api_key=4c422ac80f2c83f42b8f905d4303959d&session_id=1, tag=null}");
     }
 

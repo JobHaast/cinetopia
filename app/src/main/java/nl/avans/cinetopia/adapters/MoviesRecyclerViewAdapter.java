@@ -28,17 +28,17 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
     private ArrayList<Movie> mMovies;
     private OnItemClickListener mListener;
 
+    public MoviesRecyclerViewAdapter(Context context, ArrayList<Movie> movies) {
+        this.mContext = context;
+        this.mMovies = movies;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;
-    }
-
-    public MoviesRecyclerViewAdapter(Context context, ArrayList<Movie> movies) {
-        this.mContext = context;
-        this.mMovies = movies;
     }
 
     /**
@@ -92,7 +92,7 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
         return mMovies.size();
     }
 
-    public class PopularMoviesViewHolder extends RecyclerView.ViewHolder {
+    class PopularMoviesViewHolder extends RecyclerView.ViewHolder {
 
         // The Views in our list item.
         ImageView mImageViewPoster;

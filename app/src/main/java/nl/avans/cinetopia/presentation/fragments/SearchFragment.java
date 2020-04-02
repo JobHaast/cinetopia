@@ -22,17 +22,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import nl.avans.cinetopia.R;
-import nl.avans.cinetopia.adapters.MovieSearchRecyclerViewAdapter;
+import nl.avans.cinetopia.adapters.MoviesRecyclerViewAdapter;
 import nl.avans.cinetopia.data_access.UrlBuilder;
 import nl.avans.cinetopia.data_access.get_requests.MovieSearchGetRequest;
 import nl.avans.cinetopia.domain.Movie;
 import nl.avans.cinetopia.presentation.activities.MainActivity;
 
-public class SearchFragment extends Fragment implements MovieSearchRecyclerViewAdapter.OnItemClickListener {
+public class SearchFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private MovieSearchRecyclerViewAdapter mAdapter;
+    private MoviesRecyclerViewAdapter mAdapter;
     private ArrayList<Movie> mMovies = new ArrayList<>();
 
     private String mSessionId;
@@ -63,7 +63,7 @@ public class SearchFragment extends Fragment implements MovieSearchRecyclerViewA
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Specify an adapter.
-        mAdapter = new MovieSearchRecyclerViewAdapter(getActivity(), mMovies);
+        mAdapter = new MoviesRecyclerViewAdapter(getActivity(), mMovies);
         // Connect the RecyclerView to the adapter.
         mRecyclerView.setAdapter(mAdapter);
         // Set OnItemClickListener.

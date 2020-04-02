@@ -89,6 +89,19 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.rv_divider));
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//
+//                for(int i = 0; i < 5; i++) {
+//                    if (!recyclerView.canScrollVertically(1)) {
+//                        retrievePopularMoviesFromApi(i + 2);
+//                    }
+//                }
+//            }
+//        });
+
         return view;
     }
 
@@ -100,7 +113,9 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
 
     private void retrievePopularMoviesFromApi() {
         PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
-        task.execute(UrlBuilder.buildPopularMovieListUrl());
+        task.execute(UrlBuilder.buildPopularMovieListUrl(1), UrlBuilder.buildPopularMovieListUrl(2),
+                UrlBuilder.buildPopularMovieListUrl(3), UrlBuilder.buildPopularMovieListUrl(4),
+                UrlBuilder.buildPopularMovieListUrl(5));
     }
 
     private void retrieveLatestGenresFromApi() {
@@ -139,14 +154,13 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
             Log.d(TAG, "Method called: handleMovieResult");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!mBackup){
+            if (!mBackup) {
                 mMoviesBackup.addAll(movies);
                 mBackup = !mBackup;
             }
 
             mMovies.clear();
             mMovies.addAll(movies);
-
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -237,7 +251,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                             checkedGenreIds.add(mTempGenres.get(i).getId());
                         }
                         PopularMovieApiListener task = new PopularMovieApiListener();
-                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds, mTempGenres));
+                        task.handleMovieResult(genreFilter.filterGenre(checkedGenreIds));
                         mCheckedItems.clear();
                         checkedGenreIds.clear();
                     }

@@ -11,6 +11,7 @@ import nl.avans.cinetopia.data_access.utilities.NetworkUtils;
 import nl.avans.cinetopia.domain.Movie;
 
 public class ListGetRequest extends AsyncTask<URL, Void, ArrayList<Movie>> {
+
     // Tag for logging.
     private static final String TAG = TopRatedMovieGetRequest.class.getSimpleName();
 

@@ -13,18 +13,20 @@ import okhttp3.RequestBody;
 
 public class UrlBuilder {
 
-    // Declaration of the attributes
+    // Tag for logging.
     private final static String TAG = "UrlBuilder";
+
+    // Declaration of the attributes.
     private final static String BASE_URL_TMDB = "https://api.themoviedb.org/3/";
     private final static String BASE_URL_TMDB_ATHENTICATION = "https://www.themoviedb.org/";
     private final static String BASE_URL_POSTER = "https://image.tmdb.org/t/p/w500";
     private final static String BASE_URL_BACKDROP = "https://image.tmdb.org/t/p/w1280";
 
-    // The API Key is final and static so there can't be any typos made
+    // The API Key is final and static so there can't be any typos made.
     private final static String PARAM_API_KEY = "api_key";
     private final static String API_KEY = "4c422ac80f2c83f42b8f905d4303959d";
 
-    // The default Language is set to English
+    // The default Language is set to English.
     private final static String PARAM_LANGUAGE = "language";
 
     private static String LANGUAGE = Locale.getDefault().getLanguage();
@@ -36,10 +38,10 @@ public class UrlBuilder {
     // Query param for the search URL.
     private final static String PARAM_QUERY = "query";
 
-    // The pages
+    // The pages.
     private final static String PARAM_PAGE = "page";
 
-    // Paths
+    // Paths.
     private final static String SEARCH_PATH = "search";
     private final static String MOVIE_PATH = "movie";
     private final static String POPULAR_PATH = "popular";
@@ -56,7 +58,7 @@ public class UrlBuilder {
     private static final String REMOVE_ITEM = "remove_item";
     private static final String RATING_PATH = "rating";
 
-    public static URL buildPopularMovieListUrl() {
+    public static URL buildPopularMovieListUrl(int id) {
         Log.d(TAG, "Method called: buildPopularMovieListUrl");
 
         // Paths and parameters are appended to the base URL.
@@ -65,7 +67,7 @@ public class UrlBuilder {
                 .appendPath(POPULAR_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-                .appendQueryParameter(PARAM_PAGE, "1")
+                .appendQueryParameter(PARAM_PAGE, String.valueOf(id))
                 .build();
 
         URL url = null;
@@ -167,7 +169,7 @@ public class UrlBuilder {
     }
 
 
-    public static URL buildTopRatedMovieListUrl() {
+    public static URL buildTopRatedMovieListUrl(int id) {
         Log.d(TAG, "buildTopRatedMovieListUrl called");
 
         // Paths and parameters are appended to the base URL.
@@ -176,7 +178,7 @@ public class UrlBuilder {
                 .appendPath(TOP_RATED_PATH)
                 .appendQueryParameter(PARAM_API_KEY, API_KEY)
                 .appendQueryParameter(PARAM_LANGUAGE, LANGUAGE)
-                .appendQueryParameter(PARAM_PAGE, "1")
+                .appendQueryParameter(PARAM_PAGE, String.valueOf(id))
                 .build();
 
         URL url = null;
@@ -287,7 +289,7 @@ public class UrlBuilder {
         return request;
     }
 
-    public static Request createWatchList(String sessionId) {
+    public static Request createWatchlist(String sessionId) {
         Log.d(TAG, "createWatchedList called");
 
         // Paths and parameters are appended to the base URL.

@@ -21,9 +21,9 @@ public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
     private GenresApiListener mListener2;
 
     // Constructor.
-    public GenresGetRequest(GenresApiListener listener, GenresApiListener mListener2) {
+    public GenresGetRequest(GenresApiListener listener, GenresApiListener listener2) {
         this.mListener = listener;
-        this.mListener2 = mListener2;
+        this.mListener2 = listener2;
     }
 
 

@@ -51,6 +51,7 @@ public class NetworkUtils {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
             // Get response body
+            assert response.body() != null;
             return response.body().string();
         }catch (Exception e){
             e.printStackTrace();
