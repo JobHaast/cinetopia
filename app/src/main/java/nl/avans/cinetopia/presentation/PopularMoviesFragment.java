@@ -199,7 +199,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
                     public void onClick(View v) {
                         int checkedRadioButtonId = ratingGroup.getCheckedRadioButtonId();
                         Log.d(TAG, "onClick :" + checkedRadioButtonId);
-                        Filter filter = new Filter(mMovies);
+                        Filter filter = new Filter(mMoviesBackUp);
                         PopularMovieApiListener task = new PopularMovieApiListener();
                         task.handleMovieResult(filter.filterRating(checkedRadioButtonId));
                         alertDialog.cancel();
