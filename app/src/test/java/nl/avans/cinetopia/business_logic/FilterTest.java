@@ -78,9 +78,9 @@ public class FilterTest {
         movies.add(new Movie(3, "John Wick - 4.5", "image/url", 4.5, genresContainingActionAndThriller));
 
         Filter filter = new Filter(movies);
-        assertEquals(filter.doFilterOnRatings(4, 6).get(0).getTitle(), "John Wick - 4.5");
-        assertNotEquals(filter.doFilterOnRatings(4, 6).get(0).getTitle(), "John Wick - 7.2");
-        assertNotEquals(filter.doFilterOnRatings(4, 6).get(0).getTitle(), "John Wick - 10");
+        assertEquals(filter.doFilterByRating(4, 6).get(0).getTitle(), "John Wick - 4.5");
+        assertNotEquals(filter.doFilterByRating(4, 6).get(0).getTitle(), "John Wick - 7.2");
+        assertNotEquals(filter.doFilterByRating(4, 6).get(0).getTitle(), "John Wick - 10");
     }
 
     @Test
@@ -101,8 +101,8 @@ public class FilterTest {
         movies.add(new Movie(3, "John Wick - 4.5", "image/url", 4.5, genresContainingActionAndThriller));
 
         Filter filter = new Filter(movies);
-        assertEquals(filter.doFilterOnRatings(8, 10).get(0).getTitle(), "John Wick - 10");
-        assertNotEquals(filter.doFilterOnRatings(8, 10).get(0).getTitle(), "John Wick - 7.2");
-        assertNotEquals(filter.doFilterOnRatings(8, 10).get(0).getTitle(), "John Wick - 4.5");
+        assertEquals(filter.doFilterByRating(8, 10).get(0).getTitle(), "John Wick - 10");
+        assertNotEquals(filter.doFilterByRating(8, 10).get(0).getTitle(), "John Wick - 7.2");
+        assertNotEquals(filter.doFilterByRating(8, 10).get(0).getTitle(), "John Wick - 4.5");
     }
 }

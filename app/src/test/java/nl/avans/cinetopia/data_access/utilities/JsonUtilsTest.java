@@ -23,7 +23,7 @@ public class JsonUtilsTest {
     @Test
     public void parseMoviesJson() {
         PopularMovieGetRequest task = new PopularMovieGetRequest(new PopularMovieApiListener());
-        task.execute(UrlBuilder.buildPopularMovieListUrl());
+        task.execute(UrlBuilder.buildPopularMovieListUrl(1));
 
 //        String jsonResult = NetworkUtils.getResponseFromHttpUrl(UrlBuilder.buildPopularMovieListUrl());
 //        ArrayList<Movie> result = JsonUtils.parseMoviesJson(jsonResult);

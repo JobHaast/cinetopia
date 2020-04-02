@@ -13,7 +13,7 @@ public class UrlBuilderTest {
 
     @Test
     public void buildPopularMovieListUrlTest() {
-        String result = UrlBuilder.buildPopularMovieListUrl().toString();
+        String result = UrlBuilder.buildPopularMovieListUrl(1).toString();
         assertEquals("https://api.themoviedb.org/3/movie/popular?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en&page=1", result);
     }
 
@@ -43,7 +43,7 @@ public class UrlBuilderTest {
 
     @Test
     public void buildTopRatedMovieListUrlTest() {
-        String result = UrlBuilder.buildTopRatedMovieListUrl().toString();
+        String result = UrlBuilder.buildTopRatedMovieListUrl(1).toString();
         assertEquals("https://api.themoviedb.org/3/movie/top_rated?api_key=4c422ac80f2c83f42b8f905d4303959d&language=en&page=1", result);
     }
 
@@ -73,7 +73,7 @@ public class UrlBuilderTest {
 
     @Test
     public void createWatchList() {
-        String result = UrlBuilder.createWatchList("1").toString();
+        String result = UrlBuilder.createWatchlist("1").toString();
         assertEquals("Request{method=POST, url=https://api.themoviedb.org/3/list?api_key=4c422ac80f2c83f42b8f905d4303959d&session_id=1, tag=null}", result);
     }
 

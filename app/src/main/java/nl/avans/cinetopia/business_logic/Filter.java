@@ -76,7 +76,7 @@ public class Filter {
 
     }
 
-    private ArrayList<Movie> doFilterByRating(int min, int max) {
+    public ArrayList<Movie> doFilterByRating(int min, int max) {
         ArrayList<Movie> newMovieList = new ArrayList<>();
         Log.d(TAG, "doFilterByRating aangeroepen movielistsize:" + mMovies.size());
 
