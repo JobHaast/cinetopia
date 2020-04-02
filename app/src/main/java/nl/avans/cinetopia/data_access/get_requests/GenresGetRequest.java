@@ -18,10 +18,16 @@ public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
 
     // Listener attribute.
     private GenresApiListener mListener;
+    private GenresApiListener mListener2;
 
     // Constructor.
-    public GenresGetRequest(GenresApiListener listener) {
+    public GenresGetRequest(GenresApiListener listener, GenresApiListener mListener2) {
         this.mListener = listener;
+        this.mListener2 = mListener2;
+    }
+
+    public GenresGetRequest(GenresApiListener listener) {
+        this(listener, null);
     }
 
     @Override
@@ -49,6 +55,10 @@ public class GenresGetRequest extends AsyncTask<URL, Void, ArrayList<Genre>> {
 
         // Pass the ArrayList to our listener.
         mListener.handleGenresResult(genres);
+        if(mListener2 != null){
+            mListener2.handleGenresResult(genres);
+        }
+
     }
 
     public interface GenresApiListener {

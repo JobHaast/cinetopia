@@ -47,7 +47,7 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     private String watchedListId;
     private String watchListId;
 
-    private ArrayList<Genre> tempGenres;
+    private ArrayList<Genre> tempGenres = new ArrayList<>();
     private String[] tempGenreNames = {"name", "tree", "four", "noah", "house"};
     private boolean[] ifItemsCheckedBooleans;
     private ArrayList<Integer> mCheckedItems = new ArrayList<>();
@@ -104,8 +104,24 @@ public class PopularMoviesFragment extends Fragment implements MoviesRecyclerVie
     }
 
     private void retrieveLatestGenresFromApi() {
-        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener());
+        GenresGetRequest task = new GenresGetRequest(new JsonUtils.GenresApiListener(), new GenresApiListener());
         task.execute(UrlBuilder.buildGenreUrl());
+    }
+
+    class GenresApiListener implements GenresGetRequest.GenresApiListener {
+        /**
+         * Fills our global ArrayList with the retrieved genres.
+         *
+         * @param genres The list of genres retrieved by our GenresGetRequest.
+         */
+        @Override
+        public void handleGenresResult(ArrayList<Genre> genres) {
+            Log.d(TAG, "Method called: handleGenresResult");
+
+            tempGenres.clear();
+            tempGenres.addAll(genres);
+            Log.d(TAG, "Hier moet je zijn: " +tempGenres.size());
+        }
     }
 
 
