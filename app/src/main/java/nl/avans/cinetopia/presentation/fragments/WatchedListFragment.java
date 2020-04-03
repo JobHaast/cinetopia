@@ -118,7 +118,11 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_share) {
-            composeImplicitIntent();
+            if (!mMovies.isEmpty()) {
+                composeImplicitIntent();
+            } else {
+                Toast.makeText(getActivity(), "You cannot share an empty list.", Toast.LENGTH_SHORT).show();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -164,7 +168,7 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!mBackup){
+            if (!mBackup) {
                 mMoviesBackup.addAll(movies);
                 mBackup = !mBackup;
             }
@@ -175,7 +179,7 @@ public class WatchedListFragment extends Fragment implements MoviesRecyclerViewA
     }
 
     private void composeImplicitIntent() {
-        Log.d(TAG, "composeImplicitInten aangeroepen");
+        Log.d(TAG, "composeImplicitIntent aangeroepen");
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < mMovies.size(); i++) {

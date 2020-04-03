@@ -35,7 +35,7 @@ import nl.avans.cinetopia.data_access.utilities.JsonUtils;
 import nl.avans.cinetopia.domain.Genre;
 import nl.avans.cinetopia.domain.Movie;
 
-public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener{
+public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAdapter.OnItemClickListener {
 
     // Tag for logging.
     private static final String TAG = WatchedListFragment.class.getSimpleName();
@@ -50,7 +50,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
     private String mWatchedListId;
     private String mWatchListId;
 
-    public WatchlistFragment(String sessionId, String watchedListId, String watchListId){
+    public WatchlistFragment(String sessionId, String watchedListId, String watchListId) {
         this.mSessionId = sessionId;
         this.mWatchedListId = watchedListId;
         this.mWatchListId = watchListId;
@@ -71,7 +71,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         if (itemSearch != null) {
             itemSearch.setVisible(false);
         }
-        if (itemFilter != null){
+        if (itemFilter != null) {
             itemFilter.setVisible(false);
         }
     }
@@ -118,7 +118,11 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_share) {
-            composeImplicitIntent();
+            if (!mMovies.isEmpty()) {
+                composeImplicitIntent();
+            } else {
+                Toast.makeText(getActivity(), "You cannot share an empty list.", Toast.LENGTH_SHORT).show();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -154,7 +158,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         }
     }
 
-    private void removeMovieFromWatchList(int id){
+    private void removeMovieFromWatchList(int id) {
         RemoveMovieFromList task = new RemoveMovieFromList(new AsyncResponseRemove());
         task.execute(UrlBuilder.buildRemoveMovieUrl(id, mSessionId, mWatchListId));
     }
@@ -165,7 +169,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
             Log.d(TAG, "handleMovieResult called");
 
             // Add all movies to our ArrayList and notify the adapter that the dataset has changed.
-            if(!mBackup){
+            if (!mBackup) {
                 mMoviesBackup.addAll(movies);
                 mBackup = !mBackup;
             }
@@ -181,7 +185,7 @@ public class WatchlistFragment extends Fragment implements MoviesRecyclerViewAda
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < mMovies.size(); i++) {
             builder.append(mMovies.get(i).getTitle());
-            if (i != mMovies.size()){
+            if (i != mMovies.size()) {
                 builder.append("\n");
             }
         }
