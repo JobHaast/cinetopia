@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class MovieDetailsFragment extends Fragment {
     private ImageView imageViewTmdbLogo;
     private StringBuilder mGenresString = new StringBuilder();
     private RatingBar ratingBar;
+    private Movie mMovie;
 
     private String mSessionId;
 
@@ -149,6 +151,9 @@ public class MovieDetailsFragment extends Fragment {
             case R.id.add_to_watchlist:
                 addMovieToWatchList();
                 break;
+            case R.id.open_browser:
+                openHomepageInBrowser();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -162,6 +167,7 @@ public class MovieDetailsFragment extends Fragment {
         @SuppressLint("SetTextI18n")
         @Override
         public void handleMovieDetails(Movie movie) {
+            mMovie = movie;
             textViewTitle.setText(movie.getTitle());
             textViewOverview.setText(movie.getOverview());
             textViewReleaseDateAndRuntime.setText(movie.getReleaseDate().substring(0, 4) + "  •  " + movie.getRuntime() + " min");
@@ -218,6 +224,13 @@ public class MovieDetailsFragment extends Fragment {
     private void addMovieToWatchList() {
         AddMovieToList task = new AddMovieToList(new AsyncResponseAdd());
         task.execute(UrlBuilder.buildAddMovieUrl(mId, mSessionId, watchListId));
+    }
+
+    private void openHomepageInBrowser() {
+        String url = mMovie.getWebsite();
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     class AsyncResponseAdd implements AddMovieToList.AsyncResponse {
