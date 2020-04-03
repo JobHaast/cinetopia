@@ -13,10 +13,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
 import java.util.Objects;
 
 import nl.avans.cinetopia.R;
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private String mWatchListId;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         //Shared preferences setup
         mPreferences = getApplicationContext().getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
 
+
+
         //Set first fragment first time
         if (savedInstanceState == null) {
             mSessionId = mPreferences.getString(SESSION_ID, null);
@@ -88,9 +91,10 @@ public class MainActivity extends AppCompatActivity {
                 setUpSession();
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.popular)).commit();
             mNavDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
+
         }
     }
 
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
 
             mWatchListId = output;
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.popular)).commit();
             mNavDrawer.setCheckedItem(R.id.nav_popular);
             setTitle(getString(R.string.popular));
         }
@@ -171,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new SearchFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.search)).commit();
                 break;
         }
 
@@ -192,16 +196,16 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_popular:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new PopularMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.popular)).commit();
                 break;
             case R.id.nav_top_rated:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new TopRatedMoviesFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.top_rated)).commit();
                 break;
             case R.id.nav_to_be_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchlistFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.watchlist)).commit();
                 break;
             case R.id.nav_watched:
-                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_frameLayout, new WatchedListFragment(mSessionId, mWatchedListId, mWatchListId)).addToBackStack(getString(R.string.watched)).commit();
                 break;
             default:
 
@@ -232,9 +236,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() > 0) {
+        if (fragmentManager.getBackStackEntryCount()-1 > 0) {
             Log.i("MainActivity", "popping backstack");
-            fragmentManager.popBackStack();
+            fragmentManager.popBackStackImmediate();
+            if(fragmentManager.getBackStackEntryCount()-1 != -1){
+                String title = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount()-1).getName();
+                setTitle(title);
+                if(title == getString(R.string.popular)){
+                    mNavDrawer.setCheckedItem(R.id.nav_popular);
+                }else if(title == getString(R.string.top_rated)){
+                    mNavDrawer.setCheckedItem(R.id.nav_top_rated);
+                }else if(title == getString(R.string.watchlist)){
+                    mNavDrawer.setCheckedItem(R.id.nav_to_be_watched);
+                }else if(title == getString(R.string.watched)){
+                    mNavDrawer.setCheckedItem(R.id.nav_watched);
+                }
+            }
         } else {
             Log.i("MainActivity", "nothing on backstack, calling super");
             super.onBackPressed();
